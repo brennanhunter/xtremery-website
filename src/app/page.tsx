@@ -1,6 +1,5 @@
 'use client';
-import { motion } from "framer-motion";
-import { FaTools, FaCode, FaGamepad, FaVideo, FaServer, FaFacebookF } from "react-icons/fa";
+
 import Hero from './components/Hero';
 import Services from "./components/Services";
 import Testimonials from './components/Testimonials'; // or '@/components/Testimonials'
@@ -18,9 +17,6 @@ export default function Home() {
 <Testimonials />
 <CTA />
 
-
-
-      {/* Next sections will go here */}
     </main>
   );
 }
