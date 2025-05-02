@@ -1,8 +1,5 @@
 'use client';
 
-import Image from 'next/image';
-import Logo from '/public/LogoTransparent.png'; // update if you store it elsewhere
-
 export default function Header() {
   return (
     <header className="sticky top-0 z-50 bg-white rounded-b-2xl shadow-lg border-b-4 border-gradient-to-r from-purple-500 to-blue-500 px-8 py-6 backdrop-blur-md">

@@ -10,7 +10,7 @@ export default function Testimonials() {
   const cardsRef = useRef<HTMLDivElement[]>([]);
 
   useEffect(() => {
-    cardsRef.current.forEach((el, i) => {
+    cardsRef.current.forEach((el) => {
       if (!el) return;
 
       gsap.fromTo(
