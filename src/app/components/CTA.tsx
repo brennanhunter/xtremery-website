@@ -8,7 +8,7 @@ export default function CTA() {
         Ready to Power Up Your Tech?
       </h2>
       <p className="text-lg sm:text-xl max-w-2xl mx-auto mb-8 text-white/90">
-        Whether it's computer repair, web design, or digital magic — I&apos;m here to help you make it happen.
+        Whether it&apos;s computer repair, web design, or digital magic — I&apos;m here to help you make it happen.
       </p>
       <div className="flex flex-col sm:flex-row justify-center gap-4">
         <a

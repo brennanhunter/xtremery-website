@@ -1,4 +1,5 @@
 'use client';
+import Image from 'next/image';
 
 export default function Header() {
   return (
@@ -6,11 +7,13 @@ export default function Header() {
       <div className="flex justify-between items-center">
         <div className="flex items-center gap-4">
           <div className="flex flex-col items-center">
-            <img
-              src="/LogoTransparent.png"
-              alt="Xtremery Logo"
-              className="w-48 h-16 object-contain"
-            />
+          <Image
+  src="/LogoTransparent.png"
+  alt="Xtremery Logo"
+  width={192}
+  height={64}
+  className="object-contain"
+/>
           </div>
         </div>
 
