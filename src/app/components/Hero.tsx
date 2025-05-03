@@ -1,10 +1,9 @@
-// src/app/components/Hero.tsx
 'use client';
 
 import Image from 'next/image';
 import Link from 'next/link';
 import HeroImage from '/public/HeroImageFour.png';
-import { motion, useMotionValue, useTransform } from 'framer-motion';
+import { motion, useMotionValue} from 'framer-motion';
 import { useEffect, useRef } from 'react';
 
 export default function Hero() {
