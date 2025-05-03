@@ -1,6 +1,5 @@
 'use client';
 import Header from '../components/Header';
-import Image from 'next/image';
 import HonorGrid from '../components/HonorGrid';
 import WhoAmI from '../components/WhoAmI';
 
