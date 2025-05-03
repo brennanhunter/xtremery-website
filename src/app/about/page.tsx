@@ -31,7 +31,7 @@ export default function AboutPage() {
               <h2 className="text-3xl sm:text-4xl font-bold mb-6 text-purple-300">Why Xtremery?</h2>
               <p className="text-lg sm:text-xl leading-relaxed">
                 I named my business Xtremery because it sounded cool, but also because it&apos;s a mix of two ideas:
-                "extreme" capability and "alchemy"—the magic of transforming problems into solutions. Whether it&apos;s
+                &quot;extreme&quot; capability and &quot;alchemy&quot;—the magic of transforming problems into solutions. Whether it&apos;s
                 breathing life into a slow laptop or designing a website that actually converts, I&apos;m here to help.
               </p>
             </section>
@@ -40,7 +40,7 @@ export default function AboutPage() {
             <section className="bg-gray-800/50 px-8 py-10 rounded-2xl shadow-lg">
               <h2 className="text-3xl sm:text-4xl font-bold mb-6 text-purple-300">What I Do</h2>
               <ul className="list-disc list-inside space-y-4 text-lg sm:text-xl leading-relaxed">
-                <li>⚙️ PC Repair – From weird noises to "it just won&apos;t turn on."</li>
+                <li>⚙️ PC Repair – From weird noises to &quot;it just won&apos;t turn on.&quot;</li>
                 <li>🌐 Web Design – Clean, modern sites built with love and caffeine.</li>
                 <li>📈 SEO & Tech Consulting – I&apos;ll help your digital presence actually show up online.</li>
                 <li>🎮 Game Design & Development – I have a game dev degree and love to flex it.</li>
