@@ -1,7 +1,6 @@
 'use client';
 
 import Image from 'next/image';
-import Link from 'next/link';
 import HeroImage from '/public/HeroImageFour.png';
 import { motion } from 'framer-motion';
 import MagicButton from './MagicButton';
