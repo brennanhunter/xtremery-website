@@ -7,7 +7,7 @@ export default function WhoAmI() {
     <section className="w-[90%] mx-auto py-20 px-6 pl-[100px] grid md:grid-cols-2 gap-10 items-center">
       {/* Left: Text */}
       <div className="text-left space-y-6">
-        <h2 className="text-4xl font-extrabold bg-gradient-to-r from-purple-400 via-pink-500 to-blue-400 text-transparent bg-clip-text">
+        <h2 className="text-8xl font-extrabold bg-gradient-to-r from-purple-400 via-white to-cyan-700 text-transparent bg-clip-text">
           Who I Am
         </h2>
         <p className="text-gray-300 text-4xl leading-relaxed">
@@ -18,7 +18,7 @@ export default function WhoAmI() {
         </p>
         <a
           href="/services"
-          className="inline-block mt-4 bg-gradient-to-r from-purple-600 to-blue-500 text-white font-semibold py-3 px-6 rounded-lg shadow-lg hover:scale-105 transition-all"
+          className="inline-block mt-8 bg-gradient-to-r from-purple-600 to-blue-500 text-white text-4xl font-semibold py-3 px-6 rounded-lg shadow-lg hover:scale-150 transition-all"
         >
           See What I Do
         </a>

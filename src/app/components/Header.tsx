@@ -54,7 +54,7 @@ export default function Header() {
               <Link
                 key={label}
                 href={paths[label]}
-                className="relative text-xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-300 via-pink-400 to-blue-400 transition-all duration-300 group hover:scale-105"
+                className="relative text-xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-300 via-white to-blue-400 transition-all duration-300 group hover:scale-105"
               >
                 {label}
                 <span className="absolute left-0 -bottom-1 h-[2px] w-0 bg-gradient-to-r from-purple-400 to-blue-400 transition-all duration-300 group-hover:w-full"></span>
