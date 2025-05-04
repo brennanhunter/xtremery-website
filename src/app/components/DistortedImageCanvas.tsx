@@ -75,8 +75,8 @@ export default function DistortedImageCanvas() {
   const planeSize: [number, number] = isMobile ? [6, 4] : [9, 6];
 
   return (
-    <div style={{ width: '100%', height: isMobile ? '600px' : '1000px' }}>
-      <Canvas orthographic camera={{ zoom, position: [0, 0, 10] }}>
+    <div className="relative overflow-x-hidden" style={{ width: '100%', height: isMobile ? '600px' : '1000px' }}>
+      <Canvas className="!w-full !h-full" orthographic camera={{ zoom, position: [0, 0, 10] }}>
         <ambientLight />
         <OrthographicCamera makeDefault zoom={zoom} position={[0, 0, 10]} />
         <RippleImage size={planeSize} />
