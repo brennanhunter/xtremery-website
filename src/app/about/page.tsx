@@ -11,10 +11,10 @@ export default function AboutPage() {
   return (
     <>
       
-      
+      <Header />
       
       <main className="bg-gradient-to-br from-purple-800 via-black to-cyan-500 text-gray-100">
-      <Header />
+      
       <AboutXtremery /> 
       <WhoAmI />
             <HonorGrid />
