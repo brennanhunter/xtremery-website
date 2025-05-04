@@ -2,10 +2,11 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 
 export default function Header() {
   const [scrolled, setScrolled] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
 
   useEffect(() => {
     const onScroll = () => {
@@ -14,6 +15,13 @@ export default function Header() {
     window.addEventListener('scroll', onScroll);
     return () => window.removeEventListener('scroll', onScroll);
   }, []);
+
+  const navLinks = [
+    { label: 'Home', href: '/' },
+    { label: 'About', href: '/about' },
+    { label: 'Services', href: '#services' },
+    { label: 'Contact', href: '#contact' },
+  ];
 
   return (
     <header
@@ -40,29 +48,54 @@ export default function Header() {
           />
         </motion.div>
 
-        {/* Navigation */}
+        {/* Desktop Navigation */}
         <nav className="hidden sm:flex items-center gap-10">
-          {['Home', 'About', 'Services', 'Contact'].map((label) => {
-            const paths: Record<string, string> = {
-              Home: '/',
-              About: '/about',
-              Services: '#services',
-              Contact: '#contact',
-            };
+          {navLinks.map(({ label, href }) => (
+            <Link
+              key={label}
+              href={href}
+              className="relative text-xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-300 via-white to-blue-400 transition-all duration-300 group hover:scale-105"
+            >
+              {label}
+              <span className="absolute left-0 -bottom-1 h-[2px] w-0 bg-gradient-to-r from-purple-400 to-blue-400 transition-all duration-300 group-hover:w-full"></span>
+            </Link>
+          ))}
+        </nav>
 
-            return (
+        {/* Mobile Menu Toggle */}
+        <button
+          className="sm:hidden flex flex-col items-center justify-center w-10 h-10 focus:outline-none"
+          onClick={() => setMenuOpen((prev) => !prev)}
+        >
+          <span className={`block w-6 h-0.5 bg-white transition-all duration-300 ${menuOpen ? 'rotate-45 translate-y-1.5' : ''}`} />
+          <span className={`block w-6 h-0.5 bg-white my-1 transition-opacity duration-300 ${menuOpen ? 'opacity-0' : 'opacity-100'}`} />
+          <span className={`block w-6 h-0.5 bg-white transition-all duration-300 ${menuOpen ? '-rotate-45 -translate-y-1.5' : ''}`} />
+        </button>
+      </div>
+
+      {/* Mobile Dropdown */}
+      <AnimatePresence>
+        {menuOpen && (
+          <motion.div
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: 'auto' }}
+            exit={{ opacity: 0, height: 0 }}
+            transition={{ duration: 0.4 }}
+            className="sm:hidden flex flex-col gap-6 mt-4 px-6"
+          >
+            {navLinks.map(({ label, href }) => (
               <Link
                 key={label}
-                href={paths[label]}
-                className="relative text-xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-300 via-white to-blue-400 transition-all duration-300 group hover:scale-105"
+                href={href}
+                className="text-2xl text-white font-semibold py-2 px-4 bg-gradient-to-r from-purple-800 to-blue-700 rounded-lg shadow-md hover:scale-105 transition-transform duration-300 text-center"
+                onClick={() => setMenuOpen(false)}
               >
                 {label}
-                <span className="absolute left-0 -bottom-1 h-[2px] w-0 bg-gradient-to-r from-purple-400 to-blue-400 transition-all duration-300 group-hover:w-full"></span>
               </Link>
-            );
-          })}
-        </nav>
-      </div>
+            ))}
+          </motion.div>
+        )}
+      </AnimatePresence>
     </header>
   );
 }
