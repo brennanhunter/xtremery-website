@@ -5,8 +5,6 @@ import Image from "next/image";
 import { AnimatePresence, motion } from "framer-motion";
 import { cinzel } from '../fonts';
 
-
-
 const honors = [
   {
     id: 1,
@@ -59,26 +57,23 @@ export default function HonorGrid() {
     const isOpen = open === item.id;
     return (
       <motion.div
-  key={item.id}
-  className="rounded-xl overflow-hidden bg-gradient-to-r from-purple-700 via-white/10 to-cyan-600 backdrop-blur-md hover:shadow-2xl hover:scale-[1.02] transition-all duration-300 border border-white/10"
-  variants={{
-    hidden: { opacity: 0, y: 300, scale: 0.9 }, // big entrance
-    visible: { opacity: 1, y: 0, scale: 1 },
-  }}
-  transition={{ duration: 0.6, ease: "backOut" }} // snappy!
->
+        key={item.id}
+        className="rounded-xl overflow-hidden bg-gradient-to-r from-purple-700 via-white/10 to-cyan-600 backdrop-blur-md hover:shadow-2xl hover:scale-[1.02] transition-all duration-300 border border-white/10"
+        variants={{
+          hidden: { opacity: 0, y: 300, scale: 0.9 },
+          visible: { opacity: 1, y: 0, scale: 1 },
+        }}
+        transition={{ duration: 0.6, ease: "backOut" }}
+      >
         <button
           onClick={() => setOpen(isOpen ? null : item.id)}
           className="flex justify-between items-center w-full px-6 py-4 text-left"
         >
           <span className="text-purple-300 font-mono text-3xl">{String(item.id).padStart(2, "0")}</span>
           <span className={`flex-1 ml-4 text-3xl text-white ${cinzel.className}`}>
-  {item.title}
-</span>
-
-          <span className="text-2xl text-purple-400">
-            {isOpen ? "✕" : "+"}
+            {item.title}
           </span>
+          <span className="text-2xl text-purple-400">{isOpen ? "✕" : "+"}</span>
         </button>
 
         <AnimatePresence>
@@ -120,25 +115,20 @@ export default function HonorGrid() {
       </div>
 
       <motion.div
-  className="grid grid-cols-1 md:grid-cols-2 gap-6"
-  variants={{
-    hidden: {},
-    visible: {
-      transition: {
-        staggerChildren: 0.2,
-      },
-    },
-  }}
-  initial="hidden"
-  whileInView="visible"
-  viewport={{ once: true, amount: 0.2 }} // triggers when ~20% of the section is visible
->
-        <div className="flex flex-col gap-6">
-          {honors.filter((_, i) => i % 2 === 0).map(renderItem)}
-        </div>
-        <div className="flex flex-col gap-6">
-          {honors.filter((_, i) => i % 2 !== 0).map(renderItem)}
-        </div>
+        className="grid grid-cols-1 md:grid-cols-2 gap-6"
+        variants={{
+          hidden: {},
+          visible: {
+            transition: {
+              staggerChildren: 0.2,
+            },
+          },
+        }}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.2 }}
+      >
+        {honors.map(renderItem)}
       </motion.div>
     </section>
   );
