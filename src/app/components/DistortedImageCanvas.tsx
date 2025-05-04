@@ -68,15 +68,20 @@ export default function DistortedImageCanvas() {
   const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
-    setIsMobile(window.innerWidth < 768);
+    const handleResize = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    handleResize();
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
   }, []);
 
   const zoom = isMobile ? 35 : 70;
-  const planeSize: [number, number] = isMobile ? [6, 4] : [9, 6];
+  const planeSize: [number, number] = isMobile ? [4, 3] : [9, 6];
 
   return (
-    <div className="relative overflow-x-hidden" style={{ width: '100%', height: isMobile ? '600px' : '1000px' }}>
-      <Canvas className="!w-full !h-full" orthographic camera={{ zoom, position: [0, 0, 10] }}>
+    <div className="w-full h-[600px] max-w-full overflow-hidden">
+      <Canvas orthographic camera={{ zoom, position: [0, 0, 10] }}>
         <ambientLight />
         <OrthographicCamera makeDefault zoom={zoom} position={[0, 0, 10]} />
         <RippleImage size={planeSize} />
