@@ -80,7 +80,15 @@ export default function DistortedImageCanvas() {
   const planeSize: [number, number] = isMobile ? [4, 3] : [9, 6];
 
   return (
-    <div className="w-full h-[600px] max-w-full overflow-hidden">
+    <div
+  className="w-full h-[600px] max-w-full overflow-hidden"
+  style={{
+    maxWidth: '100vw',
+    overflowX: 'hidden',
+    margin: 0,
+    padding: 0,
+  }}
+>
       <Canvas orthographic camera={{ zoom, position: [0, 0, 10] }}>
         <ambientLight />
         <OrthographicCamera makeDefault zoom={zoom} position={[0, 0, 10]} />
