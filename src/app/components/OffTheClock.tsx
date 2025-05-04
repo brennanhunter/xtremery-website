@@ -8,10 +8,10 @@ import { Cinzel } from 'next/font/google';
 const cinzel = Cinzel({ subsets: ['latin'], weight: '700' });
 
 const basePolaroids = [
-  { src: '/images/polaroid-three.jpg', rotation: '10deg', top: '18%', left: '12%', caption: 'Space Explorers on the Loose 🌌' },
-  { src: '/images/polaroid-one.jpg', rotation: '-20deg', top: '30%', left: '28%', caption: 'Saddle Up for Adventure 🐴' },
-  { src: '/images/wedding-pic.jpg', rotation: '-5deg', top: '5%', left: '40%', caption: 'My Favorite People, My Favorite Job ❤️' },
-  { src: '/images/polaroid-two.jpg', rotation: '15deg', top: '25%', left: '58%', caption: 'Magic Hour with the Crew ✨' },
+  { src: '/Images/polaroid-three.jpg', rotation: '10deg', top: '18%', left: '12%', caption: 'Space Explorers on the Loose 🌌' },
+  { src: '/Images/polaroid-one.jpg', rotation: '-20deg', top: '30%', left: '28%', caption: 'Saddle Up for Adventure 🐴' },
+  { src: '/Images/wedding-pic.jpg', rotation: '-5deg', top: '5%', left: '40%', caption: 'My Favorite People, My Favorite Job ❤️' },
+  { src: '/Images/polaroid-two.jpg', rotation: '15deg', top: '25%', left: '58%', caption: 'Magic Hour with the Crew ✨' },
 ];
 
 export default function OffTheClock() {
