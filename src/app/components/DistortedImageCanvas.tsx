@@ -1,14 +1,14 @@
 'use client';
 
 import { Canvas, useFrame, useLoader } from '@react-three/fiber';
-import {OrthographicCamera } from '@react-three/drei';
-import { TextureLoader } from 'three';
+import { OrbitControls, OrthographicCamera } from '@react-three/drei';
+import { TextureLoader, ShaderMaterial } from 'three';
 import { useRef } from 'react';
 import * as THREE from 'three';
 
 function RippleImage() {
   const texture = useLoader(TextureLoader, '/Images/hunter-fixing.png');
-  const shaderRef = useRef<any>(null);
+  const shaderRef = useRef<ShaderMaterial | null>(null);
 
   useFrame(({ clock, mouse }) => {
     if (shaderRef.current) {
@@ -22,7 +22,7 @@ function RippleImage() {
 
   return (
     <mesh position={[0, 0, 0]}>
-      <planeGeometry args={[12, 8]} />
+      <planeGeometry args={[9, 6]} />
       <shaderMaterial
         ref={shaderRef}
         args={[{
@@ -70,7 +70,7 @@ export default function DistortedImageCanvas() {
     <div style={{ width: '100%', height: '1000px' }}>
       <Canvas orthographic camera={{ zoom: 100, position: [0, 0, 10] }}>
         <ambientLight />
-        <OrthographicCamera makeDefault zoom={50} position={[0, 0, 10]} />
+        <OrthographicCamera makeDefault zoom={70} position={[0, 0, 10]} />
         <RippleImage />
       </Canvas>
     </div>
