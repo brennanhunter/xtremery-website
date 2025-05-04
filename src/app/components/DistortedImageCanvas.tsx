@@ -1,7 +1,7 @@
 'use client';
 
 import { Canvas, useFrame, useLoader } from '@react-three/fiber';
-import { OrbitControls, OrthographicCamera } from '@react-three/drei';
+import {OrthographicCamera } from '@react-three/drei';
 import { TextureLoader } from 'three';
 import { useRef } from 'react';
 import * as THREE from 'three';
