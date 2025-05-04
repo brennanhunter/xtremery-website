@@ -10,17 +10,18 @@ import CTA from '../components/CTA';
 export default function AboutPage() {
   return (
     <>
-      <Header />
-      <AboutXtremery />
       
-      <main className="w-full min-h-screen bg-gradient-to-br from-purple-800 via-black to-cyan-500 text-gray-100 px-0 py-20">
-          <div className="space-y-0">
-            <WhoAmI />
+      
+      
+      <main className="bg-gradient-to-br from-purple-800 via-black to-cyan-500 text-gray-100">
+      <Header />
+      <AboutXtremery /> 
+      <WhoAmI />
             <HonorGrid />
             <OffTheClock />
 
             <CTA />
-        </div>
+        
       </main>
     </>
   );
