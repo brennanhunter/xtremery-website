@@ -1,19 +1,18 @@
 'use client';
 
 import { Canvas, useFrame, useLoader } from '@react-three/fiber';
-import {OrthographicCamera } from '@react-three/drei';
+import { OrthographicCamera } from '@react-three/drei';
 import { TextureLoader, ShaderMaterial } from 'three';
-import { useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import * as THREE from 'three';
 
-function RippleImage() {
+function RippleImage({ size }: { size: [number, number] }) {
   const texture = useLoader(TextureLoader, '/Images/hunter-fixing.png');
   const shaderRef = useRef<ShaderMaterial | null>(null);
 
   useFrame(({ clock, mouse }) => {
     if (shaderRef.current) {
       shaderRef.current.uniforms.uTime.value = clock.getElapsedTime();
-
       const u = mouse.x * 0.5 + 0.5;
       const v = mouse.y * 0.5 + 0.5;
       shaderRef.current.uniforms.uMouse.value.set(u, v);
@@ -22,7 +21,7 @@ function RippleImage() {
 
   return (
     <mesh position={[0, 0, 0]}>
-      <planeGeometry args={[9, 6]} />
+      <planeGeometry args={size} />
       <shaderMaterial
         ref={shaderRef}
         args={[{
@@ -66,12 +65,21 @@ function RippleImage() {
 }
 
 export default function DistortedImageCanvas() {
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    setIsMobile(window.innerWidth < 768);
+  }, []);
+
+  const zoom = isMobile ? 35 : 70;
+  const planeSize: [number, number] = isMobile ? [6, 4] : [9, 6];
+
   return (
-    <div style={{ width: '100%', height: '1000px' }}>
-      <Canvas orthographic camera={{ zoom: 100, position: [0, 0, 10] }}>
+    <div style={{ width: '100%', height: isMobile ? '600px' : '1000px' }}>
+      <Canvas orthographic camera={{ zoom, position: [0, 0, 10] }}>
         <ambientLight />
-        <OrthographicCamera makeDefault zoom={70} position={[0, 0, 10]} />
-        <RippleImage />
+        <OrthographicCamera makeDefault zoom={zoom} position={[0, 0, 10]} />
+        <RippleImage size={planeSize} />
       </Canvas>
     </div>
   );
