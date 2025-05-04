@@ -32,8 +32,8 @@ export default function Header() {
           : 'bg-gradient-to-r from-purple-900 via-gray-900 to-blue-900 bg-opacity-70 backdrop-blur-md border-b border-purple-500'
       }`}
     >
-<div className="w-full max-w-full flex items-center px-6 sm:px-12">
-{/* Logo */}
+      <div className="w-full max-w-full flex items-center px-4 sm:px-12">
+        {/* Logo */}
         <div className="flex-shrink-0">
           <motion.div
             whileHover={{ scale: 1.05, rotate: 1 }}
@@ -45,7 +45,7 @@ export default function Header() {
               alt="Xtremery Logo"
               width={300}
               height={100}
-              className="object-contain block overflow-hidden"
+              className="object-contain block overflow-hidden w-[180px] sm:w-[300px] h-auto"
               priority
             />
           </motion.div>
