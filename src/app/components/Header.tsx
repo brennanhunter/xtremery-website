@@ -1,5 +1,4 @@
 'use client';
-import ContactModal from './ContactModal';
 
 import Image from 'next/image';
 import Link from 'next/link';

@@ -31,6 +31,8 @@ export default function ServicesPage() {
     setSelectedService(service);
   };
 
+  const spotlightFadeOut = { opacity: 0, transition: { duration: 1, ease: 'easeInOut' } };
+
   return (
     <>
       <Header />
@@ -47,7 +49,7 @@ export default function ServicesPage() {
                   y: ['0%', '20vh', '-20vh', '0%'],
                   opacity: [0.6, 0.75, 0.5, 0.6],
                 }}
-                exit={{ opacity: 0 }}
+                exit={spotlightFadeOut}
                 transition={{ repeat: Infinity, duration: 12, ease: 'easeInOut' }}
               />
               <motion.div
@@ -58,7 +60,7 @@ export default function ServicesPage() {
                   y: ['0%', '-30vh', '15vh', '0%'],
                   opacity: [0.7, 0.8, 0.6, 0.7],
                 }}
-                exit={{ opacity: 0 }}
+                exit={spotlightFadeOut}
                 transition={{ repeat: Infinity, duration: 11, ease: 'easeInOut', delay: 1 }}
               />
               <motion.div
@@ -69,7 +71,7 @@ export default function ServicesPage() {
                   y: ['0%', '25vh', '-15vh', '0%'],
                   opacity: [0.5, 0.65, 0.4, 0.5],
                 }}
-                exit={{ opacity: 0 }}
+                exit={spotlightFadeOut}
                 transition={{ repeat: Infinity, duration: 13, ease: 'easeInOut', delay: 2 }}
               />
             </>
