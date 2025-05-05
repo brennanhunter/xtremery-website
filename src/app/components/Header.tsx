@@ -1,4 +1,5 @@
 'use client';
+import ContactModal from './ContactModal';
 
 import Image from 'next/image';
 import Link from 'next/link';
@@ -20,7 +21,7 @@ export default function Header() {
   const navLinks = [
     { label: 'Home', href: '/' },
     { label: 'About', href: '/about' },
-    { label: 'Services', href: '#services' },
+    { label: 'Services', href: '/services' },
     { label: 'Contact', href: '#contact' },
   ];
 

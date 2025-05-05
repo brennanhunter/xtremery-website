@@ -6,6 +6,7 @@ import { FaTools, FaCode, FaGamepad, FaVideo, FaServer, FaFacebookF } from 'reac
 const services = [
   {
     name: 'Web Development',
+    description: 'Custom websites that look great, load fast, and actually work. No cookie-cutter templates here.',
     icon: (
       <motion.div
         animate={{ y: [0, -4, 0] }}
@@ -17,6 +18,7 @@ const services = [
   },
   {
     name: 'PC Repair',
+    description: 'Blue screen of death? Weird pop-ups? I fix it like it’s my own machine — fast, clean, and honest.',
     icon: (
       <motion.div
         animate={{ rotate: [0, 10, -10, 0] }}
@@ -28,6 +30,7 @@ const services = [
   },
   {
     name: 'Social Media Management',
+    description: 'Content, scheduling, and strategy that grows your brand without sucking up your time.',
     icon: (
       <motion.div
         animate={{ scale: [1, 1.15, 1] }}
@@ -39,6 +42,7 @@ const services = [
   },
   {
     name: 'Game Design',
+    description: 'Unreal Engine wizardry and fun-first design for indie games that don’t play around.',
     icon: (
       <motion.div
         animate={{ rotate: 360 }}
@@ -50,6 +54,7 @@ const services = [
   },
   {
     name: 'Video Editing',
+    description: 'Cuts, transitions, and effects that make your videos feel pro — even if they were shot on your phone.',
     icon: (
       <motion.div
         animate={{ scale: [1, 1.1, 1], y: [0, -3, 0] }}
@@ -61,6 +66,7 @@ const services = [
   },
   {
     name: 'Hosting & Domains',
+    description: 'Launch-ready hosting and domains with zero tech headaches and lightning-fast load times.',
     icon: (
       <motion.div
         animate={{ rotate: [0, 15, -15, 0] }}
@@ -123,7 +129,7 @@ export default function Services() {
                 <div className="absolute inset-0 bg-gradient-to-br from-purple-100 to-blue-100 p-6 rounded-2xl shadow-xl rotate-y-180 backface-hidden flex flex-col items-center justify-center text-center">
                   <h4 className="text-xl font-bold text-purple-800 mb-2">{service.name}</h4>
                   <p className="text-sm text-gray-700">
-                    High-quality {service.name.toLowerCase()} built for clarity and results.
+                    {service.description}
                   </p>
                 </div>
               </div>
