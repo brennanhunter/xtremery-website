@@ -41,7 +41,7 @@ export default function Header() {
             className="flex items-center gap-2"
           >
             <Image
-              src="/LogoTransparent.png"
+              src="/LogoNew.png"
               alt="Xtremery Logo"
               width={300}
               height={100}
