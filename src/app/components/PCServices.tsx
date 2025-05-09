@@ -12,7 +12,7 @@ export default function PCServices() {
         <div className="text-center mb-20">
           <h1 className="text-5xl sm:text-6xl font-extrabold mb-6">PC Repair Services</h1>
           <p className="text-xl sm:text-2xl max-w-3xl mx-auto">
-            We know how stressful computer issues can be. Whether you're dealing with a slow system, a surprise virus, or a screen that just won't turn on—Xtremery is here to help with honest, expert-level service that puts *you* first.
+            We know how stressful computer issues can be. Whether you&apos;re dealing with a slow system, a surprise virus, or a screen that just won&apos;t turn on—Xtremery is here to help with honest, expert-level service that puts *you* first.
           </p>
         </div>
 
@@ -90,7 +90,7 @@ export default function PCServices() {
 
         {/* CTA */}
         <div className="text-center">
-          <h2 className="text-4xl font-extrabold mb-4">Let’s Fix This</h2>
+          <h2 className="text-4xl font-extrabold mb-4">Let&apos;s Fix This</h2>
           <p className="text-lg mb-6 max-w-xl mx-auto text-gray-600">
             No pressure. No pushy sales. Just straight-up tech help from someone who listens, explains, and solves.
           </p>
