@@ -9,7 +9,7 @@ type ServiceType = 'pc' | 'web';
 
 
 export default function ServicesPage() {
-  const [selectedService, setSelectedService] = useState<ServiceType | null>(null);
+  const [selectedService] = useState<ServiceType | null>(null);
 
   useEffect(() => {
     document.body.style.overflow = selectedService ? 'auto' : 'hidden';

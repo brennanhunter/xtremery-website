@@ -2,7 +2,6 @@
 import { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import Image from 'next/image';
-import Header from '../components/Header';
 import PCServices from './PCServices';
 type ServiceType = 'pc' | 'web';
 
