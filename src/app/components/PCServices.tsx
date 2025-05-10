@@ -116,7 +116,7 @@ export default function PCServices() {
       <div className="mb-32 text-center px-6">
         <h2 className="text-4xl font-extrabold text-purple-800 mb-8">What to Expect</h2>
         <p className="text-lg text-gray-700 max-w-2xl mx-auto mb-12">
-          From first contact to final fix, here's how I make sure you're taken care of.
+          From first contact to final fix, here&apos;s how I make sure you&apos;re taken care of.
         </p>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-10 max-w-6xl mx-auto">
