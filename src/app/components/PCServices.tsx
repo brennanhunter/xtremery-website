@@ -3,99 +3,158 @@
 import { motion } from 'framer-motion';
 import ContactModal from './ContactModal';
 import Image from 'next/image';
+import WhyXtremery from './WhyXtremery';
+
+const services = [
+  {
+    title: 'Hardware Repairs',
+    desc: 'From cracked screens to dead power supplies, we fix what’s broken—without the runaround.',
+    icon: '/Images/pc-hardware.png',
+  },
+  {
+    title: 'Virus & Malware Removal',
+    desc: 'Infections happen. We remove threats and restore peace of mind—without wiping your files.',
+    icon: '/Images/virus.png',
+  },
+  {
+    title: 'System Optimization',
+    desc: 'Speed boosts, startup tweaks, memory upgrades—we help your machine run like new.',
+    icon: '/Images/optimize.png',
+  },
+  {
+    title: 'Data Recovery',
+    desc: 'Deleted photos? Crashed hard drive? We recover what matters most.',
+    icon: '/Images/data-recovery.png',
+  },
+  {
+    title: 'Software Help & Setup',
+    desc: 'Need Office installed? Printer refusing to listen? We get your tools working together.',
+    icon: '/Images/software.png',
+  },
+];
+
+const steps = [
+  {
+    label: 'Discovery Call',
+    desc: 'A quick chat to understand the issue, timeline, and your goals—without tech jargon or pressure.'
+  },
+  {
+    label: 'Diagnosis',
+    desc: 'We dig in to find the exact cause, not just the symptoms—so the fix actually sticks.'
+  },
+  {
+    label: 'Clear Quote',
+    desc: 'You’ll get a straightforward price. No surprises. No hidden add-ons.'
+  },
+  {
+    label: 'Expert Fix',
+    desc: 'We do it right the first time, using quality parts and precision tools.'
+  },
+  {
+    label: 'Testing',
+    desc: 'We double-check everything so you’re not left wondering “what now?”'
+  },
+  {
+    label: 'Support',
+    desc: 'Need follow-up help? We’re here. Tech that works *and* people who answer.'
+  },
+];
 
 export default function PCServices() {
   return (
-    <section className="bg-gradient-to-br from-blue-50 to-purple-100 py-24 px-6 text-gray-800">
-      <div className="max-w-6xl mx-auto">
-        {/* Intro */}
-        <div className="text-center mb-20">
-          <h1 className="text-5xl sm:text-6xl font-extrabold mb-6">PC Repair Services</h1>
-          <p className="text-xl sm:text-2xl max-w-3xl mx-auto">
-            We know how stressful computer issues can be. Whether you&apos;re dealing with a slow system, a surprise virus, or a screen that just won&apos;t turn on—Xtremery is here to help with honest, expert-level service that puts *you* first.
+    <section className="relative bg-gradient-to-br from-blue-50 to-purple-100 text-gray-800 overflow-hidden">
+      {/* Glow Blobs */}
+      <div className="absolute -top-32 -left-32 w-[400px] h-[400px] bg-purple-300 rounded-full blur-3xl opacity-20 animate-pulse" />
+      <div className="absolute -bottom-32 -right-32 w-[400px] h-[400px] bg-blue-300 rounded-full blur-3xl opacity-20 animate-pulse delay-1000" />
+
+      {/* Hero Full Width */}
+      <div className="w-screen bg-gradient-to-br from-blue-900 via-purple-900 to-black py-32 px-6 shadow-[0_0_60px_rgba(139,92,246,0.25)] mb-24">
+        <div className="max-w-7xl mx-auto text-center">
+          <h1 className="text-6xl sm:text-8xl font-extrabold text-white mb-6 leading-tight drop-shadow-md">
+            Stress-Free PC Repair
+          </h1>
+          <p className="text-2xl sm:text-3xl text-purple-200 max-w-3xl mx-auto leading-relaxed">
+            From slow startups to scary errors—<span className="text-white font-bold">we turn computer chaos into calm</span> with repairs you can trust. No upsells, no ghosting—just help that makes sense.
           </p>
         </div>
+      </div>
 
-        {/* Services */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 mb-24">
-          {[
-            {
-              title: 'Hardware Repairs',
-              desc: 'From broken screens to power supply issues, we get your hardware back to working order—fast.',
-              icon: '/images/pc-hardware.png',
-            },
-            {
-              title: 'Virus & Malware Removal',
-              desc: 'We clean and secure your system from threats without wiping your data.',
-              icon: '/images/virus.png',
-            },
-            {
-              title: 'System Optimization',
-              desc: 'Speed up your device and boost performance without the need for new parts.',
-              icon: '/images/optimize.png',
-            },
-            {
-              title: 'Data Recovery',
-              desc: 'Accidentally deleted something important? We recover files from hard drives and more.',
-              icon: '/images/data-recovery.png',
-            },
-            {
-              title: 'Software Help & Setup',
-              desc: 'Installations, updates, troubleshooting—we handle it all so you can focus on using your tech.',
-              icon: '/images/software.png',
-            },
-          ].map((service, i) => (
+      {/* Our Offerings */}
+      <div className="mb-32 text-center px-4">
+        <h2 className="text-5xl sm:text-6xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-blue-400 mb-4 drop-shadow-md leading-tight pb-1">
+          Our Offerings
+        </h2>
+        <p className="text-lg text-gray-600 max-w-2xl mx-auto mb-16">
+          Here’s what I can do for your tech life.
+        </p>
+
+        <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-3 max-w-6xl mx-auto">
+          {services.map((service, i) => (
             <motion.div
-              key={i}
-              initial={{ opacity: 0, y: 50 }}
+              key={service.title}
+              initial={{ opacity: 0, y: 60 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ delay: i * 0.1 }}
               viewport={{ once: true }}
-              className="flex items-start gap-6"
+              className="group relative rounded-3xl bg-gradient-to-br from-white/30 via-purple-50/40 to-blue-50/30 p-6 shadow-lg backdrop-blur-md hover:scale-[1.03] hover:shadow-2xl transition-all duration-300"
             >
-              <Image src={service.icon} alt={service.title} width={64} height={64} />
-              <div>
-                <h3 className="text-2xl font-bold text-purple-700 mb-2">{service.title}</h3>
-                <p className="text-lg text-gray-700">{service.desc}</p>
+              <div className="flex flex-col items-center text-center gap-4">
+                <motion.div whileHover={{ scale: 1.1 }}>
+                  <Image src={service.icon} alt={service.title} width={64} height={64} className="drop-shadow-sm" />
+                </motion.div>
+                <h3 className="text-xl font-extrabold text-purple-700">{service.title}</h3>
+                <p className="text-base text-gray-700 max-w-xs">
+                  {service.desc}
+                </p>
               </div>
             </motion.div>
           ))}
         </div>
+      </div>
 
-        {/* Process */}
-        <div className="mb-24">
-          <h2 className="text-4xl font-extrabold mb-8 text-center">What to Expect</h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-12 text-center">
-            {[
-              'Initial Consultation',
-              'Thorough Diagnosis',
-              'Clear Quote & Approval',
-              'Expert Repair Work',
-              'Ongoing Support & Advice',
-            ].map((step, i) => (
-              <motion.div
-                key={i}
-                className="bg-white rounded-xl p-6 shadow-md"
-                initial={{ opacity: 0, y: 50 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ delay: i * 0.1 }}
-                viewport={{ once: true }}
-              >
-                <p className="text-purple-600 text-2xl font-semibold mb-2">Step {i + 1}</p>
-                <p className="text-lg text-gray-700">{step}</p>
-              </motion.div>
-            ))}
-          </div>
-        </div>
+      {/* Repair Process */}
+      <div className="mb-32 text-center px-6">
+        <h2 className="text-4xl font-extrabold text-purple-800 mb-8">What to Expect</h2>
+        <p className="text-lg text-gray-700 max-w-2xl mx-auto mb-12">
+          From first contact to final fix, here's how I make sure you're taken care of.
+        </p>
 
-        {/* CTA */}
-        <div className="text-center">
-          <h2 className="text-4xl font-extrabold mb-4">Let&apos;s Fix This</h2>
-          <p className="text-lg mb-6 max-w-xl mx-auto text-gray-600">
-            No pressure. No pushy sales. Just straight-up tech help from someone who listens, explains, and solves.
-          </p>
-          <ContactModal />
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-10 max-w-6xl mx-auto">
+          {steps.map((step, i) => (
+            <div
+              key={i}
+              className="relative w-full h-52 perspective-[1000px] group"
+            >
+              <div className="relative w-full h-full transition-transform duration-700 transform-style-preserve-3d group-hover:rotate-y-180">
+                {/* Front */}
+                <div className="absolute inset-0 bg-white p-6 rounded-2xl shadow-md flex flex-col items-center justify-center backface-hidden">
+                  <p className="text-purple-600 text-xl font-bold mb-2">Step {i + 1}</p>
+                  <p className="text-gray-800 text-lg font-semibold">{step.label}</p>
+                </div>
+                {/* Back */}
+                <div className="absolute inset-0 bg-gradient-to-br from-purple-100 to-blue-100 p-6 rounded-2xl shadow-xl rotate-y-180 backface-hidden flex items-center justify-center text-center">
+                  <p className="text-gray-700 text-sm leading-relaxed max-w-xs">
+                    {step.desc}
+                  </p>
+                </div>
+              </div>
+            </div>
+          ))}
         </div>
+      </div>
+
+
+      <WhyXtremery />
+
+      {/* CTA Section */}
+
+      {/* Final CTA */}
+      <div className="text-center">
+        <h2 className="text-4xl font-extrabold text-purple-800 mb-4">Let’s Fix This</h2>
+        <p className="text-lg text-gray-700 max-w-xl mx-auto mb-6">
+          Book your free consultation. No pressure. Just honest help and wizard-level service.
+        </p>
+        <ContactModal />
       </div>
     </section>
   );
