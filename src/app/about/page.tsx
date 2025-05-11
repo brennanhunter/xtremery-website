@@ -5,7 +5,7 @@ import WhoAmI from '../components/WhoAmI';
 import AboutXtremery from '../components/AboutXtremery';
 import OffTheClock from '../components/OffTheClock';
 import CTA from '../components/CTA';
-
+import Footer from '../components/Footer';
 
 export default function AboutPage() {
   return (
@@ -21,6 +21,7 @@ export default function AboutPage() {
             <OffTheClock />
 
             <CTA />
+            <Footer />
         
       </main>
     </>

@@ -5,6 +5,7 @@ import Services from "./components/Services";
 import Testimonials from './components/Testimonials'; // or '@/components/Testimonials'
 import Header from "./components/Header";
 import CTA from "./components/CTA";
+import Footer from './components/Footer';
 
 
 export default function Home() {
@@ -16,6 +17,7 @@ export default function Home() {
 <Services />
 <Testimonials />
 <CTA />
+<Footer />
 
     </main>
   );

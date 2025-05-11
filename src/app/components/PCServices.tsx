@@ -4,6 +4,7 @@ import { motion } from 'framer-motion';
 import ContactModal from './ContactModal';
 import Image from 'next/image';
 import WhyXtremery from './WhyXtremery';
+import Footer from './Footer';
 
 const services = [
   {
@@ -155,6 +156,7 @@ export default function PCServices() {
           Book your free consultation. No pressure. Just honest help and wizard-level service.
         </p>
         <ContactModal />
+        <Footer />
       </div>
     </section>
   );
