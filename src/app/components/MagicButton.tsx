@@ -2,6 +2,7 @@
 
 import { useRef, useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
+import ContactModal from './ContactModal';
 
 interface Particle {
   id: number;
@@ -16,6 +17,7 @@ export default function MagicButton() {
   const btnRef = useRef<HTMLButtonElement>(null);
   const [particles, setParticles] = useState<Particle[]>([]);
   const [hovering, setHovering] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
   const particleId = useRef(0);
   const intervalRef = useRef<NodeJS.Timeout | null>(null);
 
@@ -47,26 +49,26 @@ export default function MagicButton() {
 
     if (hovering) {
       intervalRef.current = setInterval(() => {
-        const edge = Math.floor(Math.random() * 4); // top, right, bottom, left
+        const edge = Math.floor(Math.random() * 4);
         let spawnX = rect.width / 2;
         let spawnY = rect.height / 2;
 
         const offset = Math.random() * rect.width * 0.8;
 
         switch (edge) {
-          case 0: // top
+          case 0:
             spawnX = offset;
             spawnY = 0;
             break;
-          case 1: // right
+          case 1:
             spawnX = rect.width;
             spawnY = offset;
             break;
-          case 2: // bottom
+          case 2:
             spawnX = offset;
             spawnY = rect.height;
             break;
-          case 3: // left
+          case 3:
             spawnX = 0;
             spawnY = offset;
             break;
@@ -84,7 +86,7 @@ export default function MagicButton() {
             color: colors[Math.floor(Math.random() * colors.length)],
           },
         ]);
-      }, 40); // spawn more often
+      }, 40);
     } else {
       if (intervalRef.current) clearInterval(intervalRef.current);
     }
@@ -110,29 +112,32 @@ export default function MagicButton() {
     >
       <button
         ref={btnRef}
-        onClick={createRipple}
+        onClick={(e) => {
+          createRipple(e);
+          setIsOpen(true);
+        }}
         className="relative overflow-hidden px-8 py-3 rounded-lg text-white font-bold shadow-lg transition-all duration-300 bg-gradient-to-r from-purple-600 via-pink-500 to-blue-500 hover:from-blue-500 hover:to-purple-600 hover:shadow-xl hover:scale-105 focus:outline-none"
       >
         <span className="relative z-10">Work With Us</span>
       </button>
 
-      {/* Particles */}
-{particles.map((p) => (
-  <motion.span
-    key={p.id}
-    initial={{ x: 0, y: 0, opacity: 1, scale: 1 }}
-    animate={{ x: p.x, y: p.y, opacity: 0, scale: 0.6 }}
-    transition={{ duration: 1.2, ease: 'easeOut' }}
-    className="absolute w-3 h-3 rounded-full pointer-events-none drop-shadow-lg"
-    style={{
-      backgroundColor: p.color,
-      left: '50%',
-      top: '50%',
-      opacity: 0.9, // Make initial opacity stronger
-    }}
-  />
-))}
+      {particles.map((p) => (
+        <motion.span
+          key={p.id}
+          initial={{ x: 0, y: 0, opacity: 1, scale: 1 }}
+          animate={{ x: p.x, y: p.y, opacity: 0, scale: 0.6 }}
+          transition={{ duration: 1.2, ease: 'easeOut' }}
+          className="absolute w-3 h-3 rounded-full pointer-events-none drop-shadow-lg"
+          style={{
+            backgroundColor: p.color,
+            left: '50%',
+            top: '50%',
+            opacity: 0.9,
+          }}
+        />
+      ))}
 
+      {isOpen && <ContactModal />}
     </div>
   );
 }

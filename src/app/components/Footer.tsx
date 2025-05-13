@@ -5,7 +5,7 @@ import Image from 'next/image';
 
 export default function Footer() {
   return (
-    <footer className="bg-gradient-to-r from-purple-900 via-black to-blue-900 text-white py-12 px-6 mt-12">
+    <footer className="bg-gradient-to-r from-purple-900 via-black to-blue-900 text-white py-12 px-6">
       <div className="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-3 gap-10 items-start">
 
         {/* Logo + Blurb */}

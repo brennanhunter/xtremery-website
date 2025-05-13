@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import Image from 'next/image';
 import PCServices from './PCServices';
+import WebServices from './WebServices';
 
 type ServiceType = 'pc' | 'web';
 
@@ -210,6 +211,17 @@ export default function ServiceSelector() {
             className="absolute top-0 left-0 w-full min-h-screen bg-white text-gray-900 z-50 overflow-y-auto"
           >
             <PCServices />
+          </motion.div>
+        )}
+
+        {selectedService === 'web' && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 1, duration: 1 }}
+            className="absolute top-0 left-0 w-full min-h-screen bg-white text-gray-900 z-50 overflow-y-auto"
+          >
+            <WebServices />
           </motion.div>
         )}
       </main>
