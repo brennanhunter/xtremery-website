@@ -12,7 +12,7 @@ export default function CTA() {
       </p>
       <div className="flex flex-col sm:flex-row justify-center gap-4">
         <a
-          href="#"
+          href="https://calendar.app.google/TieHN52sEYn7CFKV8"
           className="bg-white text-purple-700 font-semibold py-3 px-6 rounded-lg shadow-md hover:bg-purple-100 transition"
         >
           Book a Repair
