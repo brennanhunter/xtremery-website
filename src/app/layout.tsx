@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import { Analytics } from "@vercel/analytics/next"
 
 import { Toaster } from 'react-hot-toast'; // ✅ add this import (after globals)
 
@@ -38,3 +39,5 @@ export default function RootLayout({
     </html>
   );
 }
+
+<Analytics />

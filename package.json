@@ -12,6 +12,7 @@
     "@lottiefiles/react-lottie-player": "^3.6.0",
     "@react-three/drei": "^10.0.7",
     "@react-three/fiber": "^9.1.2",
+    "@vercel/analytics": "^1.5.0",
     "canvas-confetti": "^1.9.3",
     "framer-motion": "^12.9.4",
     "gsap": "^3.13.0",
