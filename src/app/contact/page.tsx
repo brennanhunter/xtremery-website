@@ -16,7 +16,7 @@ export default function ContactPage() {
             Contact Xtremery
           </h1>
           <p className="text-xl sm:text-2xl text-white/80 max-w-2xl mx-auto mb-12">
-            Questions? Ideas? Tech in distress? Reach out and let's get things fixed—or built—the right way.
+            Questions? Ideas? Tech in distress? Reach out and let&apos;s get things fixed—or built—the right way.
           </p>
 
           <div className="mb-12">
