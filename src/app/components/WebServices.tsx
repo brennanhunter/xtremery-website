@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { useRef, useEffect, useState } from "react";
+import {useEffect, useState } from "react";
 import MagicButton from "./MagicButton";
 import {
   FaCode,
@@ -23,7 +23,7 @@ const sections = [
 
 const fadeUp = {
   hidden: { opacity: 0, y: 60 },
-  visible: (i) => ({
+  visible: (i: number) => ({
     opacity: 1,
     y: 0,
     transition: { delay: i * 0.2, duration: 0.6 },
