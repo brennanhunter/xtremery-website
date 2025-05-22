@@ -33,7 +33,7 @@ const gameProjects = [
       'Levels introduce a core mechanic early, then ramp difficulty through clever escalation — teaching by doing.',
       'New abilities are introduced with minimal exposition and rely on the player to experiment and master them.',
     ],
-    trailer: 'https://www.youtube.com/embed/r3SEvl1vqFs?si=3JHFHg7YQFK4R3ap',
+    trailer: 'https://www.youtube.com/embed/r3SEvl1vqFs', // Cleaned URL
     insights: [
       {
         title: '⚔️ Combat Philosophy',
@@ -79,7 +79,7 @@ const gameProjects = [
       'Puzzle setups are designed to make the player feel smart, not tricked.',
       'New mechanics were developed to sustain depth with minimal controls, like anti-gravity zones and ice-sliding surfaces.',
     ],
-    trailer: 'https://www.youtube.com/embed/M6s9ebqlRi8?si=03Y22mHnymj4n22j',
+    trailer: 'https://www.youtube.com/embed/M6s9ebqlRi8', // Cleaned URL
     insights: [
       {
         title: '🧩 Puzzle Design',
@@ -125,7 +125,7 @@ const gameProjects = [
       'Implemented source control and team coordination in a high-pressure setting.',
       'Released a working vertical slice under severe time constraints and extracted key lessons.',
     ],
-    trailer: '',
+    trailer: '', // No trailer
     insights: [
       {
         title: '⚡ Rapid Prototyping Under Pressure',
@@ -281,22 +281,38 @@ export default function GameDesignSection() {
                 ×
               </button>
               <h3 className="text-3xl font-extrabold text-cyan-700 mb-4">{openGame.name}</h3>
-              <p className="text-sm text-gray-600 mb-2">🎮 <strong>Genre:</strong> {openGame.genre}</p>
+              <p className="text-sm text-gray-600 mb robust playback.
+2">🎮 <strong>Genre:</strong> {openGame.genre}</p>
               <p className="text-sm text-gray-600 mb-2">🛠 <strong>Tools:</strong> {openGame.tools}</p>
               <p className="text-sm text-gray-600 mb-4">🧠 <strong>Focus:</strong> {openGame.focus}</p>
 
               {openGame.trailer ? (
                 <div className="mb-6">
                   <h4 className="text-lg font-bold text-cyan-800 mb-2">Watch the Trailer</h4>
-                  <div className="aspect-w-16 aspect-h-9 w-full">
+                  <div className="relative aspect-w-16 aspect-h-9 w-full">
                     <iframe
                       className="w-full h-64 rounded-lg"
-                      src={openGame.trailer}
+                      src={openGame.trailer} // No autoplay or mute
                       title={`${openGame.name} Trailer`}
                       frameBorder="0"
-                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                      allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                       allowFullScreen
+                      loading="lazy"
                     ></iframe>
+                    {/* Optional Play Button Overlay (Uncomment to Enable) */}
+                    {/*
+                    <div
+                      className="absolute inset-0 flex items-center justify-center bg-black/50 rounded-lg cursor-pointer hover:bg-black/30 transition-opacity"
+                      onClick={() => {
+                        const iframe = document.querySelector(`iframe[src="${openGame.trailer}"]`);
+                        iframe?.contentWindow?.postMessage('{"event":"command","func":"playVideo","args":""}', '*');
+                      }}
+                    >
+                      <svg className="w-16 h-16 text-white" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M8 5v14l11-7z" />
+                      </svg>
+                    </div>
+                    */}
                   </div>
                 </div>
               ) : null}
