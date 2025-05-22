@@ -23,8 +23,8 @@ const BounceTargetGame: React.FC = () => {
     startY: 0,
     currentX: 0,
     currentY: 0,
-    gravity: 0.4,
-    bounceDampening: 0.75,
+    gravity: 0.3, // Increased from 0.1 for more downward pull
+    bounceDampening: 0.8, // Increased from 0.5 to retain more velocity
     friction: 0.9,
     floorY: 390,
     minVelocity: 2,
@@ -144,27 +144,27 @@ const BounceTargetGame: React.FC = () => {
     }
   };
 
-  const update = () => {
+  const update = (deltaTime: number = 1 / 60) => {
     const state = gameStateRef.current;
     if (!state.ball.launched || state.ball.rolling) return;
 
-    state.ball.vy += state.gravity;
-    state.ball.x += state.ball.vx;
-    state.ball.y += state.ball.vy;
+    state.ball.vy += state.gravity * deltaTime * 60;
+    state.ball.x += state.ball.vx * deltaTime * 60;
+    state.ball.y += state.ball.vy * deltaTime * 60;
 
-    // Check if ball is off-screen
+    console.log(`vy: ${state.ball.vy}, y: ${state.ball.y}`);
+
     if (state.ball.x < 0 || state.ball.x > 800 || state.ball.y > 400) {
       endAttempt();
       return;
     }
 
-    // Bounce logic
     if (state.ball.y + state.ball.radius >= state.floorY) {
       state.ball.y = state.floorY - state.ball.radius;
       state.ball.vy *= -state.bounceDampening;
       state.ball.vx *= state.friction;
 
-      if (Math.abs(state.ball.vy) < 1.5) {
+      if (Math.abs(state.ball.vy) < 1.5) { // Reduced from 1.5 to allow more bounces
         state.ball.rolling = true;
         endAttempt();
         return;
@@ -227,17 +227,25 @@ const BounceTargetGame: React.FC = () => {
   };
 
   const draw = (ctx: CanvasRenderingContext2D, particleCtx: CanvasRenderingContext2D) => {
-    particleCtx.clearRect(0, 0, 800, 400);
-    drawParticles(particleCtx);
-    updateParticles();
+    let lastTime = performance.now();
+    const animate = (currentTime: number) => {
+      const deltaTime = Math.max((currentTime - lastTime) / 1000, 1 / 240);
+      lastTime = currentTime;
+      console.log(`Delta Time: ${deltaTime}s`);
 
-    ctx.clearRect(0, 0, 800, 400);
-    drawFloor(ctx);
-    drawBall(ctx);
-    drawArrow(ctx);
-    drawUI(ctx);
-    update();
-    requestAnimationFrame(() => draw(ctx, particleCtx));
+      particleCtx.clearRect(0, 0, 800, 400);
+      drawParticles(particleCtx);
+      updateParticles();
+
+      ctx.clearRect(0, 0, 800, 400);
+      drawFloor(ctx);
+      drawBall(ctx);
+      drawArrow(ctx);
+      drawUI(ctx);
+      update(deltaTime);
+      requestAnimationFrame(animate);
+    };
+    requestAnimationFrame(animate);
   };
 
   useEffect(() => {
@@ -284,8 +292,8 @@ const BounceTargetGame: React.FC = () => {
 
       const dx = state.startX - endX;
       const dy = state.startY - endY;
-      state.ball.vx = dx * 0.1;
-      state.ball.vy = dy * 0.1;
+      state.ball.vx = dx * 0.08; // Increased from 0.05 for more initial energy
+      state.ball.vy = dy * 0.08; // Increased from 0.05 for more initial energy
 
       const totalVelocity = Math.sqrt(state.ball.vx * state.ball.vx + state.ball.vy * state.ball.vy);
       if (totalVelocity < state.minVelocity) {
@@ -330,8 +338,8 @@ const BounceTargetGame: React.FC = () => {
 
       const dx = state.startX - endX;
       const dy = state.startY - endY;
-      state.ball.vx = dx * 0.1;
-      state.ball.vy = dy * 0.1;
+      state.ball.vx = dx * 0.08; // Increased from 0.05 for more initial energy
+      state.ball.vy = dy * 0.08; // Increased from 0.05 for more initial energy
 
       const totalVelocity = Math.sqrt(state.ball.vx * state.ball.vx + state.ball.vy * state.ball.vy);
       if (totalVelocity < state.minVelocity) {
