@@ -35,20 +35,22 @@ export default function Header() {
       <div className="w-full max-w-full flex items-center px-4 sm:px-12">
         {/* Logo */}
         <div className="flex-shrink-0">
-          <motion.div
-            whileHover={{ scale: 1.05, rotate: 1 }}
-            transition={{ type: 'spring', stiffness: 200, damping: 10 }}
-            className="flex items-center gap-2"
-          >
-            <Image
-              src="/LogoNew.png"
-              alt="Xtremery Logo"
-              width={180}
-              height={60}
-              className="object-contain block overflow-hidden w-[120px] sm:w-[180px] h-auto"
-              priority
-            />
-          </motion.div>
+          <Link href="/">
+            <motion.div
+              whileHover={{ scale: 1.05, rotate: 1 }}
+              transition={{ type: 'spring', stiffness: 200, damping: 10 }}
+              className="flex items-center gap-2"
+            >
+              <Image
+                src="/LogoNew.png"
+                alt="Xtremery Logo"
+                width={180}
+                height={60}
+                className="object-contain block overflow-hidden w-[120px] sm:w-[180px] h-auto"
+                priority
+              />
+            </motion.div>
+          </Link>
         </div>
 
         {/* Desktop Navigation */}

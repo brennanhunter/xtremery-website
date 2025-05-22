@@ -12,6 +12,7 @@ import {
   FaFacebookF,
   FaVideo,
 } from 'react-icons/fa';
+import Branding from './Branding';
 
 const sections = [
   { id: 'branding', label: 'Branding', icon: <FaPalette />, bg: 'from-pink-100 to-rose-100', iconColor: 'text-pink-600', borderColor: 'border-pink-300' },
@@ -92,6 +93,7 @@ export default function WebServices() {
       {/* Content */}
       <WebDesignSection />
       <GameDesignSection />
+      <Branding />
 
       {/* Section Descriptions */}
       <div className="max-w-7xl mx-auto px-6 py-24 space-y-32">

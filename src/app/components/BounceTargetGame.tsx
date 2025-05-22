@@ -141,7 +141,7 @@ const BounceTargetGame: React.FC = () => {
     const { ball } = gameStateRef.current;
 
     // Draw trail
-    ball.trail.forEach((trailPoint, index) => {
+    ball.trail.forEach((trailPoint) => {
       ctx.beginPath();
       ctx.arc(trailPoint.x, trailPoint.y, ball.radius * (trailPoint.alpha * 0.8), 0, Math.PI * 2);
       ctx.fillStyle = `rgba(8, 145, 178, ${trailPoint.alpha * 0.3})`; // cyan-600 with fading opacity
@@ -500,7 +500,7 @@ const BounceTargetGame: React.FC = () => {
       canvas.removeEventListener("touchmove", handleTouchMove);
       canvas.removeEventListener("touchend", handleTouchEnd);
     };
-  }, []);
+  }, [draw, resetGame]);
 
   useEffect(() => {
     controls.start({
