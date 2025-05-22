@@ -152,6 +152,13 @@ const BounceTargetGame: React.FC = () => {
     state.ball.x += state.ball.vx;
     state.ball.y += state.ball.vy;
 
+    // Check if ball is off-screen
+    if (state.ball.x < 0 || state.ball.x > 800 || state.ball.y > 400) {
+      endAttempt();
+      return;
+    }
+
+    // Bounce logic
     if (state.ball.y + state.ball.radius >= state.floorY) {
       state.ball.y = state.floorY - state.ball.radius;
       state.ball.vy *= -state.bounceDampening;
@@ -163,14 +170,10 @@ const BounceTargetGame: React.FC = () => {
         return;
       }
 
-      if (!state.ball.rolling) {
+      if (!state.ball.rolling && state.ball.x >= 0 && state.ball.x <= 800) {
         state.ball.bounces += 1;
         spawnBounceParticles(state.ball.x, state.floorY);
       }
-    }
-
-    if (state.ball.y > 400 + 100 || state.ball.x > 800 + 100) {
-      endAttempt();
     }
   };
 
@@ -246,32 +249,84 @@ const BounceTargetGame: React.FC = () => {
     const particleCtx = particleCanvas.getContext("2d");
     if (!ctx || !particleCtx) return;
 
+    const getCanvasCoordinates = (clientX: number, clientY: number) => {
+      const rect = canvas.getBoundingClientRect();
+      return {
+        x: clientX - rect.left,
+        y: clientY - rect.top,
+      };
+    };
+
     const handleMouseDown = (e: MouseEvent) => {
       const state = gameStateRef.current;
       if (state.ball.launched) return;
       state.isDragging = true;
-      const rect = canvas.getBoundingClientRect();
-      state.startX = e.clientX - rect.left;
-      state.startY = e.clientY - rect.top;
-      state.currentX = state.startX;
-      state.currentY = state.startY;
+      const { x, y } = getCanvasCoordinates(e.clientX, e.clientY);
+      state.startX = x;
+      state.startY = y;
+      state.currentX = x;
+      state.currentY = y;
     };
 
     const handleMouseMove = (e: MouseEvent) => {
       const state = gameStateRef.current;
       if (state.isDragging) {
-        const rect = canvas.getBoundingClientRect();
-        state.currentX = e.clientX - rect.left;
-        state.currentY = e.clientY - rect.top;
+        const { x, y } = getCanvasCoordinates(e.clientX, e.clientY);
+        state.currentX = x;
+        state.currentY = y;
       }
     };
 
     const handleMouseUp = (e: MouseEvent) => {
       const state = gameStateRef.current;
       if (!state.isDragging) return;
-      const rect = canvas.getBoundingClientRect();
-      const endX = e.clientX - rect.left;
-      const endY = e.clientY - rect.top;
+      const { x: endX, y: endY } = getCanvasCoordinates(e.clientX, e.clientY);
+
+      const dx = state.startX - endX;
+      const dy = state.startY - endY;
+      state.ball.vx = dx * 0.1;
+      state.ball.vy = dy * 0.1;
+
+      const totalVelocity = Math.sqrt(state.ball.vx * state.ball.vx + state.ball.vy * state.ball.vy);
+      if (totalVelocity < state.minVelocity) {
+        resetGame();
+      } else {
+        state.ball.launched = true;
+      }
+
+      state.isDragging = false;
+    };
+
+    const handleTouchStart = (e: TouchEvent) => {
+      e.preventDefault();
+      const state = gameStateRef.current;
+      if (state.ball.launched) return;
+      state.isDragging = true;
+      const touch = e.touches[0];
+      const { x, y } = getCanvasCoordinates(touch.clientX, touch.clientY);
+      state.startX = x;
+      state.startY = y;
+      state.currentX = x;
+      state.currentY = y;
+    };
+
+    const handleTouchMove = (e: TouchEvent) => {
+      e.preventDefault();
+      const state = gameStateRef.current;
+      if (state.isDragging) {
+        const touch = e.touches[0];
+        const { x, y } = getCanvasCoordinates(touch.clientX, touch.clientY);
+        state.currentX = x;
+        state.currentY = y;
+      }
+    };
+
+    const handleTouchEnd = (e: TouchEvent) => {
+      e.preventDefault();
+      const state = gameStateRef.current;
+      if (!state.isDragging) return;
+      const touch = e.changedTouches[0];
+      const { x: endX, y: endY } = getCanvasCoordinates(touch.clientX, touch.clientY);
 
       const dx = state.startX - endX;
       const dy = state.startY - endY;
@@ -291,6 +346,9 @@ const BounceTargetGame: React.FC = () => {
     canvas.addEventListener("mousedown", handleMouseDown);
     canvas.addEventListener("mousemove", handleMouseMove);
     canvas.addEventListener("mouseup", handleMouseUp);
+    canvas.addEventListener("touchstart", handleTouchStart, { passive: false });
+    canvas.addEventListener("touchmove", handleTouchMove, { passive: false });
+    canvas.addEventListener("touchend", handleTouchEnd, { passive: false });
 
     initParticles();
     resetGame();
@@ -300,6 +358,9 @@ const BounceTargetGame: React.FC = () => {
       canvas.removeEventListener("mousedown", handleMouseDown);
       canvas.removeEventListener("mousemove", handleMouseMove);
       canvas.removeEventListener("mouseup", handleMouseUp);
+      canvas.removeEventListener("touchstart", handleTouchStart);
+      canvas.removeEventListener("touchmove", handleTouchMove);
+      canvas.removeEventListener("touchend", handleTouchEnd);
     };
   }, []);
 
