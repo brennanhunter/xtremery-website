@@ -1,13 +1,69 @@
 "use client";
 
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { motion, useAnimation } from "framer-motion";
+
+// Define the types for the game state
+interface BallState {
+  x: number;
+  y: number;
+  radius: number;
+  vx: number;
+  vy: number;
+  launched: boolean;
+  bounces: number;
+  rolling: boolean;
+  trail: { x: number; y: number; alpha: number }[];
+}
+
+interface Particle {
+  x: number;
+  y: number;
+  vx: number;
+  vy: number;
+  alpha: number;
+  size: number;
+  color: string;
+}
+
+interface BackgroundParticle {
+  x: number;
+  y: number;
+  radius: number;
+  alpha: number;
+  speed: number;
+}
+
+interface BounceFlash {
+  alpha: number;
+}
+
+interface GameState {
+  ball: BallState;
+  isDragging: boolean;
+  startX: number;
+  startY: number;
+  currentX: number;
+  currentY: number;
+  gravity: number;
+  bounceDampening: number;
+  friction: number;
+  floorY: number;
+  minVelocity: number;
+  maxDist: number;
+  maxArrowLength: number;
+  targetBounces: number;
+  resultMessage: string;
+  particles: Particle[];
+  backgroundParticles: BackgroundParticle[];
+  bounceFlash: BounceFlash;
+}
 
 const BounceTargetGame: React.FC = () => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const particleCanvasRef = useRef<HTMLCanvasElement>(null);
   const controls = useAnimation();
-  const gameStateRef = useRef({
+  const gameStateRef = useRef<GameState>({
     ball: {
       x: 100,
       y: 300,
@@ -17,14 +73,15 @@ const BounceTargetGame: React.FC = () => {
       launched: false,
       bounces: 0,
       rolling: false,
+      trail: [],
     },
     isDragging: false,
     startX: 0,
     startY: 0,
     currentX: 0,
     currentY: 0,
-    gravity: 0.3, // Increased from 0.1 for more downward pull
-    bounceDampening: 0.8, // Increased from 0.5 to retain more velocity
+    gravity: 0.3,
+    bounceDampening: 0.8,
     friction: 0.9,
     floorY: 390,
     minVelocity: 2,
@@ -32,8 +89,15 @@ const BounceTargetGame: React.FC = () => {
     maxArrowLength: 100,
     targetBounces: 0,
     resultMessage: "",
-    particles: [] as { x: number; y: number; vx: number; vy: number; alpha: number; size: number; color: string }[],
+    particles: [],
+    backgroundParticles: [],
+    bounceFlash: { alpha: 0 },
   });
+
+  // Reactive state for UI updates
+  const [targetBounces, setTargetBounces] = useState(gameStateRef.current.targetBounces);
+  const [bounces, setBounces] = useState(gameStateRef.current.ball.bounces);
+  const [resultMessage, setResultMessage] = useState(gameStateRef.current.resultMessage);
 
   const getRandomBounceTarget = () => Math.floor(Math.random() * 5) + 1;
 
@@ -46,8 +110,15 @@ const BounceTargetGame: React.FC = () => {
     state.ball.bounces = 0;
     state.ball.launched = false;
     state.ball.rolling = false;
+    state.ball.trail = [];
     state.targetBounces = getRandomBounceTarget();
     state.resultMessage = "";
+    state.bounceFlash.alpha = 0;
+
+    // Update React state
+    setTargetBounces(state.targetBounces);
+    setBounces(state.ball.bounces);
+    setResultMessage(state.resultMessage);
   };
 
   const endAttempt = () => {
@@ -60,6 +131,7 @@ const BounceTargetGame: React.FC = () => {
     } else {
       state.resultMessage = `❌ You got ${state.ball.bounces}, needed ${state.targetBounces}`;
     }
+    setResultMessage(state.resultMessage); // Update React state
     setTimeout(() => {
       resetGame();
     }, 2000);
@@ -67,10 +139,23 @@ const BounceTargetGame: React.FC = () => {
 
   const drawBall = (ctx: CanvasRenderingContext2D) => {
     const { ball } = gameStateRef.current;
+
+    // Draw trail
+    ball.trail.forEach((trailPoint, index) => {
+      ctx.beginPath();
+      ctx.arc(trailPoint.x, trailPoint.y, ball.radius * (trailPoint.alpha * 0.8), 0, Math.PI * 2);
+      ctx.fillStyle = `rgba(8, 145, 178, ${trailPoint.alpha * 0.3})`; // cyan-600 with fading opacity
+      ctx.fill();
+    });
+
+    // Draw ball with glow
     ctx.beginPath();
     ctx.arc(ball.x, ball.y, ball.radius, 0, Math.PI * 2);
-    ctx.fillStyle = "white";
+    ctx.fillStyle = "rgb(8, 145, 178)"; // cyan-600
+    ctx.shadowColor = "rgba(8, 145, 178, 0.7)";
+    ctx.shadowBlur = 10;
     ctx.fill();
+    ctx.shadowBlur = 0;
   };
 
   const drawFloor = (ctx: CanvasRenderingContext2D) => {
@@ -78,7 +163,7 @@ const BounceTargetGame: React.FC = () => {
     ctx.beginPath();
     ctx.moveTo(0, floorY);
     ctx.lineTo(800, floorY);
-    ctx.strokeStyle = "white";
+    ctx.strokeStyle = "rgb(103, 232, 249)"; // cyan-200
     ctx.lineWidth = 2;
     ctx.stroke();
   };
@@ -97,9 +182,10 @@ const BounceTargetGame: React.FC = () => {
       const arrowX = ball.x + dx * (arrowLength / dist);
       const arrowY = ball.y + dy * (arrowLength / dist);
 
-      const r = Math.floor(255 * power);
-      const g = Math.floor(255 * (1 - power));
-      ctx.strokeStyle = `rgb(${r}, ${g}, 0)`;
+      const r = Math.floor(8 + (13 - 8) * power);
+      const g = Math.floor(145 + (148 - 145) * power);
+      const b = Math.floor(178 + (136 - 178) * power);
+      ctx.strokeStyle = `rgb(${r}, ${g}, ${b})`;
       ctx.lineWidth = 2 + power * 3;
 
       ctx.beginPath();
@@ -107,41 +193,68 @@ const BounceTargetGame: React.FC = () => {
       ctx.lineTo(arrowX, arrowY);
       ctx.stroke();
 
-      ctx.fillStyle = "white";
+      ctx.fillStyle = "rgb(229, 231, 235)"; // gray-200
       ctx.font = "14px sans-serif";
       const powerPercent = Math.floor(power * 100);
       ctx.fillText(`Power: ${powerPercent}%`, ball.x + 20, ball.y - 10);
     }
   };
 
-  const drawUI = (ctx: CanvasRenderingContext2D) => {
-    const { targetBounces, ball, resultMessage } = gameStateRef.current;
-    ctx.fillStyle = "white";
-    ctx.font = "16px sans-serif";
-    ctx.fillText(`🎯 Goal: ${targetBounces} bounces`, 20, 30);
-    ctx.fillText(`💥 Bounces: ${ball.bounces}`, 20, 50);
+  const drawBackgroundParticles = (ctx: CanvasRenderingContext2D) => {
+    const { backgroundParticles } = gameStateRef.current;
+    backgroundParticles.forEach((p) => {
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+      ctx.fillStyle = `rgba(103, 232, 249, ${p.alpha})`; // cyan-200
+      ctx.fill();
+      p.y -= p.speed;
+      p.alpha = Math.sin(p.y / 50) * 0.3 + 0.4;
+      if (p.y < -p.radius) {
+        p.y = 400 + p.radius;
+        p.x = Math.random() * 800;
+      }
+    });
+  };
 
-    if (resultMessage) {
-      ctx.fillStyle = "yellow";
-      ctx.font = "24px sans-serif";
-      ctx.fillText(resultMessage, 800 / 2 - 100, 100);
+  const drawBounceFlash = (ctx: CanvasRenderingContext2D) => {
+    const { bounceFlash, floorY } = gameStateRef.current;
+    if (bounceFlash.alpha <= 0) return;
+
+    ctx.fillStyle = `rgba(103, 232, 249, ${bounceFlash.alpha})`; // cyan-200
+    ctx.fillRect(0, floorY - 10, 800, 20);
+    bounceFlash.alpha -= 0.05;
+  };
+
+  const initBackgroundParticles = () => {
+    const state = gameStateRef.current;
+    state.backgroundParticles = [];
+    for (let i = 0; i < 20; i++) {
+      state.backgroundParticles.push({
+        x: Math.random() * 800,
+        y: Math.random() * 400,
+        radius: Math.random() * 5 + 2,
+        alpha: 0.5,
+        speed: Math.random() * 1 + 0.5,
+      });
     }
   };
 
   const spawnBounceParticles = (x: number, y: number) => {
     const state = gameStateRef.current;
-    const colors = ["rgba(147, 51, 234, 0.7)", "rgba(59, 130, 246, 0.7)"];
-    for (let i = 0; i < 15; i++) {
+    const colors = ["rgba(8, 145, 178, 0.7)", "rgba(13, 148, 136, 0.7)"]; // cyan-600, teal-600
+    for (let i = 0; i < 20; i++) {
       state.particles.push({
         x,
         y,
-        vx: (Math.random() - 0.5) * 3,
-        vy: -(Math.random() * 3 + 1),
+        vx: (Math.random() - 0.5) * 5,
+        vy: -(Math.random() * 4 + 2),
         alpha: 1,
-        size: Math.random() * 4 + 2,
+        size: Math.random() * 5 + 3,
         color: colors[Math.floor(Math.random() * colors.length)],
       });
     }
+    state.bounceFlash.alpha = 1; // Trigger bounce flash
+    setBounces(state.ball.bounces); // Update React state for bounces
   };
 
   const update = (deltaTime: number = 1 / 60) => {
@@ -152,7 +265,14 @@ const BounceTargetGame: React.FC = () => {
     state.ball.x += state.ball.vx * deltaTime * 60;
     state.ball.y += state.ball.vy * deltaTime * 60;
 
-    console.log(`vy: ${state.ball.vy}, y: ${state.ball.y}`);
+    // Update ball trail
+    if (state.ball.launched) {
+      state.ball.trail.push({ x: state.ball.x, y: state.ball.y, alpha: 1 });
+      if (state.ball.trail.length > 10) state.ball.trail.shift();
+      state.ball.trail.forEach((trailPoint) => {
+        trailPoint.alpha -= 0.1;
+      });
+    }
 
     if (state.ball.x < 0 || state.ball.x > 800 || state.ball.y > 400) {
       endAttempt();
@@ -164,7 +284,7 @@ const BounceTargetGame: React.FC = () => {
       state.ball.vy *= -state.bounceDampening;
       state.ball.vx *= state.friction;
 
-      if (Math.abs(state.ball.vy) < 1.5) { // Reduced from 1.5 to allow more bounces
+      if (Math.abs(state.ball.vy) < 1.5) {
         state.ball.rolling = true;
         endAttempt();
         return;
@@ -188,7 +308,7 @@ const BounceTargetGame: React.FC = () => {
         vy: (Math.random() - 0.5) * 0.5,
         alpha: Math.random() * 0.5 + 0.2,
         size: Math.random() * 2 + 1,
-        color: "rgba(147, 51, 234, 0.7)",
+        color: "rgba(8, 145, 178, 0.7)", // cyan-600
       });
     }
   };
@@ -199,6 +319,7 @@ const BounceTargetGame: React.FC = () => {
       p.x += p.vx;
       p.y += p.vy;
       p.alpha -= 0.008;
+      p.size *= 0.98; // Gradually shrink particles
       if (p.alpha <= 0 || p.x < 0 || p.x > 800 || p.y < 0 || p.y > 400) {
         p.x = Math.random() * 800;
         p.y = Math.random() * 400;
@@ -206,7 +327,7 @@ const BounceTargetGame: React.FC = () => {
         p.vx = (Math.random() - 0.5) * 0.5;
         p.vy = (Math.random() - 0.5) * 0.5;
         p.size = Math.random() * 2 + 1;
-        p.color = "rgba(147, 51, 234, 0.7)";
+        p.color = "rgba(8, 145, 178, 0.7)"; // cyan-600
       }
     });
   };
@@ -216,7 +337,7 @@ const BounceTargetGame: React.FC = () => {
     particles.forEach((p) => {
       ctx.fillStyle = p.color;
       ctx.shadowColor = p.color;
-      ctx.shadowBlur = 8;
+      ctx.shadowBlur = 12;
       ctx.globalAlpha = p.alpha;
       ctx.beginPath();
       ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
@@ -231,17 +352,25 @@ const BounceTargetGame: React.FC = () => {
     const animate = (currentTime: number) => {
       const deltaTime = Math.max((currentTime - lastTime) / 1000, 1 / 240);
       lastTime = currentTime;
-      console.log(`Delta Time: ${deltaTime}s`);
 
       particleCtx.clearRect(0, 0, 800, 400);
       drawParticles(particleCtx);
+      drawBackgroundParticles(particleCtx);
       updateParticles();
 
       ctx.clearRect(0, 0, 800, 400);
+
+      // Draw gradient background
+      const gradient = ctx.createLinearGradient(0, 0, 800, 400);
+      gradient.addColorStop(0, "rgb(6, 182, 212)"); // cyan-100
+      gradient.addColorStop(1, "rgb(20, 184, 166)"); // teal-100
+      ctx.fillStyle = gradient;
+      ctx.fillRect(0, 0, 800, 400);
+
       drawFloor(ctx);
+      drawBounceFlash(ctx);
       drawBall(ctx);
       drawArrow(ctx);
-      drawUI(ctx);
       update(deltaTime);
       requestAnimationFrame(animate);
     };
@@ -292,8 +421,8 @@ const BounceTargetGame: React.FC = () => {
 
       const dx = state.startX - endX;
       const dy = state.startY - endY;
-      state.ball.vx = dx * 0.08; // Increased from 0.05 for more initial energy
-      state.ball.vy = dy * 0.08; // Increased from 0.05 for more initial energy
+      state.ball.vx = dx * 0.08;
+      state.ball.vy = dy * 0.08;
 
       const totalVelocity = Math.sqrt(state.ball.vx * state.ball.vx + state.ball.vy * state.ball.vy);
       if (totalVelocity < state.minVelocity) {
@@ -338,8 +467,8 @@ const BounceTargetGame: React.FC = () => {
 
       const dx = state.startX - endX;
       const dy = state.startY - endY;
-      state.ball.vx = dx * 0.08; // Increased from 0.05 for more initial energy
-      state.ball.vy = dy * 0.08; // Increased from 0.05 for more initial energy
+      state.ball.vx = dx * 0.08;
+      state.ball.vy = dy * 0.08;
 
       const totalVelocity = Math.sqrt(state.ball.vx * state.ball.vx + state.ball.vy * state.ball.vy);
       if (totalVelocity < state.minVelocity) {
@@ -359,6 +488,7 @@ const BounceTargetGame: React.FC = () => {
     canvas.addEventListener("touchend", handleTouchEnd, { passive: false });
 
     initParticles();
+    initBackgroundParticles();
     resetGame();
     draw(ctx, particleCtx);
 
@@ -375,9 +505,9 @@ const BounceTargetGame: React.FC = () => {
   useEffect(() => {
     controls.start({
       boxShadow: [
-        "0 4px 20px rgba(147, 51, 234, 0.3)",
-        "0 8px 30px rgba(59, 130, 246, 0.4)",
-        "0 4px 20px rgba(147, 51, 234, 0.3)",
+        "0 4px 20px rgba(8, 145, 178, 0.3)", // cyan-600
+        "0 8px 30px rgba(13, 148, 136, 0.4)", // teal-600
+        "0 4px 20px rgba(8, 145, 178, 0.3)", // cyan-600
       ],
       transition: { repeat: Infinity, duration: 3 },
     });
@@ -388,27 +518,41 @@ const BounceTargetGame: React.FC = () => {
       initial={{ opacity: 0, y: 60 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6 }}
-      className="min-h-screen bg-gradient-to-br from-purple-100 to-blue-100 flex flex-col items-center justify-center p-6"
+      className="min-h-screen bg-gradient-to-br from-cyan-100 to-teal-100 flex flex-col items-center justify-center p-6"
     >
       <motion.div
         animate={controls}
-        whileHover={{ scale: 1.02, boxShadow: "0 10px 40px rgba(147, 51, 234, 0.5)" }}
+        whileHover={{ scale: 1.02, boxShadow: "0 10px 40px rgba(8, 145, 178, 0.5)" }}
         className="bg-white rounded-xl p-6 max-w-4xl w-full relative overflow-hidden"
       >
         <motion.div
           animate={{
             borderColor: [
-              "rgba(147, 51, 234, 0.5)",
-              "rgba(59, 130, 246, 0.5)",
-              "rgba(147, 51, 234, 0.5)",
+              "rgba(8, 145, 178, 0.5)", // cyan-600
+              "rgba(13, 148, 136, 0.5)", // teal-600
+              "rgba(8, 145, 178, 0.5)", // cyan-600
             ],
           }}
           transition={{ repeat: Infinity, duration: 2 }}
           className="absolute inset-0 border-4 rounded-xl pointer-events-none"
         />
         <div className="relative z-10">
-          <h1 className="text-4xl font-extrabold text-purple-800 mb-4 text-center">Bounce Target</h1>
-          <p className="text-lg text-gray-700 mb-6 text-center">Drag and release to match the bounce goal!</p>
+          <motion.h1
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+            className="text-4xl font-extrabold text-cyan-800 mb-4 text-center"
+          >
+            Bounce Target
+          </motion.h1>
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.2 }}
+            className="text-lg text-gray-700 mb-6 text-center"
+          >
+            Drag and release to match the bounce goal!
+          </motion.p>
           <div className="relative">
             <canvas
               ref={particleCanvasRef}
@@ -420,16 +564,39 @@ const BounceTargetGame: React.FC = () => {
               ref={canvasRef}
               width={800}
               height={400}
-              className="relative border-2 border-black bg-black w-full rounded-lg"
+              className="relative border-2 border-cyan-300 rounded-lg w-full"
             />
+            <motion.div
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={{
+                opacity: 1,
+                scale: bounces === targetBounces && resultMessage ? 1.2 : 1,
+              }}
+              transition={{ duration: 0.3 }}
+              className="absolute top-4 left-4 flex items-center gap-2 bg-cyan-600 text-white px-3 py-1 rounded-full shadow-md"
+            >
+              <span className="text-sm font-bold">🎯 Goal: {targetBounces}</span>
+              <span className="text-sm font-bold">💥 Bounces: {bounces}</span>
+            </motion.div>
+            {resultMessage && (
+              <motion.div
+                initial={{ opacity: 0, scale: 0.8 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 0.8 }}
+                transition={{ duration: 0.5 }}
+                className="absolute top-20 left-1/2 transform -translate-x-1/2 bg-cyan-200 text-gray-800 px-6 py-3 rounded-lg shadow-lg"
+              >
+                <span className="text-lg font-bold">{resultMessage}</span>
+              </motion.div>
+            )}
           </div>
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2, duration: 0.6 }}
-            className="mt-6 p-4 bg-gradient-to-r from-purple-50 to-blue-50 rounded-lg"
+            className="mt-6 p-4 bg-gradient-to-r from-cyan-50 to-teal-50 rounded-lg"
           >
-            <h2 className="text-2xl font-bold text-purple-800 mb-2">The Story Behind Bounce Target</h2>
+            <h2 className="text-2xl font-bold text-cyan-800 mb-2">The Story Behind Bounce Target</h2>
             <p className="text-gray-700 text-sm">
               Bounce Target was inspired by a fun game I played with my boys around our kitchen table. We’d take turns bouncing a ball across the table, challenging each other to hit a specific number of bounces before it went off the edge. The first player aimed for one bounce, the next for two, and so on. It was all about precision, timing, and a bit of friendly competition. I created this digital version to capture that same joy and share it with others, turning our family game into a playful puzzle for everyone to enjoy!
             </p>
