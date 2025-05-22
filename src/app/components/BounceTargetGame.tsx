@@ -500,7 +500,7 @@ const BounceTargetGame: React.FC = () => {
       canvas.removeEventListener("touchmove", handleTouchMove);
       canvas.removeEventListener("touchend", handleTouchEnd);
     };
-  }, [draw, resetGame]);
+  }, []);
 
   useEffect(() => {
     controls.start({
