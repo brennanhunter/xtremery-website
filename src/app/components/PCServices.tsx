@@ -150,14 +150,14 @@ export default function PCServices() {
       {/* CTA Section */}
 
       {/* Final CTA */}
-      <div className="text-center">
+      <div className="text-center pb-20">
         <h2 className="text-4xl font-extrabold text-purple-800 mb-4">Let’s Fix This</h2>
         <p className="text-lg text-gray-700 max-w-xl mx-auto mb-6">
           Book your free consultation. No pressure. Just honest help and wizard-level service.
         </p>
-        <ContactModal />
-        <Footer />
+        <ContactModal />   
       </div>
+      <Footer />
     </section>
   );
 }

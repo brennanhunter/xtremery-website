@@ -12,6 +12,7 @@ import {
   FaVideo,
 } from "react-icons/fa";
 import WebDesignSection from "./WebDesignSection";
+import GameDesignSection from "./GameDesignSection";
 
 const sections = [
   { id: "web-design", label: "Web Design", icon: <FaCode /> },
@@ -78,6 +79,9 @@ export default function WebServices() {
       {/* Content */}
 
       <WebDesignSection />
+      <GameDesignSection />
+
+      {/* Section Descriptions */}
       <div className="max-w-7xl mx-auto px-6 py-24 space-y-32">
         {sections.map(({ id, label, icon }, i) => (
           <motion.div
