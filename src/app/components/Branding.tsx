@@ -55,13 +55,12 @@ function Branding({ index = 0 }: { index?: number }) {
     <motion.div
       id="branding"
       className="scroll-mt-32 text-center max-w-7xl mx-auto rounded-2xl p-8 sm:p-12 bg-gradient-to-br from-pink-100 to-rose-100 border-2 border-pink-300 shadow-lg hover:shadow-xl transition-shadow duration-300 animate-float-slow"
-      variants={shouldReduceMotion ? {} : fadeUp}
+      variants={shouldReduceMotion ? {} : { ...fadeUp, ...cardHover }}
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true, amount: 0.4 }}
       custom={index}
       whileHover={shouldReduceMotion ? {} : 'hover'}
-      variants={shouldReduceMotion ? {} : cardHover}
       tabIndex={0}
     >
       <motion.div
@@ -112,13 +111,12 @@ function Branding({ index = 0 }: { index?: number }) {
       {/* Testimonial */}
       <motion.div
         className="max-w-3xl mx-auto p-6 bg-white/80 backdrop-blur-sm rounded-xl shadow-md border border-pink-200 mb-8"
-        variants={shouldReduceMotion ? {} : fadeUp}
+        variants={shouldReduceMotion ? {} : { ...fadeUp, ...testimonialHover }}
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true, amount: 0.4 }}
         custom={index + 1}
         whileHover={shouldReduceMotion ? {} : 'hover'}
-        variants={shouldReduceMotion ? {} : testimonialHover}
         role="blockquote"
         aria-label="Testimonial from Susette Schabarker"
       >
