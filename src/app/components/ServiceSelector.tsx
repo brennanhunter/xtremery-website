@@ -1,6 +1,5 @@
 'use client';
 
-import { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import Image from 'next/image';
 import PCServices from './PCServices';
@@ -14,16 +13,12 @@ const curtainVariants = {
   openRight: { width: 0, transition: { duration: 1, ease: 'easeInOut' } },
 };
 
-export default function ServiceSelector() {
-  const [selectedService, setSelectedService] = useState<ServiceType | null>(null);
+interface ServiceSelectorProps {
+  selectedService: ServiceType | null;
+  setSelectedService: (service: ServiceType | null) => void;
+}
 
-  useEffect(() => {
-    document.body.style.overflow = selectedService ? 'auto' : 'hidden';
-    return () => {
-      document.body.style.overflow = 'auto';
-    };
-  }, [selectedService]);
-
+export default function ServiceSelector({ selectedService, setSelectedService }: ServiceSelectorProps) {
   const handleSelect = (service: ServiceType) => {
     setSelectedService(service);
   };

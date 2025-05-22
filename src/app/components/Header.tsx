@@ -4,10 +4,16 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { usePathname } from 'next/navigation'; // Add usePathname
 
-export default function Header() {
+interface HeaderProps {
+  resetServiceSelection?: () => void; // Add optional prop for Services page
+}
+
+export default function Header({ resetServiceSelection }: HeaderProps) {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
+  const pathname = usePathname(); // Add to determine current route
 
   useEffect(() => {
     const onScroll = () => {
@@ -55,16 +61,36 @@ export default function Header() {
 
         {/* Desktop Navigation */}
         <nav className="hidden sm:flex items-center gap-6 ml-auto pr-4">
-          {navLinks.map(({ label, href }) => (
-            <Link
-              key={label}
-              href={href}
-              className="relative text-xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-purple-300 via-white to-blue-400 transition-all duration-300 group hover:scale-105"
-            >
-              {label}
-              <span className="absolute left-0 -bottom-1 h-[2px] w-0 bg-gradient-to-r from-purple-400 to-blue-400 transition-all duration-300 group-hover:w-full"></span>
-            </Link>
-          ))}
+          {navLinks.map(({ label, href }) => {
+            const isActive = pathname === href;
+            // Special handling for Services link
+            if (label === 'Services' && isActive && resetServiceSelection) {
+              return (
+                <button
+                  key={label}
+                  onClick={() => {
+                    resetServiceSelection();
+                  }}
+                  className="relative text-xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-purple-300 via-white to-blue-400 transition-all duration-300 group hover:scale-105"
+                >
+                  {label}
+                  <span className="absolute left-0 -bottom-1 h-[2px] w-full bg-gradient-to-r from-purple-400 to-blue-400"></span>
+                </button>
+              );
+            }
+            return (
+              <Link
+                key={label}
+                href={href}
+                className="relative text-xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-purple-300 via-white to-blue-400 transition-all duration-300 group hover:scale-105"
+              >
+                {label}
+                {isActive && (
+                  <span className="absolute left-0 -bottom-1 h-[2px] w-full bg-gradient-to-r from-purple-400 to-blue-400"></span>
+                )}
+              </Link>
+            );
+          })}
         </nav>
 
         {/* Mobile Menu Toggle */}
@@ -88,16 +114,34 @@ export default function Header() {
             transition={{ duration: 0.4 }}
             className="sm:hidden flex flex-col gap-4 mt-2 px-6 pb-4"
           >
-            {navLinks.map(({ label, href }) => (
-              <Link
-                key={label}
-                href={href}
-                className="text-xl text-white font-semibold py-2 px-4 bg-gradient-to-r from-purple-700 to-blue-600 rounded-lg shadow-md hover:scale-105 transition-transform duration-300 text-center"
-                onClick={() => setMenuOpen(false)}
-              >
-                {label}
-              </Link>
-            ))}
+            {navLinks.map(({ label, href }) => {
+              const isActive = pathname === href;
+              // Special handling for Services link in mobile menu
+              if (label === 'Services' && isActive && resetServiceSelection) {
+                return (
+                  <button
+                    key={label}
+                    onClick={() => {
+                      resetServiceSelection();
+                      setMenuOpen(false);
+                    }}
+                    className="text-xl text-white font-semibold py-2 px-4 bg-gradient-to-r from-purple-700 to-blue-600 rounded-lg shadow-md hover:scale-105 transition-transform duration-300 text-center"
+                  >
+                    {label}
+                  </button>
+                );
+              }
+              return (
+                <Link
+                  key={label}
+                  href={href}
+                  className="text-xl text-white font-semibold py-2 px-4 bg-gradient-to-r from-purple-700 to-blue-600 rounded-lg shadow-md hover:scale-105 transition-transform duration-300 text-center"
+                  onClick={() => setMenuOpen(false)}
+                >
+                  {label}
+                </Link>
+              );
+            })}
           </motion.div>
         )}
       </AnimatePresence>
