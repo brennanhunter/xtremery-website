@@ -11,15 +11,15 @@ import {
   FaImage,
   FaFacebookF,
   FaVideo,
-  FaCode, // For Web Design
-  FaGamepad, // Already used in GameDesignSection, reuse here
+  FaCode,
+  FaGamepad,
 } from 'react-icons/fa';
 import Branding from './Branding';
 
 const sections = [
   { id: 'web-design', label: 'Web Design', icon: <FaCode />, bg: 'from-purple-100 to-indigo-100', iconColor: 'text-purple-600', borderColor: 'border-purple-300' },
   { id: 'game-design', label: 'Game Design', icon: <FaGamepad />, bg: 'from-cyan-100 to-teal-100', iconColor: 'text-cyan-600', borderColor: 'border-cyan-300' },
-  { id: 'branding', label: 'Branding', icon: <FaPalette />, bg: 'from-pink-100 to-rose-100', iconColor: 'text-pink-600', borderColor: 'border-pink-300' },
+  { id: 'branding', label: 'Branding', icon: <FaPalette />, bg: 'from-pink-100 to-rose-100', iconColor: 'text-pink-600', borderColor: 'border-pink-300' }, // Keep for nav, but won't render in loop
   { id: 'graphics', label: 'Graphics', icon: <FaImage />, bg: 'from-indigo-100 to-violet-100', iconColor: 'text-indigo-600', borderColor: 'border-indigo-300' },
   { id: 'social-media', label: 'Social Media', icon: <FaFacebookF />, bg: 'from-blue-100 to-sky-100', iconColor: 'text-blue-600', borderColor: 'border-blue-300' },
   { id: 'video-editing', label: 'Video', icon: <FaVideo />, bg: 'from-red-100 to-orange-100', iconColor: 'text-red-600', borderColor: 'border-red-300' },
@@ -51,7 +51,7 @@ export default function WebServices() {
           }
         });
       },
-      { threshold: 0.4, rootMargin: '-100px 0px 0px 0px' } // Adjust for header offset
+      { threshold: 0.4, rootMargin: '-100px 0px 0px 0px' }
     );
 
     sections.forEach(({ id }) => {
@@ -109,7 +109,7 @@ export default function WebServices() {
 
         {/* Section Descriptions */}
         <div className="max-w-7xl mx-auto px-6 py-24 space-y-32">
-          {sections.slice(2).map(({ id, label, icon, bg, iconColor, borderColor }, i) => (
+          {sections.slice(3).map(({ id, label, icon, bg, iconColor, borderColor }, i) => ( // Changed slice(2) to slice(3) to skip branding
             <motion.div
               key={id}
               id={id}
@@ -129,8 +129,6 @@ export default function WebServices() {
               </motion.div>
               <h2 className="text-4xl font-extrabold text-purple-800 mb-4">{label}</h2>
               <p className="text-lg text-gray-700">
-                {id === 'branding' &&
-                  'Logos, colors, voice, and vibe. We help build brand identities that resonate with your audience—and stick in their minds.'}
                 {id === 'graphics' &&
                   'Need assets for print, social, or web? From icons to flyers, we bring creative muscle to your visual messaging.'}
                 {id === 'social-media' &&
