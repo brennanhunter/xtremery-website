@@ -1,10 +1,15 @@
-'use client';
+
 
 import React from 'react';
 import { notFound } from 'next/navigation';
 import Header from '../../components/Header';
 import Footer from '../../components/Footer';
 import { FaTools } from 'react-icons/fa';
+
+// Define the props type for dynamic routes
+type GuidePageProps = {
+  params: Promise<{ slug: string }>;
+};
 
 const guides: { [key: string]: { title: string; content: React.ReactNode } } = {
   'fixing-slow-pc': {
@@ -177,7 +182,7 @@ const guides: { [key: string]: { title: string; content: React.ReactNode } } = {
             </li>
             <li>If the PC restarts too quickly, disable automatic restarts:</li>
             <ul className="list-disc pl-6">
-              <li>Right-click “This PC” &gt; “Properties” &gt; “Advanced system settings.”</li>
+              <li>Right-click “This PC” {'>'} “Properties” {'>'} “Advanced system settings.”</li>
               <li>Under “Startup and Recovery,” click “Settings.”</li>
               <li>Uncheck “Automatically restart” and click OK.</li>
             </ul>
@@ -194,13 +199,13 @@ const guides: { [key: string]: { title: string; content: React.ReactNode } } = {
               Restart your PC and press F8 (or Shift + F8) repeatedly before Windows loads. If that doesn’t work, try:
             </li>
             <ul className="list-disc pl-6">
-              <li>Go to Settings &gt; System &gt; Recovery &gt; “Restart now” under “Advanced startup.”</li>
-              <li>Choose “Troubleshoot” &gt; “Advanced options” &gt; “Startup Settings” &gt; “Restart.”</li>
+              <li>Go to Settings {'>'} System {'>'} Recovery {'>'} “Restart now” under “Advanced startup.”</li>
+              <li>Choose “Troubleshoot” {'>'} “Advanced options” {'>'} “Startup Settings” {'>'} “Restart.”</li>
               <li>Select “4” for Safe Mode.</li>
             </ul>
             <li>In Safe Mode, check if the blue screen still occurs.</li>
             <li>
-              Uninstall recent software: Go to Control Panel &gt; Programs &gt; Uninstall a program, and remove anything installed before the issue started.
+              Uninstall recent software: Go to Control Panel {'>'} Programs {'>'} Uninstall a program, and remove anything installed before the issue started.
             </li>
           </ul>
           <p className="text-white/80 mt-2">
@@ -281,7 +286,7 @@ const guides: { [key: string]: { title: string; content: React.ReactNode } } = {
               Alternatively, check your motherboard manual or manufacturer’s website for supported RAM types. Look for model number (e.g., “Asus ROG Strix B550-F”).
             </li>
             <li>
-              Confirm your PC’s current RAM: Right-click “This PC” &gt; “Properties” to see installed RAM (e.g., 8GB). Aim to add similar or higher capacity (e.g., 16GB total).
+              Confirm your PC’s current RAM: Right-click “This PC” {'>'} “Properties” to see installed RAM (e.g., 8GB). Aim to add similar or higher capacity (e.g., 16GB total).
             </li>
           </ul>
           <p className="text-white/80 mt-2">
@@ -326,7 +331,7 @@ const guides: { [key: string]: { title: string; content: React.ReactNode } } = {
               Press the RAM down firmly until the clips snap into place. You’ll hear a click.
             </li>
             <li>
-              Close the PC case, plug it in, and boot up. Check if the new RAM is recognized: Right-click “This PC” &gt; “Properties.”
+              Close the PC case, plug it in, and boot up. Check if the new RAM is recognized: Right-click “This PC” {'>'} “Properties.”
             </li>
           </ul>
           <img
@@ -354,8 +359,9 @@ const guides: { [key: string]: { title: string; content: React.ReactNode } } = {
   },
 };
 
-export default function GuidePage({ params }: { params: { slug: string } }) {
-  const guide = guides[params.slug];
+export default async function GuidePage({ params }: GuidePageProps) {
+  const { slug } = await params;
+  const guide = guides[slug];
 
   if (!guide) {
     notFound();
