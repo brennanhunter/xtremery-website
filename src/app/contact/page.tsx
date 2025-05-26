@@ -4,6 +4,8 @@ import ContactModal from '../components/ContactModal';
 import Image from 'next/image';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
+import DialogflowChatbot from '../components/DialogflowChatbot';
+
 export default function ContactPage() {
   return (
     <>
@@ -53,6 +55,7 @@ export default function ContactPage() {
 
       <div className="h-[1px] bg-gradient-to-r from-purple-900 via-black to-blue-900" />
       <Footer />
+      <DialogflowChatbot />
     </>
   );
 }
