@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import { motion } from 'framer-motion';
-import { FaTools, FaLaptopCode, FaMemory } from 'react-icons/fa';
+import { FaTools, FaLaptopCode, FaMemory, FaShieldAlt, FaWifi, FaHdd } from 'react-icons/fa';
 
 const guides = [
   {
@@ -22,6 +22,24 @@ const guides = [
     description: 'Boost your PC’s performance with a RAM upgrade. Follow this guide for a smooth process.',
     icon: <FaMemory className="text-4xl text-purple-400" />,
     link: '/guides/upgrading-ram',
+  },
+  {
+    title: 'Removing Malware from Your PC',
+    description: 'Detect and eliminate malware to keep your PC secure and running smoothly with free tools.',
+    icon: <FaShieldAlt className="text-4xl text-cyan-400" />,
+    link: '/guides/removing-malware',
+  },
+  {
+    title: 'Setting Up a Secure Wi-Fi Network',
+    description: 'Configure your router for a fast and secure Wi-Fi network to protect your data.',
+    icon: <FaWifi className="text-4xl text-purple-400" />,
+    link: '/guides/setting-up-wifi',
+  },
+  {
+    title: 'Backing Up Your Data Safely',
+    description: 'Protect your files from loss with easy backups to external drives or cloud storage.',
+    icon: <FaHdd className="text-4xl text-cyan-400" />,
+    link: '/guides/backing-up-data',
   },
 ];
 

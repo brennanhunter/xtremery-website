@@ -1,5 +1,3 @@
-
-
 import React from 'react';
 import { notFound } from 'next/navigation';
 import Header from '../../components/Header';
@@ -352,6 +350,330 @@ const guides: { [key: string]: { title: string; content: React.ReactNode } } = {
               Xtremery in DeLand, FL
             </a>{' '}
             for professional RAM upgrades. We’ll handle everything safely and quickly.
+          </p>
+        </section>
+      </div>
+    ),
+  },
+  'removing-malware': {
+    title: 'Removing Malware from Your PC',
+    content: (
+      <div className="space-y-8">
+        <section>
+          <h2 className="text-2xl font-semibold text-purple-300 mb-4">Overview</h2>
+          <p className="text-white/80">
+            Malware, like viruses or spyware, can slow your PC, steal data, or cause pop-ups. This guide shows you how to detect and remove malware safely using free tools, no advanced skills needed.
+          </p>
+          <img
+            src="/images/malware.png"
+            alt="Malware warning illustration"
+            className="rounded-lg shadow-lg my-4 max-w-full h-auto"
+          />
+        </section>
+
+        <section>
+          <h2 className="text-2xl font-semibold text-purple-300 mb-4">Step 1: Disconnect from the Internet</h2>
+          <p className="text-white/80">
+            Malware often communicates with remote servers. Disconnecting prevents further damage or data theft.
+          </p>
+          <ul className="list-decimal pl-6 text-white/80 mt-2 space-y-2">
+            <li>Unplug your Ethernet cable or turn off Wi-Fi (click the network icon in the taskbar and toggle Wi-Fi off).</li>
+            <li>Confirm you’re offline by trying to load a website (it should fail).</li>
+          </ul>
+          <p className="text-white/80 mt-2">
+            <strong>Note</strong>: Stay offline until you’re confident the malware is removed.
+          </p>
+        </section>
+
+        <section>
+          <h2 className="text-2xl font-semibold text-purple-300 mb-4">Step 2: Run a Malware Scan</h2>
+          <p className="text-white/80">
+            Use trusted antivirus software to scan and remove malware. Windows Defender (built-in) or Malwarebytes (free) are great options.
+          </p>
+          <ul className="list-decimal pl-6 text-white/80 mt-2 space-y-2">
+            <li>
+              Open Windows Defender: Search for “Windows Security” in the Start menu, select “Virus & threat protection,” and click “Scan options.”
+            </li>
+            <li>
+              Choose “Full scan” and click “Scan now.” This may take an hour or more.
+            </li>
+            <li>
+              Alternatively, download Malwarebytes:{' '}
+              <a
+                href="https://www.malwarebytes.com/mwb-download"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-cyan-400 hover:underline"
+              >
+                malwarebytes.com
+              </a>. Install it, update the database, and run a “Threat Scan.”
+            </li>
+            <li>Quarantine or delete any threats found. Follow the software’s prompts.</li>
+          </ul>
+          <p className="text-white/80 mt-2">
+            <strong>Tip</strong>: Avoid “free antivirus” tools from unknown sources—they might be malware in disguise.
+          </p>
+          <img
+            src="/images/malware-scan.png"
+            alt="Malwarebytes scan interface"
+            className="rounded-lg shadow-lg my-4 max-w-full h-auto"
+          />
+        </section>
+
+        <section>
+          <h2 className="text-2xl font-semibold text-purple-300 mb-4">Step 3: Remove Suspicious Programs</h2>
+          <p className="text-white/80">
+            Malware sometimes disguises itself as legitimate software. Check for unfamiliar programs and uninstall them.
+          </p>
+          <ul className="list-decimal pl-6 text-white/80 mt-2 space-y-2">
+            <li>
+              Open Control Panel: Search for “Control Panel” in the Start menu, then select “Uninstall a program.”
+            </li>
+            <li>
+              Look for unfamiliar or recently installed programs (sort by “Installed On” date). If unsure, search the program’s name online to verify.
+            </li>
+            <li>Select suspicious programs and click “Uninstall.” Follow the prompts.</li>
+          </ul>
+          <p className="text-white/80 mt-2">
+            <strong>Warning</strong>: Don’t uninstall programs you’re unsure about, like system utilities or drivers.
+          </p>
+        </section>
+
+        <section>
+          <h2 className="text-2xl font-semibold text-purple-300 mb-4">When to Seek Help</h2>
+          <p className="text-white/80">
+            If malware persists, pop-ups continue, or you suspect a serious infection, professional help is the safest option. Contact{' '}
+            <a
+              href="/contact"
+              className="text-cyan-400 hover:underline"
+            >
+              Xtremery in DeLand, FL
+            </a>{' '}
+            for expert malware removal and system cleanup. We’ll ensure your PC is secure.
+          </p>
+        </section>
+      </div>
+    ),
+  },
+  'setting-up-wifi': {
+    title: 'Setting Up a Secure Wi-Fi Network',
+    content: (
+      <div className="space-y-8">
+        <section>
+          <h2 className="text-2xl font-semibold text-purple-300 mb-4">Overview</h2>
+          <p className="text-white/80">
+            A secure Wi-Fi network keeps your data safe and prevents unauthorized access. This guide walks you through setting up your router with strong security settings, even if you’re not tech-savvy.
+          </p>
+          <img
+            src="/images/wifi-router.png"
+            alt="Wi-Fi router setup"
+            className="rounded-lg shadow-lg my-4 max-w-full h-auto"
+          />
+        </section>
+
+        <section>
+          <h2 className="text-2xl font-semibold text-purple-300 mb-4">Step 1: Access Your Router Settings</h2>
+          <p className="text-white/80">
+            Most routers have a web interface for configuration. You’ll need to log in to make changes.
+          </p>
+          <ul className="list-decimal pl-6 text-white/80 mt-2 space-y-2">
+            <li>
+              Connect to your router via Wi-Fi or Ethernet cable.
+            </li>
+            <li>
+              Open a browser and enter your router’s IP address (usually 192.168.0.1 or 192.168.1.1). Check the router’s label or manual if unsure.
+            </li>
+            <li>
+              Log in using the default credentials (often “admin” for both username and password, or check the router’s label). If changed, use your custom credentials.
+            </li>
+          </ul>
+          <p className="text-white/80 mt-2">
+            <strong>Note</strong>: If you can’t access the router, reset it by holding the reset button for 10 seconds (this restores factory settings).
+          </p>
+        </section>
+
+        <section>
+          <h2 className="text-2xl font-semibold text-purple-300 mb-4">Step 2: Secure Your Wi-Fi</h2>
+          <p className="text-white/80">
+            Update your Wi-Fi name (SSID) and password to prevent unauthorized access.
+          </p>
+          <ul className="list-decimal pl-6 text-white/80 mt-2 space-y-2">
+            <li>
+              In the router settings, find “Wireless” or “Wi-Fi Settings.”
+            </li>
+            <li>
+              Change the SSID to something unique (e.g., “HomeWiFi2025”). Avoid personal info like your name or address.
+            </li>
+            <li>
+              Set the security to WPA3 (or WPA2 if WPA3 isn’t available). Avoid WEP—it’s outdated and insecure.
+            </li>
+            <li>
+              Create a strong password (at least 12 characters, mixing letters, numbers, and symbols). Save it in a secure place.
+            </li>
+          </ul>
+          <p className="text-white/80 mt-2">
+            <strong>Tip</strong>: After saving, reconnect all devices using the new Wi-Fi name and password.
+          </p>
+          <img
+            src="/images/wifi-settings.png"
+            alt="Router Wi-Fi settings"
+            className="rounded-lg shadow-lg my-4 max-w-full h-auto"
+          />
+        </section>
+
+        <section>
+          <h2 className="text-2xl font-semibold text-purple-300 mb-4">Step 3: Update Router Firmware</h2>
+          <p className="text-white/80">
+            Outdated firmware can have security vulnerabilities. Updating it keeps your network safe.
+          </p>
+          <ul className="list-decimal pl-6 text-white/80 mt-2 space-y-2">
+            <li>
+              In the router settings, look for “Firmware Update,” “System,” or “Administration.”
+            </li>
+            <li>
+              Check for updates. If available, follow the prompts to download and install.
+            </li>
+            <li>
+              Don’t unplug the router during the update—it could brick the device.
+            </li>
+          </ul>
+          <p className="text-white/80 mt-2">
+            <strong>Warning</strong>: Check your router’s manufacturer website (e.g., TP-Link, Netgear) for specific update instructions.
+          </p>
+        </section>
+
+        <section>
+          <h2 className="text-2xl font-semibold text-purple-300 mb-4">When to Seek Help</h2>
+          <p className="text-white/80">
+            If you’re unable to access your router, suspect a security breach, or need help optimizing your network, we’ve got you covered. Contact{' '}
+            <a
+              href="/contact"
+              className="text-cyan-400 hover:underline"
+            >
+              Xtremery in DeLand, FL
+            </a>{' '}
+            for professional Wi-Fi setup and security. We’ll ensure your network is fast and secure.
+          </p>
+        </section>
+      </div>
+    ),
+  },
+  'backing-up-data': {
+    title: 'Backing Up Your Data Safely',
+    content: (
+      <div className="space-y-8">
+        <section>
+          <h2 className="text-2xl font-semibold text-purple-300 mb-4">Overview</h2>
+          <p className="text-white/80">
+            Data loss from hardware failure, malware, or accidents can be devastating. Regular backups protect your photos, documents, and more. This guide shows you how to back up your data using free tools and simple steps.
+          </p>
+          <img
+            src="/images/backup-drive.png"
+            alt="External hard drive for backups"
+            className="rounded-lg shadow-lg my-4 max-w-full h-auto"
+          />
+        </section>
+
+        <section>
+          <h2 className="text-2xl font-semibold text-purple-300 mb-4">Step 1: Choose a Backup Method</h2>
+          <p className="text-white/80">
+            You can back up to an external hard drive, cloud storage, or both for extra security.
+          </p>
+          <ul className="list-decimal pl-6 text-white/80 mt-2 space-y-2">
+            <li>
+              <strong>External Hard Drive</strong>: Affordable and fast. Buy a reliable drive (e.g., Western Digital, Seagate) with enough capacity (at least 1TB).
+            </li>
+            <li>
+              <strong>Cloud Storage</strong>: Services like Google Drive or OneDrive offer remote backups. Free plans (e.g., 15GB for Google Drive) are good for small files.
+            </li>
+            <li>
+              Combine both for redundancy. Store critical files in the cloud and everything else on a drive.
+            </li>
+          </ul>
+          <p className="text-white/80 mt-2">
+            <strong>Note</strong>: External drives are physical and can fail, so keep them in a safe place.
+          </p>
+        </section>
+
+        <section>
+          <h2 className="text-2xl font-semibold text-purple-300 mb-4">Step 2: Back Up with Windows</h2>
+          <p className="text-white/80">
+            Windows has a built-in tool called File History for easy backups to an external drive.
+          </p>
+          <ul className="list-decimal pl-6 text-white/80 mt-2 space-y-2">
+            <li>
+              Connect your external drive to your PC.
+            </li>
+            <li>
+              Open Settings: Search for “File History” in the Start menu and select “Backup settings.”
+            </li>
+            <li>
+              Click “Add a drive” and select your external drive. Turn on “Automatically back up my files.”
+            </li>
+            <li>
+              Click “More options” to choose folders (e.g., Documents, Pictures) and set backup frequency (e.g., every hour).
+            </li>
+          </ul>
+          <p className="text-white/80 mt-2">
+            <strong>Tip</strong>: Check your backup occasionally to ensure it’s working. Open the drive to verify files.
+          </p>
+          <img
+            src="/images/file-history.png"
+            alt="Windows File History settings"
+            className="rounded-lg shadow-lg my-4 max-w-full h-auto"
+          />
+        </section>
+
+        <section>
+          <h2 className="text-2xl font-semibold text-purple-300 mb-4">Step 3: Set Up Cloud Backup</h2>
+          <p className="text-white/80">
+            Cloud backups are great for accessing files anywhere and protecting against physical drive failure.
+          </p>
+          <ul className="list-decimal pl-6 text-white/80 mt-2 space-y-2">
+            <li>
+              Sign up for a cloud service like Google Drive ({' '}
+              <a
+                href="https://www.google.com/drive/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-cyan-400 hover:underline"
+              >
+                google.com/drive
+              </a>{' '}
+              ) or Microsoft OneDrive ({' '}
+              <a
+                href="https://www.microsoft.com/en-us/microsoft-365/onedrive/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-cyan-400 hover:underline"
+              >
+                onedrive.com
+              </a>{' '}
+              ).
+            </li>
+            <li>
+              Download and install the service’s desktop app. Sign in with your account.
+            </li>
+            <li>
+              Choose folders to sync (e.g., Desktop, Documents). Files will upload automatically when online.
+            </li>
+          </ul>
+          <p className="text-white/80 mt-2">
+            <strong>Warning</strong>: Free cloud plans have limited storage. Upgrade to a paid plan for large backups.
+          </p>
+        </section>
+
+        <section>
+          <h2 className="text-2xl font-semibold text-purple-300 mb-4">When to Seek Help</h2>
+          <p className="text-white/80">
+            If you’re overwhelmed by backup options, lost data, or need help recovering files, we’re here to help. Contact{' '}
+            <a
+              href="/contact"
+              className="text-cyan-400 hover:underline"
+            >
+              Xtremery in DeLand, FL
+            </a>{' '}
+            for professional backup setup or data recovery. We’ll keep your data safe.
           </p>
         </section>
       </div>
