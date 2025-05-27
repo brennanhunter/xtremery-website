@@ -43,7 +43,7 @@ export default function Chatbot() {
       };
 
       setHistory((prev) => [...prev, botReply]);
-    } catch (error) {
+    } catch {
       setHistory((prev) => [
         ...prev,
         { sender: 'bot', text: 'Error: Could not connect.' },

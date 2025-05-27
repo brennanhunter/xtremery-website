@@ -35,7 +35,9 @@ export default function RootLayout({
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
         {children}
         <Toaster position="top-center" toastOptions={{ duration: 4000 }} /> {/* ✅ add this line */}
-      </body> <Chatbot />   </html>
+      </body>
+      <Chatbot />
+      </html>
     
   );
 }
