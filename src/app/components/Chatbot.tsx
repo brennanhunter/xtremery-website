@@ -1,39 +1,60 @@
 'use client';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { FiSend, FiMessageCircle, FiX } from 'react-icons/fi';
 
-export default function DialogflowChatbot() {
+type Message = { sender: 'user' | 'bot'; text: string };
+
+export default function Chatbot() {
   const [message, setMessage] = useState('');
-  const [response, setResponse] = useState('');
   const [chatOpen, setChatOpen] = useState(false);
-  const [history, setHistory] = useState<{ sender: 'user' | 'bot'; text: string }[]>([]);
+  const [history, setHistory] = useState<Message[]>([]);
+  const [isLoading, setIsLoading] = useState(false);
+
+  const STORAGE_KEY = 'xtremery-chat-history';
+
+  useEffect(() => {
+    const stored = localStorage.getItem(STORAGE_KEY);
+    if (stored) setHistory(JSON.parse(stored));
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(history));
+  }, [history]);
 
   const sendMessage = async () => {
     if (!message.trim()) return;
-
-    setHistory((prev) => [...prev, { sender: 'user', text: message }]);
+    const userMsg: Message = { sender: 'user', text: message };
+    setHistory((prev) => [...prev, userMsg]);
+    setMessage('');
+    setIsLoading(true);
 
     try {
-      const res = await fetch('/api/dialogflow', {
+      const res = await fetch('/api/chat', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ message }),
       });
+
       const data = await res.json();
-      const botReply = data.response || 'No response';
-      setHistory((prev) => [...prev, { sender: 'bot', text: botReply }]);
-      setResponse(botReply);
+      const botReply: Message = {
+        sender: 'bot',
+        text: data.response || 'No response from Gemini.',
+      };
+
+      setHistory((prev) => [...prev, botReply]);
     } catch (error) {
-      setHistory((prev) => [...prev, { sender: 'bot', text: 'Error: Could not connect.' }]);
+      setHistory((prev) => [
+        ...prev,
+        { sender: 'bot', text: 'Error: Could not connect.' },
+      ]);
     }
 
-    setMessage('');
+    setIsLoading(false);
   };
 
   return (
     <div className="fixed bottom-6 right-6 z-50">
-      {/* Floating Chat Button */}
       {!chatOpen && (
         <button
           onClick={() => setChatOpen(true)}
@@ -43,7 +64,6 @@ export default function DialogflowChatbot() {
         </button>
       )}
 
-      {/* Chat Window */}
       <AnimatePresence>
         {chatOpen && (
           <motion.div
@@ -53,7 +73,6 @@ export default function DialogflowChatbot() {
             transition={{ duration: 0.3 }}
             className="w-[320px] sm:w-[360px] bg-gray-900 text-white rounded-xl shadow-2xl overflow-hidden flex flex-col"
           >
-            {/* Header */}
             <div className="flex justify-between items-center bg-gradient-to-r from-purple-700 to-blue-700 px-4 py-3">
               <h3 className="text-lg font-bold">Xtremery Assistant</h3>
               <button onClick={() => setChatOpen(false)}>
@@ -61,7 +80,6 @@ export default function DialogflowChatbot() {
               </button>
             </div>
 
-            {/* Message History */}
             <div className="flex-1 px-4 py-2 space-y-3 overflow-y-auto max-h-96 bg-black/60">
               {history.map((msg, i) => (
                 <div
@@ -75,9 +93,13 @@ export default function DialogflowChatbot() {
                   {msg.text}
                 </div>
               ))}
+              {isLoading && (
+                <div className="bg-purple-700 text-white text-sm p-3 rounded-xl w-fit animate-pulse">
+                  Typing...
+                </div>
+              )}
             </div>
 
-            {/* Input Bar */}
             <div className="flex items-center gap-2 p-3 bg-gray-800">
               <input
                 type="text"

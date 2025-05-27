@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { Analytics } from "@vercel/analytics/next"
-
+import Chatbot from "./components/Chatbot";
 import { Toaster } from 'react-hot-toast'; // ✅ add this import (after globals)
 
 const geistSans = Geist({
@@ -35,8 +35,8 @@ export default function RootLayout({
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
         {children}
         <Toaster position="top-center" toastOptions={{ duration: 4000 }} /> {/* ✅ add this line */}
-      </body>
-    </html>
+      </body> <Chatbot />   </html>
+    
   );
 }
 

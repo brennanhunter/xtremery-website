@@ -1,5 +1,4 @@
 'use client';
-
 import Header from '../components/Header';
 import PCRepairGuides from '../components/PCRepairGuides';
 import Footer from '../components/Footer';
@@ -12,6 +11,7 @@ export default function PCRepairGuidesPage() {
         <PCRepairGuides />
       </main>
       <Footer />
+
     </>
   );
 }

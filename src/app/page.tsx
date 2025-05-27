@@ -18,7 +18,6 @@ export default function Home() {
 <Testimonials />
 <CTA />
 <Footer />
-
     </main>
   );
 }
