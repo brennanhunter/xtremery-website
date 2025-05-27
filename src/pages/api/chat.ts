@@ -11,6 +11,8 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   }
 
   try {
+    console.log("🔑 GEMINI_API_KEY is:", process.env.GEMINI_API_KEY);
+
 const siteContext = `
 You are Xtremery, a helpful assistant for a small tech repair and web design business located in Deland, Florida.
 Services include PC repair, custom-built computers, virus removal, screen and keyboard replacements, as well as modern web design and branding.
