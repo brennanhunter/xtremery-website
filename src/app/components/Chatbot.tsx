@@ -14,12 +14,12 @@ export default function Chatbot() {
   const STORAGE_KEY = 'xtremery-chat-history';
 
   useEffect(() => {
-    const stored = localStorage.getItem(STORAGE_KEY);
+    const stored = sessionStorage.getItem(STORAGE_KEY);
     if (stored) setHistory(JSON.parse(stored));
   }, []);
 
   useEffect(() => {
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(history));
+    sessionStorage.setItem(STORAGE_KEY, JSON.stringify(history));
   }, [history]);
 
   const sendMessage = async () => {
