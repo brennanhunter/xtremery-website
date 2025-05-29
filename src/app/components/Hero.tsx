@@ -15,10 +15,6 @@ const [webForm, setWebForm] = useState({ name: '', email: '', message: '' });
 const [repairSubmitted, setRepairSubmitted] = useState(false);
 const [webSubmitted, setWebSubmitted] = useState(false);
   const [particles, setParticles] = useState<Particle[]>([]);
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const [form, setForm] = useState({ name: '', email: '', message: '' });
-  const [submitted, setSubmitted] = useState(false);
-  const [selectedService, setSelectedService] = useState('');
 
 // Handlers for form changes
 const handleRepairChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -93,43 +89,6 @@ useEffect(() => {
   window.addEventListener('mousemove', handleMouseMove);
   return () => window.removeEventListener('mousemove', handleMouseMove);
 }, []);
-
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    setForm({ ...form, [e.target.name]: e.target.value });
-  };
-
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-
-    try {
-      const response = await fetch('https://formspree.io/f/xwpolbjr', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ ...form, service: selectedService }),
-      });
-
-      if (response.ok) {
-        toast.success('Message sent! 🎉');
-        setSubmitted(true);
-        setTimeout(() => {
-          setSubmitted(false);
-          setIsModalOpen(false);
-          setForm({ name: '', email: '', message: '' });
-          setSelectedService('');
-        }, 2000);
-      } else {
-        toast.error('Oops! Something went wrong.');
-      }
-    } catch (err) {
-      console.error(err);
-      toast.error('Error sending form.');
-    }
-  };
-
-  const openModal = (service: string) => {
-    setSelectedService(service);
-    setIsModalOpen(true);
-  };
 
   // Generate floating particles
   useEffect(() => {
