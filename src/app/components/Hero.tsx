@@ -301,7 +301,7 @@ useEffect(() => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.4 }}
         >
-          From pixel-perfect repairs to blazing-fast web apps—we deliver cutting-edge tech solutions that just work. DeLand's premier destination for all things tech.
+          From pixel-perfect repairs to blazing-fast web apps—we deliver cutting-edge tech solutions that just work. DeLand&apos;s premier destination for all things tech.
         </motion.p>
 
         {/* CTA Buttons */}
