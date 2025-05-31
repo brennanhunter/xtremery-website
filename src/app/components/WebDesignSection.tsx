@@ -110,7 +110,7 @@ export default function WebDesignSection() {
               },
               {
                 title: 'DNS Property Management',
-                url: 'https://dns-property-management.vercel.app/',
+                url: 'https://dandspropertymanagement.com/',
                 img: '/Images/dns.png',
                 desc: 'Business site to compete locally. Helped shape branding, colors, messaging, and logo to match goals.',
               },
