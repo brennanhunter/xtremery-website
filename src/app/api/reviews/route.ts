@@ -15,7 +15,13 @@ export async function GET() {
     return NextResponse.json([], { status: 200 });
   }
 
-  const reviews = data.result.reviews.map((r: any) => ({
+interface GoogleReview {
+  author_name: string;
+  relative_time_description: string;
+  text: string;
+}
+
+const reviews = data.result.reviews.map((r: GoogleReview) => ({
   name: r.author_name,
   meta: r.relative_time_description,
   text: r.text,

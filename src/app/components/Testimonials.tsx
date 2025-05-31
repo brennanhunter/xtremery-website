@@ -52,7 +52,7 @@ export default function Testimonials() {
                   {reviews[index].name}
                 </h4>
                 <p className="text-sm text-gray-500 mb-3">{reviews[index].meta}</p>
-                <p className="text-base text-gray-700 italic">"{reviews[index].text}"</p>
+                <p className="text-base text-gray-700 italic">&quot;{reviews[index].text}&quot;</p>
               </motion.div>
             )}
           </AnimatePresence>
