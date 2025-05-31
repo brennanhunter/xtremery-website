@@ -110,7 +110,7 @@ export default function WebDesignSection() {
               },
               {
                 title: 'DNS Property Management',
-                url: 'https://wordpress-1270679-5383979.cloudwaysapps.com/',
+                url: 'https://dns-property-management.vercel.app/',
                 img: '/Images/dns.png',
                 desc: 'Business site to compete locally. Helped shape branding, colors, messaging, and logo to match goals.',
               },
