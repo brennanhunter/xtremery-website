@@ -117,7 +117,7 @@ export default function WebDesignSection() {
               {
                 title: 'huntercgaming.com',
                 url: 'https://huntercgaming.com',
-                img: '/Images/hunterportfolio.png',
+                img: '/Images/rafael.png',
                 desc: 'Personal portfolio used to get interviews and gain interest from employers in the gaming industry.',
               },
             ].map((project, i) => (
