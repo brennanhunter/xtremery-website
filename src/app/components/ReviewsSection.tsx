@@ -76,7 +76,7 @@ export default function ReviewsSection() {
             <blockquote className="bg-white p-6 rounded-xl shadow-md">
               <div className="text-yellow-500 mb-2">⭐⭐⭐⭐⭐</div>
               <p className="text-gray-700 italic mb-4">
-                "Hunter was able to resolve my computer issues after a hacker was able to infiltrate all of my personal information."
+                &quot;Hunter was able to resolve my computer issues after a hacker was able to infiltrate all of my personal information.&quot;
               </p>
               <footer className="font-semibold text-purple-600">— Joseph R., DeLand</footer>
             </blockquote>
@@ -84,7 +84,7 @@ export default function ReviewsSection() {
             <blockquote className="bg-white p-6 rounded-xl shadow-md">
               <div className="text-yellow-500 mb-2">⭐⭐⭐⭐⭐</div>
               <p className="text-gray-700 italic mb-4">
-                "Incredible service! Showed real patience with me. It's like having a private IT department! Price was very fair!"
+                &quot;Incredible service! Showed real patience with me. It&apos;s like having a private IT department! Price was very fair!&quot;
               </p>
               <footer className="font-semibold text-purple-600">— Ryan U., Orange City</footer>
             </blockquote>
@@ -92,7 +92,7 @@ export default function ReviewsSection() {
             <blockquote className="bg-white p-6 rounded-xl shadow-md">
               <div className="text-yellow-500 mb-2">⭐⭐⭐⭐⭐</div>
               <p className="text-gray-700 italic mb-4">
-                "I had a great experience getting help with my computer issues. He was incredibly knowledgeable, patient, and took the time to explain everything."
+                &quot;I had a great experience getting help with my computer issues. He was incredibly knowledgeable, patient, and took the time to explain everything.&quot;
               </p>
               <footer className="font-semibold text-purple-600">— Desirae T., DeLand</footer>
             </blockquote>
@@ -137,7 +137,7 @@ export default function ReviewsSection() {
                       </div>
                     </div>
                   </div>
-                  <p className="text-gray-700 mb-3 italic">"{review.text}"</p>
+                  <p className="text-gray-700 mb-3 italic">&quot;{review.text}</p>
                   {review.response && (
                     <div className="bg-purple-50 p-3 rounded-lg">
                       <p className="text-sm font-semibold text-purple-600 mb-1">Response from Xtremery:</p>

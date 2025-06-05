@@ -62,8 +62,6 @@ export default function ContactForm() {
       } else {
         alert('There was an error sending your message. Please try calling instead.');
       }
-    } catch (error) {
-      alert('There was an error sending your message. Please try calling instead.');
     } finally {
       setIsSubmitting(false);
     }
@@ -93,7 +91,7 @@ export default function ContactForm() {
               <div className="flex justify-between items-center">
                 <div>
                   <h3 className="text-2xl font-bold">Get Your Free Quote! 💻</h3>
-                  <p className="text-purple-100 mt-1">Tell me about your computer problem and I'll get back to you within 2 hours</p>
+                  <p className="text-purple-100 mt-1">Tell me about your computer problem and I&apos;ll get back to you within 2 hours</p>
                 </div>
                 <button 
                   onClick={closeModal}
@@ -111,7 +109,7 @@ export default function ContactForm() {
                   <div className="text-6xl mb-4">🎉</div>
                   <h4 className="text-2xl font-bold text-green-600 mb-4">Quote Request Sent!</h4>
                   <p className="text-gray-600 mb-6">
-                    Thanks {formData.name}! I'll review your request and get back to you within 2 hours with a quote and next steps.
+                    Thanks {formData.name}! I&apos;ll review your request and get back to you within 2 hours with a quote and next steps.
                   </p>
                   <div className="bg-purple-50 p-4 rounded-lg mb-6">
                     <p className="text-sm text-purple-700">
