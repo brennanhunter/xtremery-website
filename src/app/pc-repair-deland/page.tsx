@@ -245,7 +245,7 @@ export default function PcRepairDelandPage() {
                   </div>
                   <div>
                     <h3 className="font-semibold text-lg mb-2">Honest Pricing</h3>
-                    <p className="text-gray-600">No surprise fees or upsells. I'll tell you exactly what&apos;s wrong and what it costs upfront.</p>
+                    <p className="text-gray-600">No surprise fees or upsells. I&apos;ll tell you exactly what&apos;s wrong and what it costs upfront.</p>
                   </div>
                 </div>
               </div>
