@@ -126,7 +126,7 @@ export default function PcRepairDelandPage() {
             </div>
             
             <h1 className="text-4xl sm:text-6xl font-extrabold mb-6 text-purple-800">
-              DeLand's Trusted Computer Helper
+              DeLand&apos;s Trusted Computer Helper
             </h1>
             <p className="text-xl sm:text-2xl text-gray-700 max-w-3xl mx-auto mb-8">
               <strong>Professional computer support.</strong> Same-day fixes. No upsells. Your tech problems solved by a local expert who actually cares.
@@ -235,7 +235,7 @@ export default function PcRepairDelandPage() {
                   </div>
                   <div>
                     <h3 className="font-semibold text-lg mb-2">Local & Personal</h3>
-                    <p className="text-gray-600">I live in DeLand. You'll always talk to me, not a call center. I care about my reputation in our community.</p>
+                    <p className="text-gray-600">I live in DeLand. You&apos;ll always talk to me, not a call center. I care about my reputation in our community.</p>
                   </div>
                 </div>
                 
@@ -245,7 +245,7 @@ export default function PcRepairDelandPage() {
                   </div>
                   <div>
                     <h3 className="font-semibold text-lg mb-2">Honest Pricing</h3>
-                    <p className="text-gray-600">No surprise fees or upsells. I'll tell you exactly what's wrong and what it costs upfront.</p>
+                    <p className="text-gray-600">No surprise fees or upsells. I'll tell you exactly what&apos;s wrong and what it costs upfront.</p>
                   </div>
                 </div>
               </div>
@@ -267,7 +267,7 @@ export default function PcRepairDelandPage() {
                   </div>
                   <div>
                     <h3 className="font-semibold text-lg mb-2">Experienced & Reliable</h3>
-                    <p className="text-gray-600">Professional service you can trust. From simple fixes to complex security issues, I've got you covered.</p>
+                    <p className="text-gray-600">Professional service you can trust. From simple fixes to complex security issues, I&apos;ve got you covered.</p>
                   </div>
                 </div>
               </div>
@@ -341,7 +341,7 @@ export default function PcRepairDelandPage() {
           <div className="max-w-4xl mx-auto text-center">
             <h2 className="text-3xl font-bold mb-4">Ready to Fix Your Computer Today?</h2>
             <p className="text-xl mb-8 text-purple-100">
-              Don't let computer problems slow you down. Call now for same-day service!
+              Don&apos;t let computer problems slow you down. Call now for same-day service!
             </p>
             
             <div className="flex flex-col sm:flex-row gap-4 justify-center mb-6">
