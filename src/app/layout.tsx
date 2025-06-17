@@ -4,6 +4,8 @@ import "./globals.css";
 import { Analytics } from "@vercel/analytics/next"
 import Chatbot from "./components/Chatbot";
 import { Toaster } from 'react-hot-toast'; // ✅ add this import (after globals)
+import Header from "./components/Header";
+import Footer from "./components/Footer";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -33,7 +35,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
+        <Header />
         {children}
+        <Footer />
         <Toaster position="top-center" toastOptions={{ duration: 4000 }} /> {/* ✅ add this line */}
         <Chatbot />
         <Analytics />

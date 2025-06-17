@@ -2,8 +2,8 @@
 
 import { motion, AnimatePresence } from 'framer-motion';
 import Image from 'next/image';
-import PCServices from './PCServices';
-import WebServices from './WebServices';
+import PCServices from './pc/PCServices';
+import WebServices from './web/WebServices';
 
 type ServiceType = 'pc' | 'web';
 

@@ -39,9 +39,8 @@ export const metadata = {
   },
 };
 
-import Header from '../components/Header';
-import Footer from '../components/Footer';
-import CTA from '../components/CTA';
+
+import CTA from '../components/home/CTA';
 import ReviewsSection from '../components/ReviewsSection';
 import ContactForm from '../components/ContactForm';
 
@@ -111,7 +110,7 @@ const structuredData = {
 export default function PcRepairDelandPage() {
   return (
     <>
-      <Header />
+      
       <script 
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
@@ -367,8 +366,6 @@ export default function PcRepairDelandPage() {
 
         <CTA />
       </main>
-
-      <Footer />
     </>
   );
 }

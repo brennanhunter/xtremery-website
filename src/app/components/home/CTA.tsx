@@ -1,5 +1,5 @@
 'use client';
-import ContactModal from './ContactModal';
+import ContactModal from "../ContactModal";
 
 export default function CTA() {
   return (

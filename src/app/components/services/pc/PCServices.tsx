@@ -1,10 +1,10 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import ContactModal from './ContactModal';
+import ContactModal from '../../ContactModal';
 import Image from 'next/image';
 import WhyXtremery from './WhyXtremery';
-import Footer from './Footer';
+import Footer from '../../Footer';
 
 const services = [
   {

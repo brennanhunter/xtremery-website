@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 import Image from "next/image";
 import { AnimatePresence, motion } from "framer-motion";
-import { cinzel } from '../fonts';
+import { cinzel } from "@/app/fonts"; // Adjust the import path as needed
 
 const honors = [
   {

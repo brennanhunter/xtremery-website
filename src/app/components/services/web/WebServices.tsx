@@ -1,8 +1,8 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import MagicButton from './MagicButton';
-import Footer from './Footer';
+import MagicButton from '../../MagicButton';
+import Footer from '../../Footer';
 import WebDesignSection from './WebDesignSection';
 import GameDesignSection from './GameDesignSection';
 import { useEffect, useState } from 'react';

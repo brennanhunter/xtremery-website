@@ -2,8 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import { usePathname, useRouter } from 'next/navigation';
-import Header from '../components/Header';
-import ServiceSelector from '../components/ServiceSelector';
+import ServiceSelector from '../components/services/ServiceSelector';
 
 type ServiceType = 'pc' | 'web';
 
@@ -29,7 +28,7 @@ export default function ServicesPage() {
 
   return (
     <>
-      <Header resetServiceSelection={resetServiceSelection} />
+      
       <ServiceSelector
         selectedService={selectedService}
         setSelectedService={setSelectedService}
