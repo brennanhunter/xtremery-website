@@ -581,7 +581,7 @@ export default function XtremeryContactPage() {
             </h3>
             <p className="text-lg max-w-3xl mx-auto leading-relaxed" style={{ color: '#F9FAFB99' }}>
               We&apos;re not your typical computer repair shop. We&apos;re local DeLand tech experts who genuinely 
-              care about getting your PC back to peak performance - and we fix what others won't touch.
+              care about getting your PC back to peak performance - and we fix what others won&apos;t touch.
             </p>
           </motion.div>
 

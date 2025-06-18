@@ -9,7 +9,6 @@ type ServiceType = 'pc' | 'web';
 export default function ServicesPage() {
   const [selectedService, setSelectedService] = useState<ServiceType | null>(null);
   const pathname = usePathname();
-  const router = useRouter();
 
   // Reset selectedService when navigating to /services
   useEffect(() => {
