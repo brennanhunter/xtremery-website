@@ -103,8 +103,6 @@ export default function XtremeryContactPage() {
       } else {
         throw new Error('Form submission failed');
       }
-    } catch (error) {
-      setSubmitError('Oops! Something went wrong. Please try calling us directly.');
     } finally {
       setIsSubmitting(false);
     }
@@ -164,7 +162,7 @@ export default function XtremeryContactPage() {
             animate={{ y: 0, opacity: 1 }}
             transition={{ duration: 1, delay: 0.6 }}
           >
-            DeLand's Go-To PC Repair Expert
+            DeLand&apos;s Go-To PC Repair Expert
           </motion.h2>
           
           <motion.p 
@@ -174,7 +172,7 @@ export default function XtremeryContactPage() {
             animate={{ y: 0, opacity: 1 }}
             transition={{ duration: 1, delay: 0.9 }}
           >
-            From ancient Windows XP machines to the latest gaming rigs, we fix what other shops won't touch. 
+            From ancient Windows XP machines to the latest gaming rigs, we fix what other shops won&apos;t touch. 
             Located right here in DeLand, FL - fast, honest PC repair you can trust.
           </motion.p>
 
@@ -221,11 +219,11 @@ export default function XtremeryContactPage() {
             >
               <div>
                 <h3 className="text-3xl md:text-4xl font-black mb-6" style={{ color: '#F9FAFB', fontFamily: 'Montserrat, system-ui, sans-serif' }}>
-                  Let's Fix Your PC
+                  Let&apos;s Fix Your PC
                 </h3>
                 <p className="text-lg leading-relaxed mb-8" style={{ color: '#F9FAFB99' }}>
-                  Whether it's a mysterious blue screen, sluggish performance, or a gaming rig that's lost its edge, 
-                  we've seen it all. Located in DeLand, we provide fast, reliable PC repair with honest pricing.
+                  Whether it&apos;s a mysterious blue screen, sluggish performance, or a gaming rig that&apos;s lost its edge, 
+                  we&apos;ve seen it all. Located in DeLand, we provide fast, reliable PC repair with honest pricing.
                 </p>
               </div>
 
@@ -438,7 +436,7 @@ export default function XtremeryContactPage() {
                           onFocus={(e) => { e.target.style.borderColor = '#00FFD1'; e.target.style.boxShadow = '0 0 0 2px #00FFD140'; }}
                           onBlur={(e) => { e.target.style.borderColor = '#F9FAFB30'; e.target.style.boxShadow = 'none'; }}
                         >
-                          <option value="" style={{ backgroundColor: '#111827', color: '#F9FAFB' }}>What's wrong with your PC?</option>
+                          <option value="" style={{ backgroundColor: '#111827', color: '#F9FAFB' }}>What&apos;s wrong with your PC?</option>
                           {serviceTypes.map(type => (
                             <option key={type} value={type} style={{ backgroundColor: '#111827', color: '#F9FAFB' }}>{type}</option>
                           ))}
@@ -550,7 +548,7 @@ export default function XtremeryContactPage() {
                     </div>
                     <h4 className="text-2xl font-bold mb-4" style={{ color: '#F9FAFB', fontFamily: 'Montserrat, system-ui, sans-serif' }}>Request Received!</h4>
                     <p className="mb-4" style={{ color: '#F9FAFB99' }}>
-                      Thanks for choosing Xtremery! We'll contact you within 2 hours to discuss your PC repair. 
+                      Thanks for choosing Xtremery! We&apos;ll contact you within 2 hours to discuss your PC repair. 
                       For urgent issues, please call us directly.
                     </p>
                     <p className="text-sm" style={{ color: '#00FFD1' }}>
@@ -582,7 +580,7 @@ export default function XtremeryContactPage() {
               Why DeLand Trusts Xtremery
             </h3>
             <p className="text-lg max-w-3xl mx-auto leading-relaxed" style={{ color: '#F9FAFB99' }}>
-              We're not your typical computer repair shop. We're local DeLand tech experts who genuinely 
+              We&apos;re not your typical computer repair shop. We&apos;re local DeLand tech experts who genuinely 
               care about getting your PC back to peak performance - and we fix what others won't touch.
             </p>
           </motion.div>
@@ -682,7 +680,7 @@ export default function XtremeryContactPage() {
                   <ul className="space-y-2" style={{ color: '#F9FAFB99' }}>
                     <li>• Family-owned DeLand business</li>
                     <li>• Quick response times in our area</li>
-                    <li>• Personal service - you'll talk to Hunter directly</li>
+                    <li>• Personal service - you&apos;ll talk to Hunter directly</li>
                     <li>• Supporting our local community</li>
                     <li>• On-site service available for local businesses</li>
                   </ul>
@@ -703,8 +701,8 @@ export default function XtremeryContactPage() {
               Ready to Get Your PC Fixed?
             </h4>
             <p className="mb-8 max-w-2xl mx-auto" style={{ color: '#F9FAFB99' }}>
-              Don't let a broken PC slow you down. Whether it's for work, gaming, or staying connected with family, 
-              we'll get your computer running like new. Located right here in DeLand for fast, friendly service.
+              Don&apos;t let a broken PC slow you down. Whether it&apos;s for work, gaming, or staying connected with family, 
+              we&apos;ll get your computer running like new. Located right here in DeLand for fast, friendly service.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <motion.a
@@ -741,7 +739,7 @@ export default function XtremeryContactPage() {
               whileHover={{ scale: 1.02 }}
             >
               <p className="text-sm font-semibold" style={{ color: '#00FFD1' }}>
-                "We fix the stuff other shops won't touch." - That's our promise to DeLand.
+                &quot;We fix the stuff other shops won&apos;t touch.&quot; - That&apos;s our promise to DeLand.
               </p>
             </motion.div>
           </motion.div>

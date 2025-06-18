@@ -1,11 +1,10 @@
 'use client';
-import Header from '../components/Header';
 import HonorGrid from '../components/about/HonorGrid';
 import WhoAmI from '../components/about/WhoAmI';
 import AboutXtremery from '../components/about/AboutXtremery';
 import  OffTheClock from '../components/about/OffTheClock';
 import CTA from '../components/home/CTA';
-import Footer from '../components/Footer';
+
 
 export default function AboutPage() {
   return (

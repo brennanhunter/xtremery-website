@@ -19,12 +19,6 @@ export default function ServicesPage() {
     }
   }, [pathname]);
 
-  // Function to handle manual reset (passed to Header)
-  const resetServiceSelection = () => {
-    console.log('Resetting service selection');
-    setSelectedService(null);
-    router.push('/services?reset=true', { scroll: false });
-  };
 
   return (
     <>
