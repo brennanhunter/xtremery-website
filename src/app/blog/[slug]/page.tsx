@@ -4,27 +4,13 @@ import { use, useEffect, useState } from 'react';
 import { notFound } from 'next/navigation';
 import Image from 'next/image';
 import Link from 'next/link';
-import { client, getPostBySlug, urlFor } from '@/lib/sanity';
+import { client, getPostBySlug, urlFor }  from '@/lib/sanity';
 import BlogPostContent from '../../components/blog/BlogPostContent';
 import RelatedPosts from '../../components/blog/RelatedPosts';
 import BlogPostCTA from '../../components/blog/BlogPostCTA';
 import RecommendedTools from '../../components/blog/RecommendedTools';
+import { BlogPost } from '@/types/blog';
 
-interface BlogPost {
-  _id: string;
-  title: string;
-  slug: { current: string };
-  excerpt: string;
-  featuredImage: any[];
-  category: string;
-  readTime: string;
-  publishedAt: string;
-  author: string;
-  content: any[]; // Sanity block content
-  seoTitle?: string;
-  seoDescription?: string;
-  tags?: string[];
-}
 
 interface BlogPostPageProps {
   params: Promise<{
