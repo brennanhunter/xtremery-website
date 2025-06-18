@@ -1,6 +1,7 @@
 'use client';
 
 import { motion, AnimatePresence } from 'framer-motion';
+import { easeInOut } from 'framer-motion';
 import Image from 'next/image';
 import PCServices from './pc/PCServices';
 import WebServices from './web/WebServices';
@@ -9,8 +10,8 @@ type ServiceType = 'pc' | 'web';
 
 const curtainVariants = {
   closed: { width: '50%' },
-  openLeft: { width: 0, transition: { duration: 1, ease: 'easeInOut' } },
-  openRight: { width: 0, transition: { duration: 1, ease: 'easeInOut' } },
+  openLeft: { width: 0, transition: { duration: 1, ease: easeInOut } },
+  openRight: { width: 0, transition: { duration: 1, ease: easeInOut } },
 };
 
 interface ServiceSelectorProps {
@@ -22,8 +23,7 @@ export default function ServiceSelector({ selectedService, setSelectedService }:
   const handleSelect = (service: ServiceType) => {
     setSelectedService(service);
   };
-
-  const spotlightFadeOut = { opacity: 0, transition: { duration: 1, ease: 'easeInOut' } };
+  const spotlightFadeOut = { opacity: 0, transition: { duration: 1, ease: easeInOut } };
 
   return (
     <>

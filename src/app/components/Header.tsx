@@ -28,7 +28,8 @@ export default function Header({ resetServiceSelection }: HeaderProps) {
     { label: 'About', href: '/about' },
     { label: 'Services', href: '/services' },
     { label: 'Guides', href: '/guides' },
-    { label: 'Contact', href: '/contact' }
+    { label: 'Contact', href: '/contact' },
+    { label: 'Blog', href: '/blog' }
   ];
 
   return (
