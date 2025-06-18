@@ -1,9 +1,10 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import { Analytics } from "@vercel/analytics/next"
+import { Analytics as VercelAnalytics } from "@vercel/analytics/next";
+import { GoogleAnalytics } from "@/lib/analytics-component";
 import Chatbot from "./components/Chatbot";
-import { Toaster } from 'react-hot-toast'; // ✅ add this import (after globals)
+import { Toaster } from 'react-hot-toast';
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 
@@ -25,8 +26,6 @@ export const metadata: Metadata = {
   },
 };
 
-
-
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -38,12 +37,11 @@ export default function RootLayout({
         <Header />
         {children}
         <Footer />
-        <Toaster position="top-center" toastOptions={{ duration: 4000 }} /> {/* ✅ add this line */}
+        <Toaster position="top-center" toastOptions={{ duration: 4000 }} />
         <Chatbot />
-        <Analytics />
+        <VercelAnalytics />
+        <GoogleAnalytics />
       </body>
-      </html>
-    
+    </html>
   );
 }
-
