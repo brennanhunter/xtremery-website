@@ -8,50 +8,36 @@ export default function FeaturedPost() {
   const [featuredPost, setFeaturedPost] = useState<BlogPost | null>(null);
   const [loading, setLoading] = useState(true);
 
-  useEffect(() => {
-    const fetchFeaturedPost = async () => {
-      try {
-        // First try to get a post marked as featured
-        let query = `*[_type == "blogPost" && featured == true] | order(publishedAt desc)[0] {
-          _id,
-          title,
-          slug,
-          excerpt,
-          featuredImage,
-          category,
-          readTime,
-          publishedAt,
-          author
-        }`;
-        
-        let data = await client.fetch(query);
-        
-        // If no featured post, get the most recent post
-        if (!data) {
-          query = `*[_type == "blogPost"] | order(publishedAt desc)[0] {
-            _id,
-            title,
-            slug,
-            excerpt,
-            featuredImage,
-            category,
-            readTime,
-            publishedAt,
-            author
-          }`;
-          data = await client.fetch(query);
-        }
-        
-        setFeaturedPost(data);
-        setLoading(false);
-      } catch (error) {
-        console.error('Error fetching featured post:', error);
-        setLoading(false);
-      }
-    };
+useEffect(() => {
+  const fetchFeaturedPost = async () => {
+    try {
+      // Try to get ANY published post (simplify the query for debugging)
+      const query = `*[_type == "blogPost"] | order(publishedAt desc)[0] {
+        _id,
+        title,
+        slug,
+        excerpt,
+        featuredImage,
+        category,
+        readTime,
+        publishedAt,
+        author,
+        featured
+      }`;
+      
+      const data = await client.fetch(query);
+      console.log('Featured post data:', data); // Debug log
+      
+      setFeaturedPost(data);
+      setLoading(false);
+    } catch (error) {
+      console.error('Error fetching featured post:', error);
+      setLoading(false);
+    }
+  };
 
-    fetchFeaturedPost();
-  }, []);
+  fetchFeaturedPost();
+}, []);
 
   if (loading) {
     return (
