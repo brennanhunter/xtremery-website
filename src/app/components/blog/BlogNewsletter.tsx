@@ -1,134 +1,160 @@
-import { useState } from 'react';
+import Link from 'next/link';
+import Image from 'next/image';
+import { useState, useEffect } from 'react';
+import { client, getAllPosts, urlFor } from '@/lib/sanity';
+import { BlogPost } from '@/types/blog';
 
-export default function BlogNewsletter() {
-  const [email, setEmail] = useState('');
-  const [isSubmitted, setIsSubmitted] = useState(false);
-  const [isLoading, setIsLoading] = useState(false);
+export default function BlogGrid() {
+  const [posts, setPosts] = useState<BlogPost[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [filter, setFilter] = useState('All');
+  
+  const categories = ['All', 'PC Repair', 'Tech Reviews', 'Data Recovery', 'Networking', 'Gaming', 'Security', 'DeLand Tech Tips'];
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!email) return;
+  useEffect(() => {
+    const fetchPosts = async () => {
+      try {
+        const data = await client.fetch(getAllPosts);
+        setPosts(data);
+        setLoading(false);
+      } catch (error) {
+        console.error('Error fetching posts:', error);
+        setLoading(false);
+      }
+    };
 
-    setIsLoading(true);
-    
-    // Simulate API call - replace with your actual newsletter signup logic
-    setTimeout(() => {
-      setIsSubmitted(true);
-      setIsLoading(false);
-      setEmail('');
-    }, 1000);
-  };
+    fetchPosts();
+  }, []);
 
-  if (isSubmitted) {
+  const filteredPosts = filter === 'All' 
+    ? posts.filter(post => !post.featured) // Exclude featured posts from grid
+    : posts.filter(post => post.category === filter && !post.featured);
+
+  if (loading) {
     return (
-      <div className="bg-gradient-to-br from-green-800/40 to-green-900/40 backdrop-blur-sm rounded-xl p-6 border border-green-600/30">
+      <section className="space-y-8">
         <div className="text-center">
-          <div className="w-12 h-12 bg-green-500 rounded-full flex items-center justify-center mx-auto mb-4">
-            <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-            </svg>
-          </div>
-          <h3 className="text-lg font-bold text-white mb-2">You&apos;re All Set!</h3>
-          <p className="text-green-200 text-sm">
-            Check your email for a confirmation link. We&apos;ll send you our best tech tips and local DeLand updates.
-          </p>
-          <button 
-            onClick={() => setIsSubmitted(false)}
-            className="mt-4 text-green-300 hover:text-green-200 text-sm underline"
-          >
-            Subscribe another email
-          </button>
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-purple-500 mx-auto"></div>
+          <p className="text-gray-400 mt-4">Loading posts...</p>
         </div>
-      </div>
+      </section>
     );
   }
 
   return (
-    <div className="bg-gradient-to-br from-purple-800/40 to-blue-900/40 backdrop-blur-sm rounded-xl p-6 border border-purple-500/30">
+    <section className="space-y-8">
       
-      {/* Header */}
-      <div className="text-center mb-6">
-        <div className="w-12 h-12 bg-gradient-to-r from-purple-500 to-cyan-400 rounded-full flex items-center justify-center mx-auto mb-4">
-          <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 7.89a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-          </svg>
-        </div>
+      {/* Section Header & Filter */}
+      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+        <h2 className="text-3xl font-extrabold text-white">
+          Latest Posts
+        </h2>
         
-        <h3 className="text-xl font-bold text-white mb-2">
-          Get Tech Tips Weekly
-        </h3>
-        <p className="text-gray-300 text-sm leading-relaxed">
-          Join 500+ DeLand locals getting practical tech advice, repair tips, and local tech news.
-        </p>
-      </div>
-
-      {/* Email Input */}
-      <div className="space-y-4">
-        <div className="relative">
-          <input
-            type="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            placeholder="your.email@example.com"
-            className="w-full px-4 py-3 bg-gray-700/50 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-purple-500 focus:ring-2 focus:ring-purple-500/20 transition-all duration-300"
-          />
-        </div>
-        
-        <button
-          onClick={handleSubmit}
-          disabled={isLoading}
-          className="w-full bg-gradient-to-r from-purple-600 to-cyan-500 hover:from-purple-700 hover:to-cyan-600 disabled:from-gray-600 disabled:to-gray-700 text-white font-semibold py-3 px-4 rounded-lg transition-all duration-300 transform hover:scale-105 disabled:scale-100 disabled:cursor-not-allowed flex items-center justify-center gap-2"
-        >
-          {isLoading ? (
-            <>
-              <svg className="animate-spin w-4 h-4" fill="none" viewBox="0 0 24 24">
-                <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
-                <path className="opacity-75" fill="currentColor" d="m4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-              </svg>
-              Subscribing...
-            </>
-          ) : (
-            <>
-              Subscribe Free
-              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
-              </svg>
-            </>
-          )}
-        </button>
-      </div>
-
-      {/* Benefits List */}
-      <div className="mt-6 pt-4 border-t border-gray-600/30">
-        <div className="space-y-2">
-          <div className="flex items-center gap-2 text-sm text-gray-300">
-            <svg className="w-4 h-4 text-green-400 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
-              <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
-            </svg>
-            <span>Weekly tech tips that actually work</span>
-          </div>
-          <div className="flex items-center gap-2 text-sm text-gray-300">
-            <svg className="w-4 h-4 text-green-400 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
-              <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
-            </svg>
-            <span>Local DeLand tech news & deals</span>
-          </div>
-          <div className="flex items-center gap-2 text-sm text-gray-300">
-            <svg className="w-4 h-4 text-green-400 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
-              <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
-            </svg>
-            <span>No spam, unsubscribe anytime</span>
-          </div>
+        {/* Category Filter */}
+        <div className="flex flex-wrap gap-2">
+          {categories.map((category) => (
+            <button
+              key={category}
+              onClick={() => setFilter(category)}
+              className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 ${
+                filter === category
+                  ? 'bg-purple-600 text-white'
+                  : 'bg-gray-700/50 text-gray-300 hover:bg-purple-600/50 hover:text-white'
+              }`}
+            >
+              {category}
+            </button>
+          ))}
         </div>
       </div>
 
-      {/* Social Proof */}
-      <div className="mt-4 text-center">
-        <p className="text-xs text-gray-400">
-          "Best tech advice in DeLand!" - Sarah M.
-        </p>
-      </div>
+      {/* Posts Grid */}
+      {filteredPosts.length > 0 ? (
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          {filteredPosts.map((post) => (
+            <article
+              key={post._id}
+              className="bg-gradient-to-br from-gray-800/40 to-gray-900/40 backdrop-blur-sm rounded-xl overflow-hidden border border-gray-700/30 hover:border-purple-500/50 transition-all duration-300 group"
+            >
+              <div className="relative h-48 overflow-hidden">
+                {post.featuredImage ? (
+                  <Image
+                    src={urlFor(post.featuredImage).width(600).height(300).url()}
+                    alt={post.title}
+                    fill
+                    className="object-cover group-hover:scale-105 transition-transform duration-500"
+                  />
+                ) : (
+                  <div className="w-full h-full bg-gradient-to-br from-purple-600 to-blue-600 flex items-center justify-center">
+                    <span className="text-white text-4xl">📝</span>
+                  </div>
+                )}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+                
+                {/* Category Badge */}
+                <div className="absolute top-4 left-4">
+                  <span className="bg-purple-600/90 backdrop-blur-sm text-white text-xs font-semibold px-3 py-1 rounded-full">
+                    {post.category}
+                  </span>
+                </div>
+              </div>
 
-    </div>
+              {/* Post Content */}
+              <div className="p-6 space-y-4">
+                
+                {/* Meta Info */}
+                <div className="flex items-center gap-3 text-gray-400 text-sm">
+                  <span>{new Date(post.publishedAt).toLocaleDateString('en-US', { 
+                    year: 'numeric', 
+                    month: 'long', 
+                    day: 'numeric' 
+                  })}</span>
+                  <span>•</span>
+                  <span>{post.readTime}</span>
+                </div>
+
+                {/* Title */}
+                <h3 className="text-xl font-bold text-white leading-tight group-hover:text-cyan-300 transition-colors">
+                  <Link href={`/blog/${post.slug.current}`} className="hover:underline">
+                    {post.title}
+                  </Link>
+                </h3>
+
+                {/* Excerpt */}
+                <p className="text-gray-300 leading-relaxed">
+                  {post.excerpt}
+                </p>
+
+                {/* Read More Link */}
+                <Link 
+                  href={`/blog/${post.slug.current}`}
+                  className="inline-flex items-center gap-2 text-cyan-400 hover:text-cyan-300 font-medium transition-colors group"
+                >
+                  Read More
+                  <svg className="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                  </svg>
+                </Link>
+
+              </div>
+            </article>
+          ))}
+        </div>
+      ) : (
+        <div className="text-center py-12">
+          <p className="text-gray-400 text-lg">No posts found in this category.</p>
+        </div>
+      )}
+
+      {/* Load More Button - We'll implement pagination later */}
+      {filteredPosts.length > 0 && (
+        <div className="text-center pt-8">
+          <button className="bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 text-white font-semibold px-8 py-3 rounded-lg transition-all duration-300 transform hover:scale-105">
+            Load More Posts
+          </button>
+        </div>
+      )}
+
+    </section>
   );
 }

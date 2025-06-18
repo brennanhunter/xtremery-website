@@ -2,21 +2,10 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { useEffect, useState } from 'react';
 import { client, urlFor } from '@/lib/sanity';
-
-interface FeaturedPost {
-  _id: string;
-  title: string;
-  slug: { current: string };
-  excerpt: string;
-  featuredImage: any;
-  category: string;
-  readTime: string;
-  publishedAt: string;
-  author: string;
-}
+import { BlogPost } from '@/types/blog';
 
 export default function FeaturedPost() {
-  const [featuredPost, setFeaturedPost] = useState<FeaturedPost | null>(null);
+  const [featuredPost, setFeaturedPost] = useState<BlogPost | null>(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -79,7 +68,7 @@ export default function FeaturedPost() {
   }
 
   return (
-    <section id="featured-post" className="py-16 px-6">
+    <section className="py-16 px-6">
       <div className="max-w-7xl mx-auto">
         
         {/* Section Header */}

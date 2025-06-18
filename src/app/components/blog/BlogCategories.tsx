@@ -115,7 +115,7 @@ export default function BlogCategories() {
             className="block p-3 rounded-lg bg-purple-600/20 hover:bg-purple-600/30 border border-purple-500/30 hover:border-purple-400/50 transition-all duration-300"
           >
             <span className="text-white font-medium text-sm">Need PC Repair?</span>
-            <p className="text-purple-200 text-xs mt-1">Get help from DeLand's tech experts</p>
+            <p className="text-purple-200 text-xs mt-1">Get help from DeLand&apos;s tech experts</p>
           </a>
           
           <a
