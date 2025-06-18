@@ -9,29 +9,25 @@ export default function FeaturedPost() {
   const [loading, setLoading] = useState(true);
 
 useEffect(() => {
+  // Debug environment variables
+  console.log('Sanity Project ID:', process.env.NEXT_PUBLIC_SANITY_PROJECT_ID);
+  console.log('Sanity Dataset:', process.env.NEXT_PUBLIC_SANITY_DATASET);
+  
   const fetchFeaturedPost = async () => {
     try {
-      // Try to get ANY published post (simplify the query for debugging)
-      const query = `*[_type == "blogPost"] | order(publishedAt desc)[0] {
-        _id,
-        title,
-        slug,
-        excerpt,
-        featuredImage,
-        category,
-        readTime,
-        publishedAt,
-        author,
-        featured
-      }`;
+      // First test - can we connect to Sanity at all?
+      console.log('Attempting to fetch from Sanity...');
       
+      const query = `*[_type == "blogPost"] | order(publishedAt desc)[0]`;
       const data = await client.fetch(query);
-      console.log('Featured post data:', data); // Debug log
+      
+      console.log('Raw Sanity response:', data);
+      console.log('Posts found:', data ? 'YES' : 'NO');
       
       setFeaturedPost(data);
       setLoading(false);
     } catch (error) {
-      console.error('Error fetching featured post:', error);
+      console.error('Sanity fetch error:', error);
       setLoading(false);
     }
   };
