@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { usePathname, useRouter } from 'next/navigation';
+import { usePathname } from 'next/navigation';
 import ServiceSelector from '../components/services/ServiceSelector';
 
 type ServiceType = 'pc' | 'web';
