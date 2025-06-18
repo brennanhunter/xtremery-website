@@ -15,7 +15,7 @@ interface BlogPost {
   title: string;
   slug: { current: string };
   excerpt: string;
-  featuredImage: any;
+  featuredImage: any[];
   category: string;
   readTime: string;
   publishedAt: string;
