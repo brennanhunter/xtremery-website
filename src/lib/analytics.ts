@@ -3,14 +3,16 @@
 declare global {
   interface Window {
     gtag: (
-      command: string,
-      targetId: string,
-      config?: Record<string, any>
+      command: 'config' | 'event',
+      targetOrEventName: string,
+      params?: Record<string, undefined | string | number>
     ) => void;
   }
 }
 
-export const GA_MEASUREMENT_ID = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID;
+export const GA_MEASUREMENT_ID: string | undefined = typeof window !== 'undefined'
+  ? (window as Window & { NEXT_PUBLIC_GA_MEASUREMENT_ID?: string }).NEXT_PUBLIC_GA_MEASUREMENT_ID || process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID
+  : process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID;
 
 interface EventParams {
   action: string;
