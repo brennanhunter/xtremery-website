@@ -1,22 +1,8 @@
-'use client';
-
 import Link from 'next/link';
 import Image from 'next/image';
 import { useState, useEffect } from 'react';
 import { client, getAllPosts, urlFor } from '@/lib/sanity';
-
-interface BlogPost {
-  _id: string;
-  title: string;
-  slug: { current: string };
-  excerpt: string;
-  featuredImage: any;
-  category: string;
-  readTime: string;
-  publishedAt: string;
-  author: string;
-  featured?: boolean;
-}
+import { BlogPost } from '@/types/blog';
 
 export default function BlogGrid() {
   const [posts, setPosts] = useState<BlogPost[]>([]);
@@ -90,24 +76,19 @@ export default function BlogGrid() {
               key={post._id}
               className="bg-gradient-to-br from-gray-800/40 to-gray-900/40 backdrop-blur-sm rounded-xl overflow-hidden border border-gray-700/30 hover:border-purple-500/50 transition-all duration-300 group"
             >
-              {/* Post Image */}
               <div className="relative h-48 overflow-hidden">
-                // In your BlogGrid, change the image section to this for debugging:
-{post.featuredImage ? (
-  <>
-    {console.log('Image data:', post.featuredImage)}
-    <Image
-      src={urlFor(post.featuredImage).width(600).height(300).url()}
-      alt={post.title}
-      fill
-      className="object-cover group-hover:scale-105 transition-transform duration-500"
-    />
-  </>
-) : (
-  <div className="w-full h-full bg-gradient-to-br from-purple-600 to-blue-600 flex items-center justify-center">
-    <span className="text-white text-4xl">📝</span>
-  </div>
-)}
+                {post.featuredImage ? (
+                  <Image
+                    src={urlFor(post.featuredImage).width(600).height(300).url()}
+                    alt={post.title}
+                    fill
+                    className="object-cover group-hover:scale-105 transition-transform duration-500"
+                  />
+                ) : (
+                  <div className="w-full h-full bg-gradient-to-br from-purple-600 to-blue-600 flex items-center justify-center">
+                    <span className="text-white text-4xl">📝</span>
+                  </div>
+                )}
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
                 
                 {/* Category Badge */}
