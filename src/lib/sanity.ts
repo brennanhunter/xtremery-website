@@ -8,9 +8,9 @@ export const client = createClient({
   useCdn: false,
 })
 
-// Helper for generating image URLs
+// Helper for generating image URLs with proper typing
 const builder = imageUrlBuilder(client)
-export const urlFor = (source: any) => builder.image(source) // Keep the any for now
+export const urlFor = (source: Parameters<typeof builder.image>[0]) => builder.image(source)
 
 // GROQ queries
 export const getAllPosts = `*[_type == "blogPost"] | order(publishedAt desc) {
