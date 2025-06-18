@@ -106,7 +106,7 @@ export default function RelatedPosts({ currentSlug, currentCategory }: RelatedPo
 
         {/* Related Posts Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {relatedPosts.map((post, index) => (
+          {relatedPosts.map((post) => (
             <article
               key={post.slug}
               className="bg-gradient-to-br from-gray-800/40 to-gray-900/40 backdrop-blur-sm rounded-xl overflow-hidden border border-gray-700/30 hover:border-purple-500/50 transition-all duration-300 group"

@@ -28,9 +28,9 @@ export default function BlogNewsletter() {
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
             </svg>
           </div>
-          <h3 className="text-lg font-bold text-white mb-2">You're All Set!</h3>
+          <h3 className="text-lg font-bold text-white mb-2">You&apos;re All Set!</h3>
           <p className="text-green-200 text-sm">
-            Check your email for a confirmation link. We'll send you our best tech tips and local DeLand updates.
+            Check your email for a confirmation link. We&apos;ll send you our best tech tips and local DeLand updates.
           </p>
           <button 
             onClick={() => setIsSubmitted(false)}

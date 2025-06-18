@@ -17,7 +17,7 @@ export default function BlogPostCTA() {
             Need PC Help?
           </h3>
           <p className="text-gray-300 text-sm mb-4 leading-relaxed">
-            Don't struggle with tech problems. Get honest help from DeLand's trusted computer experts.
+            Don&apos;t struggle with tech problems. Get honest help from DeLand&apos;s trusted computer experts.
           </p>
           
           <Link 
@@ -28,7 +28,7 @@ export default function BlogPostCTA() {
           </Link>
           
           <p className="text-xs text-gray-400">
-            "We fix the stuff other shops won't touch."
+            &quot;We fix the stuff other shops won&apos;t touch.&quot;
           </p>
         </div>
       </div>

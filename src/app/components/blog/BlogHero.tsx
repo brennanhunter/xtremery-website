@@ -19,7 +19,7 @@ export default function BlogHero() {
         
         {/* Description */}
         <p className="text-lg text-gray-400 max-w-2xl mx-auto mb-10">
-          From quick fixes you can try at home to knowing when it's time to call the pros—we've got you covered.
+          From quick fixes you can try at home to knowing when it&apos;s time to call the pros—we&apos;ve got you covered.
         </p>
         
         {/* CTA Buttons */}
@@ -62,7 +62,7 @@ export default function BlogHero() {
         {/* Tagline */}
         <div className="mt-12 pt-8 border-t border-gray-700/50">
           <p className="text-cyan-300 text-sm font-medium">
-            "We fix the stuff other shops won't touch."
+            &quot;We fix the stuff other shops won&apos;t touch.&quot;
           </p>
         </div>
         

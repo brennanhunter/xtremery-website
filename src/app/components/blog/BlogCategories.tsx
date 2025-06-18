@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import Link from 'next/link';
 
 export default function BlogCategories() {
   // Mock category data with post counts - you'll replace with actual data
@@ -49,7 +50,7 @@ export default function BlogCategories() {
         
         <div className="space-y-3">
           {categories.map((category) => (
-            <a
+            <Link
               key={category.slug}
               href={`/blog/category/${category.slug}`}
               className="flex items-center justify-between p-3 rounded-lg bg-gray-700/30 hover:bg-purple-600/20 border border-transparent hover:border-purple-500/30 transition-all duration-300 group"
@@ -60,7 +61,7 @@ export default function BlogCategories() {
               <span className="text-xs bg-purple-600/70 text-white px-2 py-1 rounded-full group-hover:bg-purple-500">
                 {category.count}
               </span>
-            </a>
+            </Link>
           ))}
         </div>
       </div>
@@ -76,7 +77,7 @@ export default function BlogCategories() {
         
         <div className="space-y-4">
           {recentPosts.map((post, index) => (
-            <a
+            <Link
               key={index}
               href={`/blog/${post.slug}`}
               className="block p-3 rounded-lg bg-gray-700/30 hover:bg-cyan-600/10 border border-transparent hover:border-cyan-400/30 transition-all duration-300 group"
@@ -87,16 +88,16 @@ export default function BlogCategories() {
               <span className="text-xs text-gray-500 group-hover:text-gray-400">
                 {post.date}
               </span>
-            </a>
+            </Link>
           ))}
         </div>
         
-        <a 
+        <Link 
           href="/blog"
           className="block mt-4 text-center text-cyan-400 hover:text-cyan-300 text-sm font-medium transition-colors"
         >
           View All Posts →
-        </a>
+        </Link>
       </div>
 
       {/* Quick Links Widget */}
@@ -122,7 +123,7 @@ export default function BlogCategories() {
             className="block p-3 rounded-lg bg-cyan-600/20 hover:bg-cyan-600/30 border border-cyan-500/30 hover:border-cyan-400/50 transition-all duration-300"
           >
             <span className="text-white font-medium text-sm">Ask a Question</span>
-            <p className="text-cyan-200 text-xs mt-1">Free tech advice & quotes</p>
+            <p className="text-cyan-200 text-xs mt-1">Free tech advice &amp; quotes</p>
           </a>
         </div>
       </div>

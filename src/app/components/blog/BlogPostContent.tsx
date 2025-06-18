@@ -1,15 +1,27 @@
 import { PortableText } from '@portabletext/react';
 import { urlFor } from '@/lib/sanity';
+import { 
+  PortableTextBlock, 
+  PortableTextImageValue, 
+  AffiliateProductValue, 
+  TipBoxValue, 
+  LinkMark, 
+  AffiliateLinkMark 
+} from '@/types/blog';
 import Image from 'next/image';
 
 interface BlogPostContentProps {
-  content: any[]; // Sanity block content array
+  content: PortableTextBlock[];
 }
 
-// Custom components for rendering different block types
+// Component prop types
+interface ComponentProps {
+  children?: React.ReactNode;
+}
+
 const components = {
   types: {
-    image: ({ value }: any) => (
+    image: ({ value }: { value: PortableTextImageValue }) => (
       <div className="my-8 rounded-xl overflow-hidden">
         <Image
           src={urlFor(value).width(800).height(400).url()}
@@ -25,7 +37,7 @@ const components = {
         )}
       </div>
     ),
-    affiliateProduct: ({ value }: any) => (
+    affiliateProduct: ({ value }: { value: AffiliateProductValue }) => (
       <div className="my-8 bg-gradient-to-br from-green-800/20 to-green-900/20 backdrop-blur-sm rounded-xl p-6 border border-green-600/20">
         <div className="flex flex-col md:flex-row gap-4">
           {value.image && (
@@ -60,7 +72,7 @@ const components = {
         </div>
       </div>
     ),
-    tipBox: ({ value }: any) => (
+    tipBox: ({ value }: { value: TipBoxValue }) => (
       <div className="my-8 bg-gradient-to-br from-cyan-800/20 to-cyan-900/20 backdrop-blur-sm rounded-xl p-6 border border-cyan-600/20">
         <h4 className="text-cyan-300 font-bold text-lg mb-3 flex items-center gap-2">
           <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -74,24 +86,24 @@ const components = {
   },
   block: {
     // Headings
-    h2: ({ children }: any) => (
+    h2: ({ children }: ComponentProps) => (
       <h2 className="text-3xl font-bold text-white mt-12 mb-6 pb-3 border-b-2 border-purple-500">
         {children}
       </h2>
     ),
-    h3: ({ children }: any) => (
+    h3: ({ children }: ComponentProps) => (
       <h3 className="text-2xl font-semibold text-cyan-300 mt-8 mb-4">
         {children}
       </h3>
     ),
     // Normal paragraph
-    normal: ({ children }: any) => (
+    normal: ({ children }: ComponentProps) => (
       <p className="text-gray-300 text-lg leading-relaxed mb-6">
         {children}
       </p>
     ),
     // Blockquote
-    blockquote: ({ children }: any) => (
+    blockquote: ({ children }: ComponentProps) => (
       <blockquote className="my-8 bg-gradient-to-r from-purple-800/20 to-blue-800/20 border-l-4 border-purple-500 pl-6 py-4 rounded-r-lg">
         <p className="text-gray-200 text-lg italic leading-relaxed">
           {children}
@@ -100,35 +112,35 @@ const components = {
     ),
   },
   list: {
-    bullet: ({ children }: any) => (
+    bullet: ({ children }: ComponentProps) => (
       <ul className="list-disc list-inside space-y-2 mb-6 ml-4 text-gray-300 text-lg">
         {children}
       </ul>
     ),
-    number: ({ children }: any) => (
+    number: ({ children }: ComponentProps) => (
       <ol className="list-decimal list-inside space-y-2 mb-6 ml-4 text-gray-300 text-lg">
         {children}
       </ol>
     ),
   },
   listItem: {
-    bullet: ({ children }: any) => (
+    bullet: ({ children }: ComponentProps) => (
       <li className="text-gray-300 leading-relaxed">{children}</li>
     ),
-    number: ({ children }: any) => (
+    number: ({ children }: ComponentProps) => (
       <li className="text-gray-300 leading-relaxed">{children}</li>
     ),
   },
   marks: {
-    strong: ({ children }: any) => (
+    strong: ({ children }: ComponentProps) => (
       <strong className="font-semibold text-white">{children}</strong>
     ),
-    em: ({ children }: any) => (
+    em: ({ children }: ComponentProps) => (
       <em className="italic text-cyan-200">{children}</em>
     ),
-    link: ({ value, children }: any) => (
+    link: ({ children, value = { _type: 'link', href: '#' } }: { children: React.ReactNode; value?: LinkMark }) => (
       <a
-        href={value?.href}
+        href={value.href}
         target="_blank"
         rel="noopener noreferrer"
         className="text-cyan-400 hover:text-cyan-300 underline transition-colors"
@@ -136,9 +148,12 @@ const components = {
         {children}
       </a>
     ),
-    affiliateLink: ({ value, children }: any) => (
+    affiliateLink: ({
+      children,
+      value = { _type: 'affiliateLink', affiliateUrl: '#' },
+    }: { children: React.ReactNode; value?: AffiliateLinkMark }) => (
       <a
-        href={value?.affiliateUrl}
+        href={value.affiliateUrl}
         target="_blank"
         rel="noopener noreferrer"
         className="inline-flex items-center gap-1 bg-gradient-to-r from-green-600 to-green-700 hover:from-green-700 hover:to-green-800 text-white px-3 py-1 rounded-md text-sm font-medium transition-all duration-300 transform hover:scale-105"
@@ -156,7 +171,7 @@ export default function BlogPostContent({ content }: BlogPostContentProps) {
   return (
     <article className="prose prose-lg prose-invert max-w-none">
       <div className="blog-content">
-        <PortableText value={content} components={components} />
+        {content && <PortableText value={content} components={components} />}
       </div>
     </article>
   );

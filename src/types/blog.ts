@@ -43,3 +43,40 @@ export interface MarkDef {
   _key: string;
   [key: string]: unknown;
 }
+
+export interface PortableTextImageValue {
+  _type: 'image';
+  asset: {
+    _ref: string;
+    _type: 'reference';
+  };
+  alt?: string;
+  caption?: string;
+}
+
+export interface AffiliateProductValue {
+  _type: 'affiliateProduct';
+  productName: string;
+  description: string;
+  affiliateUrl: string;
+  price?: string;
+  image?: PortableTextImageValue;
+}
+
+export interface TipBoxValue {
+  _type: 'tipBox';
+  title: string;
+  content: string;
+}
+
+export interface LinkMark {
+  _type: 'link';
+  href: string;
+}
+
+export interface AffiliateLinkMark {
+  _type: 'affiliateLink';
+  affiliateUrl: string;
+  productName?: string;
+  price?: string;
+}

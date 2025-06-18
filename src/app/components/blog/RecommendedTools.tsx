@@ -32,7 +32,7 @@ export default function RecommendedTools() {
         <div className="p-4 bg-gray-700/30 rounded-lg hover:bg-gray-600/30 transition-all duration-300">
           <h4 className="text-white font-semibold text-lg mb-2">Corsair 16GB RAM</h4>
           <p className="text-gray-400 text-sm mb-3">
-            If you're running multiple programs or browser tabs, more RAM prevents slowdowns and crashes.
+            If you&apos;re running multiple programs or browser tabs, more RAM prevents slowdowns and crashes.
           </p>
           <a 
             href="#" 
