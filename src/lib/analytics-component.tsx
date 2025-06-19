@@ -1,5 +1,6 @@
 'use client';
 
+import Script from 'next/script';
 import { useEffect } from 'react';
 import { usePathname, useSearchParams } from 'next/navigation';
 import { pageview, GA_MEASUREMENT_ID } from './analytics';
@@ -9,8 +10,9 @@ export function GoogleAnalytics() {
   const searchParams = useSearchParams();
 
   useEffect(() => {
-    if (GA_MEASUREMENT_ID && searchParams) {
-      pageview(pathname + (searchParams ? searchParams.toString() : ''));
+    if (GA_MEASUREMENT_ID) {
+      const url = pathname + (searchParams ? `?${searchParams.toString()}` : '');
+      pageview(url);
     }
   }, [pathname, searchParams]);
 
@@ -20,19 +22,19 @@ export function GoogleAnalytics() {
 
   return (
     <>
-      <script
-        async
+      <Script
+        strategy="afterInteractive"
         src={`https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`}
       />
-      <script
+      <Script
+        id="gtag-init"
+        strategy="afterInteractive"
         dangerouslySetInnerHTML={{
           __html: `
             window.dataLayer = window.dataLayer || [];
             function gtag(){dataLayer.push(arguments);}
             gtag('js', new Date());
-            gtag('config', '${GA_MEASUREMENT_ID}', {
-              page_path: window.location.pathname,
-            });
+            gtag('config', '${GA_MEASUREMENT_ID}');
           `,
         }}
       />
