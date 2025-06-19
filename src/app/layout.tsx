@@ -7,6 +7,7 @@ import Chatbot from "./components/Chatbot";
 import { Toaster } from 'react-hot-toast';
 import Header from "./components/Header";
 import Footer from "./components/Footer";
+import { Suspense } from 'react';
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -40,7 +41,9 @@ export default function RootLayout({
         <Toaster position="top-center" toastOptions={{ duration: 4000 }} />
         <Chatbot />
         <VercelAnalytics />
-        <GoogleAnalytics />
+        <Suspense fallback={null}>  {/* 👈 Add this */}
+          <GoogleAnalytics />
+        </Suspense>
       </body>
     </html>
   );
