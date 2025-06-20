@@ -2,12 +2,12 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { Analytics as VercelAnalytics } from "@vercel/analytics/next";
-import { GoogleAnalytics } from "@/lib/analytics-component";
+// import { GoogleAnalytics } from "@/lib/analytics-component";
 import Chatbot from "./components/Chatbot";
 import { Toaster } from 'react-hot-toast';
 import Header from "./components/Header";
 import Footer from "./components/Footer";
-import { Suspense } from 'react';
+// import { Suspense } from 'react';
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -41,9 +41,9 @@ export default function RootLayout({
         <Toaster position="top-center" toastOptions={{ duration: 4000 }} />
         <Chatbot />
         <VercelAnalytics />
-        <Suspense fallback={null}>
+        {/* <Suspense fallback={null}>
           <GoogleAnalytics />
-        </Suspense>
+        </Suspense> */}
       </body>
     </html>
   );
