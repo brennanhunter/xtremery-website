@@ -1,22 +1,27 @@
 'use client';
 
 import Script from 'next/script';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { usePathname, useSearchParams } from 'next/navigation';
 import { pageview, GA_MEASUREMENT_ID } from './analytics';
 
 export function GoogleAnalytics() {
   const pathname = usePathname();
   const searchParams = useSearchParams();
+  const [isClient, setIsClient] = useState(false);
 
   useEffect(() => {
-    if (GA_MEASUREMENT_ID) {
+    setIsClient(true);
+  }, []);
+
+  useEffect(() => {
+    if (GA_MEASUREMENT_ID && isClient) {
       const url = pathname + (searchParams ? `?${searchParams.toString()}` : '');
       pageview(url);
     }
-  }, [pathname, searchParams]);
+  }, [pathname, searchParams, isClient]);
 
-  if (!GA_MEASUREMENT_ID) {
+  if (!GA_MEASUREMENT_ID || !isClient) {
     return null;
   }
 

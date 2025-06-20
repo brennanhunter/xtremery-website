@@ -41,9 +41,9 @@ export default function RootLayout({
         <Toaster position="top-center" toastOptions={{ duration: 4000 }} />
         <Chatbot />
         <VercelAnalytics />
-        {/* <Suspense fallback={null}>
+        <Suspense fallback={null}>
           <GoogleAnalytics />
-        </Suspense> */}
+        </Suspense>
       </body>
     </html>
   );
