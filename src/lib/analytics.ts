@@ -10,9 +10,8 @@ declare global {
   }
 }
 
-export const GA_MEASUREMENT_ID: string | undefined = typeof window !== 'undefined'
-  ? (window as Window & { NEXT_PUBLIC_GA_MEASUREMENT_ID?: string }).NEXT_PUBLIC_GA_MEASUREMENT_ID || process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID
-  : process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID;
+// Simple, safe way to get the GA ID
+export const GA_MEASUREMENT_ID = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID;
 
 interface EventParams {
   action: string;
@@ -29,6 +28,8 @@ export const pageview = (url: string): void => {
     });
   }
 };
+
+// ... rest of your functions stay the same
 
 // Track custom events
 export const event = ({ action, category, label, value }: EventParams): void => {
