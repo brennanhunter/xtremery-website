@@ -47,7 +47,7 @@ export default function BlogNewsletter() {
           Weekly Tech Tips
         </h3>
         <p className="text-gray-300 leading-relaxed">
-          Get practical tech tips that actually work, straight from DeLand's computer experts. No spam, just useful stuff.
+          Get practical tech tips that actually work, straight from DeLand&apos;s computer experts. No spam, just useful stuff.
         </p>
       </div>
 
@@ -58,7 +58,7 @@ export default function BlogNewsletter() {
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
             </svg>
           </div>
-          <p className="text-green-300 font-medium">Welcome to DeLand's tech community!</p>
+          <p className="text-green-300 font-medium">Welcome to DeLand&apos;s tech community!</p>
           <p className="text-green-200 text-sm mt-1">Check your email - your first tech tip is on the way.</p>
         </div>
       ) : (

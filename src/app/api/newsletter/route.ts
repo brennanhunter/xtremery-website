@@ -45,7 +45,7 @@ export async function POST(request: NextRequest) {
       );
     }
 
-  } catch (error: any) {
+  } catch (error: unknown) {
     console.error('💥 Full error:', error);
     return NextResponse.json(
       { error: 'Failed to subscribe' },
