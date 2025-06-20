@@ -8,16 +8,27 @@ export default function BlogNewsletter() {
     e.preventDefault();
     setStatus('loading');
     
-    // Simulate form submission - replace with your actual email service
     try {
-      // For now, just log and show success
-      console.log('Newsletter signup:', email);
-      setStatus('success');
-      setEmail('');
-      
-      // Reset after 3 seconds
-      setTimeout(() => setStatus('idle'), 3000);
+      const response = await fetch('/api/newsletter', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ email }),
+      });
+
+      const data = await response.json();
+
+      if (response.ok) {
+        setStatus('success');
+        setEmail('');
+        // Reset after 5 seconds
+        setTimeout(() => setStatus('idle'), 5000);
+      } else {
+        throw new Error(data.error || 'Failed to subscribe');
+      }
     } catch (error) {
+      console.error('Newsletter signup error:', error);
       setStatus('error');
       setTimeout(() => setStatus('idle'), 3000);
     }
@@ -47,8 +58,8 @@ export default function BlogNewsletter() {
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
             </svg>
           </div>
-          <p className="text-green-300 font-medium">Thanks! You're all signed up.</p>
-          <p className="text-green-200 text-sm mt-1">Check your email for a welcome message.</p>
+          <p className="text-green-300 font-medium">Welcome to DeLand's tech community!</p>
+          <p className="text-green-200 text-sm mt-1">Check your email - your first tech tip is on the way.</p>
         </div>
       ) : (
         <form onSubmit={handleSubmit} className="space-y-4">
