@@ -1,160 +1,113 @@
-import Link from 'next/link';
-import Image from 'next/image';
-import { useState, useEffect } from 'react';
-import { client, getAllPosts, urlFor } from '@/lib/sanity';
-import { BlogPost } from '@/types/blog';
+'use client';
 
-export default function BlogGrid() {
-  const [posts, setPosts] = useState<BlogPost[]>([]);
-  const [loading, setLoading] = useState(true);
-  const [filter, setFilter] = useState('All');
-  
-  const categories = ['All', 'PC Repair', 'Tech Reviews', 'Data Recovery', 'Networking', 'Gaming', 'Security', 'DeLand Tech Tips'];
+import { useState } from 'react';
 
-  useEffect(() => {
-    const fetchPosts = async () => {
-      try {
-        const data = await client.fetch(getAllPosts);
-        setPosts(data);
-        setLoading(false);
-      } catch (error) {
-        console.error('Error fetching posts:', error);
-        setLoading(false);
-      }
-    };
+export default function BlogNewsletter() {
+  const [email, setEmail] = useState('');
+  const [isSubmitted, setIsSubmitted] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
-    fetchPosts();
-  }, []);
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    
+    if (!email) return;
 
-  const filteredPosts = filter === 'All' 
-    ? posts.filter(post => !post.featured) // Exclude featured posts from grid
-    : posts.filter(post => post.category === filter && !post.featured);
+    setIsLoading(true);
+    
+    try {
+      // Simulate API call for now - replace with your email service
+      await new Promise(resolve => setTimeout(resolve, 1000));
+      
+      // For now, just show success message
+      setIsSubmitted(true);
+      setEmail('');
+      
+      // TODO: Integrate with your email service (Mailchimp, ConvertKit, etc.)
+      console.log('Newsletter signup:', email);
+    } catch (error) {
+      console.error('Newsletter signup error:', error);
+    } finally {
+      setIsLoading(false);
+    }
+  };
 
-  if (loading) {
+  if (isSubmitted) {
     return (
-      <section className="space-y-8">
+      <div id="newsletter-signup" className="bg-gradient-to-br from-green-600/20 to-blue-600/20 backdrop-blur-sm rounded-xl p-6 border border-green-500/30">
         <div className="text-center">
-          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-purple-500 mx-auto"></div>
-          <p className="text-gray-400 mt-4">Loading posts...</p>
+          <div className="w-16 h-16 bg-gradient-to-r from-green-500 to-blue-500 rounded-full flex items-center justify-center mx-auto mb-4">
+            <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+            </svg>
+          </div>
+          <h3 className="text-xl font-bold text-white mb-2">
+            🎉 You're In!
+          </h3>
+          <p className="text-green-100 text-sm leading-relaxed">
+            Thanks for subscribing! You'll get our best tech tips, local DeLand computer insights, and exclusive deals delivered weekly.
+          </p>
+          <button 
+            onClick={() => setIsSubmitted(false)}
+            className="mt-4 text-green-300 hover:text-green-200 text-sm underline transition-colors"
+          >
+            Subscribe another email?
+          </button>
         </div>
-      </section>
+      </div>
     );
   }
 
   return (
-    <section className="space-y-8">
-      
-      {/* Section Header & Filter */}
-      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
-        <h2 className="text-3xl font-extrabold text-white">
-          Latest Posts
-        </h2>
+    <div id="newsletter-signup" className="bg-gradient-to-br from-purple-800/30 to-blue-900/30 backdrop-blur-sm rounded-xl p-6 border border-purple-500/20">
+      <div className="text-center">
+        <div className="w-12 h-12 bg-gradient-to-r from-purple-500 to-cyan-400 rounded-full flex items-center justify-center mx-auto mb-4">
+          <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 7.89a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+          </svg>
+        </div>
         
-        {/* Category Filter */}
-        <div className="flex flex-wrap gap-2">
-          {categories.map((category) => (
-            <button
-              key={category}
-              onClick={() => setFilter(category)}
-              className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 ${
-                filter === category
-                  ? 'bg-purple-600 text-white'
-                  : 'bg-gray-700/50 text-gray-300 hover:bg-purple-600/50 hover:text-white'
-              }`}
-            >
-              {category}
-            </button>
-          ))}
-        </div>
-      </div>
-
-      {/* Posts Grid */}
-      {filteredPosts.length > 0 ? (
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          {filteredPosts.map((post) => (
-            <article
-              key={post._id}
-              className="bg-gradient-to-br from-gray-800/40 to-gray-900/40 backdrop-blur-sm rounded-xl overflow-hidden border border-gray-700/30 hover:border-purple-500/50 transition-all duration-300 group"
-            >
-              <div className="relative h-48 overflow-hidden">
-                {post.featuredImage ? (
-                  <Image
-                    src={urlFor(post.featuredImage).width(600).height(300).url()}
-                    alt={post.title}
-                    fill
-                    className="object-cover group-hover:scale-105 transition-transform duration-500"
-                  />
-                ) : (
-                  <div className="w-full h-full bg-gradient-to-br from-purple-600 to-blue-600 flex items-center justify-center">
-                    <span className="text-white text-4xl">📝</span>
-                  </div>
-                )}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
-                
-                {/* Category Badge */}
-                <div className="absolute top-4 left-4">
-                  <span className="bg-purple-600/90 backdrop-blur-sm text-white text-xs font-semibold px-3 py-1 rounded-full">
-                    {post.category}
-                  </span>
-                </div>
-              </div>
-
-              {/* Post Content */}
-              <div className="p-6 space-y-4">
-                
-                {/* Meta Info */}
-                <div className="flex items-center gap-3 text-gray-400 text-sm">
-                  <span>{new Date(post.publishedAt).toLocaleDateString('en-US', { 
-                    year: 'numeric', 
-                    month: 'long', 
-                    day: 'numeric' 
-                  })}</span>
-                  <span>•</span>
-                  <span>{post.readTime}</span>
-                </div>
-
-                {/* Title */}
-                <h3 className="text-xl font-bold text-white leading-tight group-hover:text-cyan-300 transition-colors">
-                  <Link href={`/blog/${post.slug.current}`} className="hover:underline">
-                    {post.title}
-                  </Link>
-                </h3>
-
-                {/* Excerpt */}
-                <p className="text-gray-300 leading-relaxed">
-                  {post.excerpt}
-                </p>
-
-                {/* Read More Link */}
-                <Link 
-                  href={`/blog/${post.slug.current}`}
-                  className="inline-flex items-center gap-2 text-cyan-400 hover:text-cyan-300 font-medium transition-colors group"
-                >
-                  Read More
-                  <svg className="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                  </svg>
-                </Link>
-
-              </div>
-            </article>
-          ))}
-        </div>
-      ) : (
-        <div className="text-center py-12">
-          <p className="text-gray-400 text-lg">No posts found in this category.</p>
-        </div>
-      )}
-
-      {/* Load More Button - We'll implement pagination later */}
-      {filteredPosts.length > 0 && (
-        <div className="text-center pt-8">
-          <button className="bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 text-white font-semibold px-8 py-3 rounded-lg transition-all duration-300 transform hover:scale-105">
-            Load More Posts
+        <h3 className="text-xl font-bold text-white mb-2">
+          🚀 DeLand Tech Tips
+        </h3>
+        <p className="text-purple-100 text-sm mb-4 leading-relaxed">
+          Get weekly computer tips, local tech news, and exclusive deals. No spam, just useful stuff that actually works.
+        </p>
+        
+        <form onSubmit={handleSubmit} className="space-y-3">
+          <input
+            type="email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            placeholder="your@email.com"
+            className="w-full px-4 py-3 rounded-lg text-gray-900 bg-white/95 border border-gray-300 focus:border-purple-500 focus:ring-2 focus:ring-purple-500/20 focus:outline-none transition-all"
+            required
+            disabled={isLoading}
+          />
+          <button
+            type="submit"
+            disabled={isLoading || !email}
+            className="w-full bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 disabled:from-gray-600 disabled:to-gray-700 text-white font-semibold py-3 px-6 rounded-lg transition-all duration-300 transform hover:scale-105 disabled:scale-100 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+          >
+            {isLoading ? (
+              <>
+                <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white"></div>
+                Subscribing...
+              </>
+            ) : (
+              <>
+                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
+                </svg>
+                Get Free Tech Tips
+              </>
+            )}
           </button>
-        </div>
-      )}
-
-    </section>
+        </form>
+        
+        <p className="text-purple-200 text-xs mt-3">
+          ✅ No spam ✅ Unsubscribe anytime ✅ Local DeLand focus
+        </p>
+      </div>
+    </div>
   );
 }
