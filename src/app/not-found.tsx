@@ -97,7 +97,7 @@ export default function NotFound() {
             <p className="text-lg sm:text-xl leading-relaxed"
                style={{ color: '#F9FAFB' }}>
               Looks like this page wandered off somewhere... 
-              Even we can't fix a missing webpage! 🔧
+              Even we can&apos;t fix a missing webpage! 🔧
             </p>
           </div>
         </motion.div>
@@ -113,7 +113,7 @@ export default function NotFound() {
                style={{ borderColor: '#00FFD150' }}>
             <p className="text-sm font-semibold"
                style={{ color: '#00FFD1' }}>
-              💡 Pro Tip: Unlike broken PCs, broken links can't be soldered back together!
+              💡 Pro Tip: Unlike broken PCs, broken links can&apos;t be soldered back together!
             </p>
           </div>
         </motion.div>
