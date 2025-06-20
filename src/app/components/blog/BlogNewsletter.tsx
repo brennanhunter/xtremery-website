@@ -41,10 +41,10 @@ export default function BlogNewsletter() {
             </svg>
           </div>
           <h3 className="text-xl font-bold text-white mb-2">
-            🎉 You're In!
+            🎉 You&apos;re In!
           </h3>
           <p className="text-green-100 text-sm leading-relaxed">
-            Thanks for subscribing! You'll get our best tech tips, local DeLand computer insights, and exclusive deals delivered weekly.
+            Thanks for subscribing! You&apos;ll get our best tech tips, local DeLand computer insights, and exclusive deals delivered weekly.
           </p>
           <button 
             onClick={() => setIsSubmitted(false)}
