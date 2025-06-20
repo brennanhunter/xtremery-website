@@ -44,7 +44,7 @@ const FloatingElements = () => {
 
 export default function NotFound() {
   return (
-    <main className="min-h-screen flex items-center justify-center text-white font-sans overflow-hidden" 
+    <div className="min-h-screen flex items-center justify-center text-white font-sans overflow-hidden" 
           style={{ 
             fontFamily: 'Inter, system-ui, sans-serif',
             background: 'linear-gradient(135deg, #7C3AED 0%, #111827 50%, #1D4ED8 100%)'
@@ -190,11 +190,11 @@ export default function NotFound() {
           className="mt-16 text-center"
         >
           <p className="text-sm font-semibold" style={{ color: '#F9FAFB99' }}>
-            "We fix the stuff other shops won't touch." - But we can't fix missing webpages! 😄
+            &quot;We fix the stuff other shops won&apos;t touch.&quot; - But we can&apos;t fix missing webpages! 😄
           </p>
         </motion.div>
 
       </div>
-    </main>
+    </div>
   );
 }
