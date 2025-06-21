@@ -8,32 +8,31 @@ export default function FeaturedPost() {
   const [featuredPost, setFeaturedPost] = useState<BlogPost | null>(null);
   const [loading, setLoading] = useState(true);
 
-useEffect(() => {
-  // Debug environment variables
-  console.log('Sanity Project ID:', process.env.NEXT_PUBLIC_SANITY_PROJECT_ID);
-  console.log('Sanity Dataset:', process.env.NEXT_PUBLIC_SANITY_DATASET);
-  
-  const fetchFeaturedPost = async () => {
-    try {
-      // First test - can we connect to Sanity at all?
-      console.log('Attempting to fetch from Sanity...');
-      
-      const query = `*[_type == "blogPost"] | order(publishedAt desc)[0]`;
-      const data = await client.fetch(query);
-      
-      console.log('Raw Sanity response:', data);
-      console.log('Posts found:', data ? 'YES' : 'NO');
-      
-      setFeaturedPost(data);
-      setLoading(false);
-    } catch (error) {
-      console.error('Sanity fetch error:', error);
-      setLoading(false);
-    }
-  };
+  useEffect(() => {
+    const fetchFeaturedPost = async () => {
+      try {
+        // Try to get a post marked as featured first
+        let query = `*[_type == "blogPost" && featured == true] | order(publishedAt desc)[0]`;
+        let data = await client.fetch(query);
+        
+        // If no featured post exists, get the most recent post
+        if (!data) {
+          console.log('No featured post found, using most recent post');
+          query = `*[_type == "blogPost"] | order(publishedAt desc)[0]`;
+          data = await client.fetch(query);
+        }
+        
+        console.log('Featured post data:', data);
+        setFeaturedPost(data);
+        setLoading(false);
+      } catch (error) {
+        console.error('Sanity fetch error:', error);
+        setLoading(false);
+      }
+    };
 
-  fetchFeaturedPost();
-}, []);
+    fetchFeaturedPost();
+  }, []);
 
   if (loading) {
     return (
@@ -46,17 +45,26 @@ useEffect(() => {
   }
 
   if (!featuredPost) {
-    return null;
+    return (
+      <section id="featured-post" className="py-16 px-6">
+        <div className="max-w-7xl mx-auto text-center">
+          <div className="bg-gray-800/50 rounded-2xl p-12">
+            <h2 className="text-3xl font-bold text-white mb-4">No Posts Yet</h2>
+            <p className="text-gray-400">Create your first blog post in Sanity Studio!</p>
+          </div>
+        </div>
+      </section>
+    );
   }
 
   return (
-    <section className="py-16 px-6">
+    <section id="featured-post" className="py-16 px-6">
       <div className="max-w-7xl mx-auto">
         
         {/* Section Header */}
         <div className="text-center mb-12">
           <h2 className="text-3xl sm:text-4xl font-extrabold text-white mb-4">
-            Featured Post
+            {featuredPost.featured ? 'Featured Post' : 'Latest Post'}
           </h2>
           <div className="w-24 h-1 bg-gradient-to-r from-purple-500 to-cyan-400 mx-auto"></div>
         </div>
@@ -69,18 +77,17 @@ useEffect(() => {
             {/* Image Side */}
             <div className="relative h-64 lg:h-auto overflow-hidden">
               {featuredPost.featuredImage ? (
-                <>
-                  {console.log('Featured post image data:', featuredPost.featuredImage)}
-                  <Image
-                    src={urlFor(featuredPost.featuredImage).width(800).height(600).url()}
-                    alt={featuredPost.title}
-                    fill
-                    className="object-cover group-hover:scale-105 transition-transform duration-500"
-                  />
-                </>
+                <Image
+                  src={urlFor(featuredPost.featuredImage).width(800).height(600).url()}
+                  alt={featuredPost.title}
+                  fill
+                  className="object-cover group-hover:scale-105 transition-transform duration-500"
+                />
               ) : (
                 <div className="w-full h-full bg-gradient-to-br from-purple-600 to-blue-600 flex items-center justify-center">
-                  <span className="text-white text-6xl">⭐</span>
+                  <span className="text-white text-6xl">
+                    {featuredPost.featured ? '⭐' : '📝'}
+                  </span>
                 </div>
               )}
               <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
@@ -91,6 +98,15 @@ useEffect(() => {
                   {featuredPost.category}
                 </span>
               </div>
+
+              {/* Featured Badge */}
+              {featuredPost.featured && (
+                <div className="absolute top-4 right-4">
+                  <span className="bg-yellow-500 text-black text-sm font-semibold px-3 py-1 rounded-full">
+                    ⭐ Featured
+                  </span>
+                </div>
+              )}
             </div>
 
             {/* Content Side */}

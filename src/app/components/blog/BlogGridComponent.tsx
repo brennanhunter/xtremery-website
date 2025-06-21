@@ -1,21 +1,59 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import { useState, useEffect } from 'react';
-import { client, getAllPosts, urlFor } from '@/lib/sanity';
+import { client, urlFor } from '@/lib/sanity';
 import { BlogPost } from '@/types/blog';
 
 export default function BlogGrid() {
   const [posts, setPosts] = useState<BlogPost[]>([]);
+  const [allPosts, setAllPosts] = useState<BlogPost[]>([]);
   const [loading, setLoading] = useState(true);
   const [filter, setFilter] = useState('All');
+  const [actualCategories, setActualCategories] = useState<string[]>([]);
   
-  const categories = ['All', 'PC Repair', 'Tech Reviews', 'Data Recovery', 'Networking', 'Gaming', 'Security', 'DeLand Tech Tips'];
+  // Function to make category names display-friendly
+  const formatCategoryDisplay = (category: string) => {
+    return category
+      .split('-')
+      .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+      .join(' ');
+  };
 
   useEffect(() => {
-    const fetchPosts = async () => {
+    const fetchAllPosts = async () => {
       try {
-        const data = await client.fetch(getAllPosts);
-        setPosts(data);
+        const allPostsQuery = `*[_type == "blogPost"] | order(publishedAt desc) {
+          _id,
+          title,
+          slug,
+          excerpt,
+          featuredImage,
+          category,
+          publishedAt,
+          readTime,
+          author,
+          featured
+        }`;
+        
+        const allData = await client.fetch(allPostsQuery);
+        setAllPosts(allData);
+        
+        // Extract unique categories from your actual data
+        const uniqueCategories = [...new Set(allData.map((post: BlogPost) => post.category).filter(Boolean))] as string[];
+        setActualCategories(uniqueCategories);
+        
+        console.log('🔍 DEBUG: All posts:', allData);
+        console.log('🔍 DEBUG: Actual categories in Sanity:', uniqueCategories);
+        
+        // Filter posts
+        if (filter === 'All') {
+          setPosts(allData);
+        } else {
+          const filtered = allData.filter((post: BlogPost) => post.category === filter);
+          console.log(`🎯 Filter "${filter}" found ${filtered.length} posts`);
+          setPosts(filtered);
+        }
+        
         setLoading(false);
       } catch (error) {
         console.error('Error fetching posts:', error);
@@ -23,12 +61,8 @@ export default function BlogGrid() {
       }
     };
 
-    fetchPosts();
-  }, []);
-
-  const filteredPosts = filter === 'All' 
-    ? posts.filter(post => !post.featured) // Exclude featured posts from grid
-    : posts.filter(post => post.category === filter && !post.featured);
+    fetchAllPosts();
+  }, [filter]);
 
   if (loading) {
     return (
@@ -43,35 +77,50 @@ export default function BlogGrid() {
 
   return (
     <section className="space-y-8">
-      
+
       {/* Section Header & Filter */}
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
         <h2 className="text-3xl font-extrabold text-white">
-          Latest Posts
+          {filter === 'All' ? 'Latest Posts' : `${formatCategoryDisplay(filter)} Posts`} ({posts.length})
         </h2>
         
-        {/* Category Filter */}
+        {/* Dynamic Category Filter */}
         <div className="flex flex-wrap gap-2">
-          {categories.map((category) => (
-            <button
-              key={category}
-              onClick={() => setFilter(category)}
-              className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 ${
-                filter === category
-                  ? 'bg-purple-600 text-white'
-                  : 'bg-gray-700/50 text-gray-300 hover:bg-purple-600/50 hover:text-white'
-              }`}
-            >
-              {category}
-            </button>
-          ))}
+          <button
+            onClick={() => setFilter('All')}
+            className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 ${
+              filter === 'All'
+                ? 'bg-purple-600 text-white'
+                : 'bg-gray-700/50 text-gray-300 hover:bg-purple-600/50 hover:text-white'
+            }`}
+          >
+            All ({allPosts.length})
+          </button>
+          
+          {/* Show actual categories from Sanity */}
+          {actualCategories.map((category) => {
+            const count = allPosts.filter(p => p.category === category).length;
+            return (
+              <button
+                key={category}
+                onClick={() => setFilter(category)}
+                className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 ${
+                  filter === category
+                    ? 'bg-purple-600 text-white'
+                    : 'bg-gray-700/50 text-gray-300 hover:bg-purple-600/50 hover:text-white'
+                }`}
+              >
+                {formatCategoryDisplay(category)} ({count})
+              </button>
+            );
+          })}
         </div>
       </div>
 
       {/* Posts Grid */}
-      {filteredPosts.length > 0 ? (
+      {posts.length > 0 ? (
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          {filteredPosts.map((post) => (
+          {posts.map((post) => (
             <article
               key={post._id}
               className="bg-gradient-to-br from-gray-800/40 to-gray-900/40 backdrop-blur-sm rounded-xl overflow-hidden border border-gray-700/30 hover:border-purple-500/50 transition-all duration-300 group"
@@ -94,7 +143,7 @@ export default function BlogGrid() {
                 {/* Category Badge */}
                 <div className="absolute top-4 left-4">
                   <span className="bg-purple-600/90 backdrop-blur-sm text-white text-xs font-semibold px-3 py-1 rounded-full">
-                    {post.category}
+                    {formatCategoryDisplay(post.category)}
                   </span>
                 </div>
               </div>
@@ -142,14 +191,27 @@ export default function BlogGrid() {
         </div>
       ) : (
         <div className="text-center py-12">
-          <p className="text-gray-400 text-lg">No posts found in this category.</p>
+          <div className="w-16 h-16 bg-purple-600/20 rounded-full flex items-center justify-center mx-auto mb-4">
+            <svg className="w-8 h-8 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h.01M12 12h.01M16 12h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+          </div>
+          <p className="text-gray-400 text-lg mb-2">No {filter === 'All' ? 'posts' : formatCategoryDisplay(filter).toLowerCase() + ' posts'} found.</p>
+          <p className="text-gray-500 text-sm">
+            Check back soon for more content!
+          </p>
         </div>
       )}
 
-      {/* Load More Button - We'll implement pagination later */}
-      {filteredPosts.length > 0 && (
+      {/* Load More Button - Future enhancement */}
+      {posts.length > 0 && posts.length % 10 === 0 && (
         <div className="text-center pt-8">
-          <button className="bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 text-white font-semibold px-8 py-3 rounded-lg transition-all duration-300 transform hover:scale-105">
+          <button 
+            onClick={() => {
+              console.log('Load more functionality - implement pagination here');
+            }}
+            className="bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 text-white font-semibold px-8 py-3 rounded-lg transition-all duration-300 transform hover:scale-105"
+          >
             Load More Posts
           </button>
         </div>

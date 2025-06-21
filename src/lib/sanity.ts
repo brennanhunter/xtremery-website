@@ -41,3 +41,74 @@ export const getPostBySlug = `*[_type == "blogPost" && slug.current == $slug][0]
   seoDescription,
   tags
 }`
+
+// Get posts by category (NEW)
+export const getPostsByCategory = `*[_type == "blogPost" && category == $category && !featured] | order(publishedAt desc) {
+  _id,
+  title,
+  slug,
+  excerpt,
+  featuredImage,
+  category,
+  publishedAt,
+  readTime,
+  author,
+  featured
+}`;
+
+// Get all non-featured posts (NEW)
+export const getAllNonFeaturedPosts = `*[_type == "blogPost" && !featured] | order(publishedAt desc) {
+  _id,
+  title,
+  slug,
+  excerpt,
+  featuredImage,
+  category,
+  publishedAt,
+  readTime,
+  author,
+  featured
+}`;
+
+// Get unique categories (NEW - useful for dynamically generating filter buttons)
+export const getCategories = `*[_type == "blogPost"] | order(category asc) {
+  "category": category
+} | {
+  "categories": array::unique(category[])
+}`;
+
+// Get category with post count (NEW - for your sidebar)
+export const getCategoriesWithCount = `{
+  "categories": *[_type == "blogPost"] | group(category) | {
+    "name": category,
+    "count": count(),
+    "slug": lower(category)
+  } | order(name asc)
+}`;
+
+// Enhanced featured post query
+export const getFeaturedPost = `*[_type == "blogPost" && featured == true] | order(publishedAt desc)[0] {
+  _id,
+  title,
+  slug,
+  excerpt,
+  featuredImage,
+  category,
+  publishedAt,
+  readTime,
+  author,
+  featured
+}`;
+
+// Related posts by category (for your blog post pages)
+export const getRelatedPosts = `*[_type == "blogPost" && category == $category && slug.current != $currentSlug && !featured] | order(publishedAt desc)[0...3] {
+  _id,
+  title,
+  slug,
+  excerpt,
+  featuredImage,
+  category,
+  publishedAt,
+  readTime,
+  author
+}`;
