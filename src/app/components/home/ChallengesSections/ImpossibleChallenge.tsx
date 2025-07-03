@@ -18,10 +18,10 @@ export default function ImpossibleChallenge() {
         className="text-center mb-20"
       >
         <h2 className="text-4xl sm:text-5xl font-extrabold text-gray-900 mb-6">
-          When Others Say <span className="text-transparent bg-gradient-to-r from-[#7C3AED] to-[#1D4ED8] bg-clip-text">"Impossible"</span>
+          When Others Say <span className="text-transparent bg-gradient-to-r from-[#7C3AED] to-[#1D4ED8] bg-clip-text">&quot;Impossible&quot;</span>
         </h2>
         <p className="text-xl text-gray-600 max-w-3xl mx-auto mb-8">
-          We say "challenge accepted." Here are <span className="text-transparent bg-gradient-to-r from-[#7C3AED] to-[#1D4ED8] bg-clip-text font-extrabold">real stories</span> that prove we fix what other shops won't touch.
+          We say &quot;challenge accepted.&quot; Here are <span className="text-transparent bg-gradient-to-r from-[#7C3AED] to-[#1D4ED8] bg-clip-text font-extrabold">real stories</span> that prove we fix what other shops won&apos;t touch.
         </p>
         
         {/* Interactive Challenge Button */}

@@ -58,7 +58,7 @@ export default function NewsletterSection() {
             Want More Stories Like These?
           </h3>
           <p className="text-xl opacity-90 max-w-2xl mx-auto">
-            Get weekly impossible repair stories, tech tips, and behind-the-scenes content from DeLand's most resourceful repair shop.
+            Get weekly impossible repair stories, tech tips, and behind-the-scenes content from DeLand&apos;s most resourceful repair shop.
           </p>
         </motion.div>
         

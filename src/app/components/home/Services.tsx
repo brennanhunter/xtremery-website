@@ -2,7 +2,7 @@
 
 import { motion } from 'framer-motion';
 import { useState } from 'react';
-import { FaTools, FaCode, FaGamepad, FaVideo, FaServer, FaFacebookF, FaDesktop, FaShieldAlt, FaTachometerAlt, FaHdd, FaMicrochip, FaPalette, FaGoogle, FaBrush } from 'react-icons/fa';
+import { FaTools, FaCode, FaGamepad, FaServer, FaDesktop, FaShieldAlt, FaTachometerAlt, FaHdd, FaMicrochip, FaPalette, FaGoogle, FaBrush } from 'react-icons/fa';
 
 interface Service {
   id: string;
@@ -202,7 +202,7 @@ export default function Services() {
           </h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
             Working from my garage keeps overhead low, so you get expert service at fair prices. 
-            Here's exactly what everything costs - no surprises.
+            Here&apos;s exactly what everything costs - no surprises.
           </p>
         </motion.div>
 
@@ -422,7 +422,7 @@ export default function Services() {
               <span className="text-2xl">🤝</span>
             </div>
             <h4 className="text-lg font-bold text-gray-900 mb-2">Local & Honest</h4>
-            <p className="text-gray-600">DeLand's most trusted tech expert since 2020.</p>
+            <p className="text-gray-600">DeLand&apos;s most trusted tech expert since 2020.</p>
           </div>
         </motion.div>
       </div>

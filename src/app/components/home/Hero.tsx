@@ -187,7 +187,7 @@ export default function Hero() {
           <span className="block sm:inline">We Fix the Stuff</span>
           <br />
           <span className="block sm:inline text-transparent bg-gradient-to-r from-[#00FFD1] to-[#7C3AED] bg-clip-text">
-            Other Shops Won't Touch
+            Other Shops Won&apos;t Touch
           </span>
         </motion.h1>
 
@@ -198,7 +198,7 @@ export default function Hero() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.4 }}
         >
-          DeLand's go-to tech expert who actually cares
+          DeLand&apos;s go-to tech expert who actually cares
         </motion.p>
 
         {/* Secondary message */}
@@ -208,7 +208,7 @@ export default function Hero() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.5 }}
         >
-          From ancient PCs to custom builds, mystery crashes to web magic — I'm Hunter, and I solve what others can't.
+          From ancient PCs to custom builds, mystery crashes to web magic — I&apos;m Hunter, and I solve what others can&apos;t.
         </motion.p>
 
         {/* Emergency Call Button - Prominent */}

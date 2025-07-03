@@ -28,8 +28,8 @@ export default function HeroStory() {
               <div>
                 <h4 className="text-xl font-bold text-gray-900 mb-2">The Problem:</h4>
                 <p className="text-lg leading-relaxed">
-                  A customer brought in their vintage Sony tape deck just before Christmas. The cassette door wouldn't close - a critical internal pin was missing. 
-                  <span className="font-semibold text-[#7C3AED]"> Every repair shop said the same thing: "It's too old, no parts available, not worth fixing."</span>
+                  A customer brought in their vintage Sony tape deck just before Christmas. The cassette door wouldn&apos;t close - a critical internal pin was missing. 
+                  <span className="font-semibold text-[#7C3AED]"> Every repair shop said the same thing: &quot;It&apos;s too old, no parts available, not worth fixing.&quot;</span>
                 </p>
               </div>
               

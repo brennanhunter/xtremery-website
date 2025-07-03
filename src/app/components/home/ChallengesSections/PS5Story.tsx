@@ -20,7 +20,7 @@ export default function PS5Story() {
                 Trust Story
               </span>
               <h3 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-4">
-                The $500 PS5 I Didn't Charge For
+                The $500 PS5 I Didn&apos;t Charge For
               </h3>
             </div>
             
@@ -29,7 +29,7 @@ export default function PS5Story() {
                 <h4 className="text-xl font-bold text-gray-900 mb-2">The Situation:</h4>
                 <p className="text-lg leading-relaxed">
                   A customer brought in their PS5 with no power. They were worried it might be an expensive repair, but hoped it was something simple. 
-                  <span className="font-semibold text-[#00FFD1]"> "Just tell me if it's worth fixing," they said.</span>
+                  <span className="font-semibold text-[#00FFD1]"> &quot;Just tell me if it&apos;s worth fixing,&quot; they said.</span>
                 </p>
               </div>
               
@@ -37,15 +37,15 @@ export default function PS5Story() {
                 <h4 className="text-xl font-bold text-gray-900 mb-2">The Diagnosis:</h4>
                 <p className="text-lg leading-relaxed">
                   After complete teardown and testing, I discovered the motherboard was dead. Replacement cost would exceed the price of a new PS5. 
-                  <span className="font-semibold text-[#00FFD1]"> It simply wasn't worth fixing.</span>
+                  <span className="font-semibold text-[#00FFD1]"> It simply wasn&apos;t worth fixing.</span>
                 </p>
               </div>
               
               <div>
                 <h4 className="text-xl font-bold text-gray-900 mb-2">The Right Thing:</h4>
                 <p className="text-lg leading-relaxed">
-                  I didn't charge them for the diagnostic work. Instead, I bought the dead PS5 from them for parts to help future customers. 
-                  <span className="font-semibold text-[#00FFD1]"> Honesty costs nothing, but it's worth everything.</span>
+                  I didn&apos;t charge them for the diagnostic work. Instead, I bought the dead PS5 from them for parts to help future customers. 
+                  <span className="font-semibold text-[#00FFD1]"> Honesty costs nothing, but it&apos;s worth everything.</span>
                 </p>
               </div>
             </div>
