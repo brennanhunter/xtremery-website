@@ -352,7 +352,7 @@ export default function Hero() {
                       />
                     </div>
                     <div>
-                      <label className="block text-sm font-bold mb-2 text-blue-200 uppercase">What's broken?</label>
+                      <label className="block text-sm font-bold mb-2 text-blue-200 uppercase">What&apos;s broken?</label>
                       <textarea
                         name="message"
                         rows={4}
