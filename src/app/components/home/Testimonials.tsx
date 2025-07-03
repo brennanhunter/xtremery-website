@@ -11,7 +11,7 @@ type Review = {
   quote: string;
   highlight: string;
   service: string;
-  icon: any;
+  icon: React.ComponentType<{ className?: string }>;
   gradient: string;
   originalText?: string;
 };
