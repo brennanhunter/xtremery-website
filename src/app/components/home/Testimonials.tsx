@@ -159,11 +159,11 @@ export default function Testimonials() {
                     </div>
                     
                     <blockquote className="text-2xl md:text-3xl text-white font-bold mb-6 leading-relaxed">
-                      "{currentTestimonial.quote}"
+                      &quot;{currentTestimonial.quote}&quot;
                     </blockquote>
                     
                     <div className="bg-gradient-to-r from-cyan-400 to-purple-400 bg-clip-text text-transparent text-xl font-bold mb-4">
-                      "{currentTestimonial.highlight}"
+                      &quot;{currentTestimonial.highlight}&quot;
                     </div>
                     
                     <div className="text-gray-300 font-semibold text-lg">
@@ -220,7 +220,7 @@ export default function Testimonials() {
                 Your Tech Emergency = Our Specialty
               </h3>
               <p className="text-xl text-white/90 mb-8 max-w-2xl mx-auto">
-                Don't waste time with repair shops that give up. Join the customers who get their problems 
+                Don&apos;t waste time with repair shops that give up. Join the customers who get their problems 
                 <span className="font-bold"> actually solved</span> by DeLand&apos;s most trusted tech expert.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
