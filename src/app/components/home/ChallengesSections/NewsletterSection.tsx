@@ -77,7 +77,7 @@ export default function NewsletterSection() {
                 onChange={(e) => setNewsletterEmail(e.target.value)}
                 placeholder="your.email@example.com"
                 required
-                className="flex-1 px-6 py-4 rounded-full text-gray-900 placeholder-gray-500 focus:ring-4 focus:ring-white/20 outline-none transition-all duration-300 text-lg"
+                className="flex-1 px-6 py-4 rounded-full text-gray-900 placeholder-gray-900 focus:ring-4 focus:ring-white/20 outline-none transition-all duration-300 text-lg"
               />
               <motion.button
                 type="submit"

@@ -20,7 +20,7 @@ export default function ImpossibleChallenge() {
         <h2 className="text-4xl sm:text-5xl font-extrabold text-gray-900 mb-6">
           When Others Say <span className="text-transparent bg-gradient-to-r from-[#7C3AED] to-[#1D4ED8] bg-clip-text">&quot;Impossible&quot;</span>
         </h2>
-        <p className="text-xl text-gray-600 max-w-3xl mx-auto mb-8">
+        <p className="text-xl text-gray-900 max-w-3xl mx-auto mb-8">
           We say &quot;challenge accepted.&quot; Here are <span className="text-transparent bg-gradient-to-r from-[#7C3AED] to-[#1D4ED8] bg-clip-text font-extrabold">real stories</span> that prove we fix what other shops won&apos;t touch.
         </p>
         
