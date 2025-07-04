@@ -46,29 +46,6 @@ export default function ChallengeGallery() {
       </div>
 
       <div className="max-w-7xl mx-auto relative z-10">
-        {/* Section Header */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          viewport={{ once: true }}
-          className="text-center mb-20"
-        >
-          <div className="inline-block bg-gradient-to-r from-cyan-400 to-purple-400 bg-clip-text text-transparent text-sm font-bold mb-4 tracking-wider">
-            ⚡ CHALLENGE ACCEPTED ⚡
-          </div>
-          <h2 className="text-4xl md:text-6xl font-bold text-white mb-6">
-            The Impossible
-            <br />
-            <span className="bg-gradient-to-r from-cyan-400 to-purple-400 bg-clip-text text-transparent">
-              Made Possible
-            </span>
-          </h2>
-          <p className="text-xl text-gray-300 max-w-3xl mx-auto">
-            When other shops say "it can't be done," that's when we get started. 
-            Here are the challenges that made us who we are.
-          </p>
-        </motion.div>
 
         {/* Challenge Stories Container */}
         <div className="space-y-16">
