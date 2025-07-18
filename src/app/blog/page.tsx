@@ -24,7 +24,6 @@ export default function BlogPage() {
           
           {/* Sidebar */}
           <div className="lg:col-span-1">
-            <BlogCategories />
             <BlogNewsletter />
           </div>
           
