@@ -3,7 +3,6 @@
 import BlogHero from '../components/blog/BlogHero';
 import FeaturedPost from '../components/blog/FeaturedPost';
 import BlogGrid from '../components/blog/BlogGridComponent';
-import BlogCategories from '../components/blog/BlogCategories';
 import BlogNewsletter from '../components/blog/BlogNewsletter';
 
 export default function BlogPage() {
