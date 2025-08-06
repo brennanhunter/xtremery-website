@@ -102,10 +102,25 @@ export default function Hero() {
   }, []);
 
   return (
-    <section className="relative h-[100vh] sm:h-[120vh] overflow-hidden bg-gradient-to-br from-slate-900 via-purple-900 to-blue-900">
+    <section className="relative h-[100vh] sm:h-[120vh] overflow-hidden">
       
-      {/* Animated Background Pattern */}
-      <div className="absolute inset-0 opacity-30">
+      {/* Hero Video Background */}
+      <div className="absolute inset-0">
+        <video
+          autoPlay
+          muted
+          loop
+          playsInline
+          className="w-full h-full object-cover"
+        >
+          <source src="/videos/HeroVideo.mp4" type="video/mp4" />
+        </video>
+        {/* Dark overlay for text readability */}
+        <div className="absolute inset-0 bg-black/40"></div>
+      </div>
+      
+      {/* Animated Background Pattern Overlay */}
+      <div className="absolute inset-0 opacity-20">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_25%_25%,rgba(124,58,237,0.3),transparent_50%)]"></div>
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_75%_75%,rgba(29,78,216,0.3),transparent_50%)]"></div>
         <div className="absolute inset-0 bg-[conic-gradient(from_180deg_at_50%_50%,transparent,rgba(0,255,209,0.1),transparent)]"></div>
