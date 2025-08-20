@@ -29,6 +29,7 @@ export default function Footer() {
             <li><Link href="/" className="hover:text-purple-400 transition">Home</Link></li>
             <li><Link href="/about" className="hover:text-purple-400 transition">About</Link></li>
             <li><Link href="/services" className="hover:text-purple-400 transition">Services</Link></li>
+            <li><Link href="/web-design-deland" className="hover:text-purple-400 transition">Web Design in DeLand</Link></li>
             <li><Link href="#contact" className="hover:text-purple-400 transition">Contact</Link></li>
           </ul>
         </div>
