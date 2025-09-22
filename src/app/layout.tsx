@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { Analytics as VercelAnalytics } from "@vercel/analytics/next";
 import { GoogleAnalytics } from "@/lib/analytics-component";
@@ -9,16 +8,9 @@ import Header from "./components/Header";
 import Footer from "./components/Footer";
 import { Suspense } from 'react';
 import SEOJsonLd from "@/app/components/SEOJsonLd";
+import { handelsonTwo, handelsonSix, handelsonFive, avenir } from "./fonts";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
+// Using your brand fonts as the primary fonts
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://www.xtremery.com'),
@@ -45,22 +37,22 @@ export const metadata: Metadata = {
   creator: 'Xtremery',
   publisher: 'Xtremery',
   alternates: {
-    canonical: '/',
+    canonical: 'https://www.xtremery.com',
     types: {
-      'application/rss+xml': '/rss.xml',
+      'application/rss+xml': 'https://www.xtremery.com/rss.xml',
     },
   },
   openGraph: {
     title: 'Xtremery – PC Repair & Web Design in DeLand, FL',
     description:
       'Local computer repair and modern web design serving DeLand, Florida. Friendly, honest, and reliable.',
-    url: '/',
+    url: 'https://www.xtremery.com',
     siteName: 'Xtremery',
     locale: 'en_US',
     type: 'website',
     images: [
       {
-        url: '/LogoNew.png',
+        url: '/logos/logo-purple.png',
         width: 1200,
         height: 630,
         alt: 'Xtremery – PC Repair & Web Design',
@@ -72,7 +64,7 @@ export const metadata: Metadata = {
     title: 'Xtremery – PC Repair & Web Design in DeLand, FL',
     description:
       'Computer repair and web design for DeLand, FL. Honest pricing. Expert help.',
-    images: ['/LogoNew.png'],
+    images: ['/logos/logo-purple.png'],
   },
   robots: {
     index: true,
@@ -101,7 +93,7 @@ export default function RootLayout({
       <head>
         <SEOJsonLd />
       </head>
-      <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
+      <body className={`${avenir.variable} ${handelsonTwo.variable} ${handelsonSix.variable} ${handelsonFive.variable} antialiased`}>
         <Header />
         {children}
         <Footer />

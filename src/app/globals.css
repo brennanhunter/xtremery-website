@@ -1,28 +1,70 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+@font-face {
+  font-family: 'Handelson Two';
+  src: url('/fonts/handelson-two.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Handelson Six';
+  src: url('/fonts/handelson-six.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Handelson Five';
+  src: url('/fonts/handelson-five.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Avenir';
+  src: url('/fonts/Avenir Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@theme {
+  --color-aqua-spark: #00FFD1;
+  --color-xtremery-purple: #7C3AED;
+  --color-xtremery-blue: #1D4ED8;
+  --color-off-white: #F9FAFB;
+  --color-deep-navy: #111827;
+  
+  --font-family-handelson-two: "Handelson Two", serif;
+  --font-family-handelson-six: "Handelson Six", serif;
+  --font-family-handelson-five: "Handelson Five", serif;
+  --font-family-avenir: "Avenir", sans-serif;
+  --font-family-sans: var(--font-avenir), "Avenir", sans-serif;
+  --font-family-mono: "SF Mono", "Monaco", "Inconsolata", "Roboto Mono", monospace;
 }
 
 :root {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-sans: var(--font-avenir);
+  --font-mono: "SF Mono", "Monaco", "Inconsolata", "Roboto Mono", monospace;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --background: #0F0F0F;
+    --foreground: #F8F9FA;
+    --muted: #9CA3AF;
+    --border: #374151;
   }
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-avenir), "Avenir", sans-serif;
 }
 
 .perspective-\[1000px\] {

@@ -1,0 +1,20 @@
+User-agent: *
+Allow: /
+
+# Sitemaps
+Sitemap: https://www.xtremery.com/sitemap.xml
+
+# Disallow admin/api routes
+Disallow: /api/
+Disallow: /studio/
+Disallow: /_next/
+Disallow: /admin/
+
+# Allow important pages
+Allow: /
+Allow: /about
+Allow: /services
+Allow: /contact
+Allow: /blog
+Allow: /pc-repair-deland
+Allow: /web-design-deland
