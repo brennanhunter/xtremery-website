@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 import Image from "next/image";
 import { AnimatePresence, motion } from "framer-motion";
-import { cinzel } from "@/app/fonts"; // Adjust the import path as needed
+import { handelsonTwo } from "@/app/fonts";
 
 const honors = [
   {
@@ -83,7 +83,7 @@ export default function HonorGrid() {
             aria-controls={`honor-${item.id}`}
           >
             <span className="text-purple-300 font-mono text-3xl">{String(item.id).padStart(2, "0")}</span>
-            <span className={`flex-1 ml-4 text-3xl text-white ${cinzel.className}`}>
+            <span className={`flex-1 ml-4 text-3xl text-white ${handelsonTwo.className}`}>
               {item.title}
             </span>
             <span className="text-2xl text-purple-400">{isOpen ? "✕" : "+"}</span>
