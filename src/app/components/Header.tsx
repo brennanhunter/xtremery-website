@@ -35,27 +35,27 @@ export default function Header({ resetServiceSelection }: HeaderProps) {
 
   return (
     <header
-      className={`sticky top-0 z-50 px-6 sm:px-12 py-2 transition-all duration-300 overflow-x-hidden ${
+      className={`sticky top-0 z-50 transition-all duration-500 ${
         scrolled
-          ? 'bg-gray-900/80 backdrop-blur-md shadow-xl border-b border-purple-500'
-          : 'bg-gradient-to-r from-purple-900 via-gray-900 to-blue-900 bg-opacity-70 backdrop-blur-md border-b border-purple-500'
+          ? 'bg-deep-navy/95 backdrop-blur-md shadow-2xl border-b border-xtremery-purple/30'
+          : 'bg-deep-navy/90 backdrop-blur-sm border-b border-xtremery-purple/20'
       }`}
     >
-      <div className="w-full max-w-full flex items-center px-4 sm:px-12">
+      <div className="max-w-7xl mx-auto flex items-center justify-between px-6 py-4">
         {/* Logo */}
         <div className="flex-shrink-0">
-          <Link href="/">
+          <Link href="/" className="block">
             <motion.div
-              whileHover={{ scale: 1.05, rotate: 1 }}
-              transition={{ type: 'spring', stiffness: 200, damping: 10 }}
-              className="flex items-center gap-2"
+              whileHover={{ scale: 1.02 }}
+              transition={{ type: 'spring', stiffness: 300, damping: 20 }}
+              className="flex items-center"
             >
               <Image
                 src="/LogoNew.png"
                 alt="Xtremery Logo"
-                width={180}
-                height={60}
-                className="object-contain block overflow-hidden w-[120px] sm:w-[180px] h-auto"
+                width={160}
+                height={50}
+                className="object-contain w-[140px] sm:w-[160px] h-auto"
                 priority
               />
             </motion.div>
@@ -63,7 +63,7 @@ export default function Header({ resetServiceSelection }: HeaderProps) {
         </div>
 
         {/* Desktop Navigation */}
-        <nav className="hidden sm:flex items-center gap-6 ml-auto pr-4">
+        <nav className="hidden lg:flex items-center space-x-8">
           {navLinks.map(({ label, href }) => {
             const isActive = pathname === href;
             // Special handling for Services link
@@ -74,10 +74,21 @@ export default function Header({ resetServiceSelection }: HeaderProps) {
                   onClick={() => {
                     resetServiceSelection();
                   }}
-                  className="relative text-xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-purple-300 via-white to-blue-400 transition-all duration-300 group hover:scale-105"
+                  className={`relative px-3 py-2 font-medium text-sm uppercase tracking-wider transition-all duration-300 ${
+                    isActive 
+                      ? 'text-aqua-spark' 
+                      : 'text-off-white/90 hover:text-aqua-spark'
+                  }`}
                 >
                   {label}
-                  <span className="absolute left-0 -bottom-1 h-[2px] w-full bg-gradient-to-r from-purple-400 to-blue-400"></span>
+                  {isActive && (
+                    <motion.div
+                      layoutId="activeTab"
+                      className="absolute bottom-0 left-0 right-0 h-0.5 bg-gradient-to-r from-aqua-spark to-xtremery-purple"
+                      initial={false}
+                      transition={{ type: 'spring', stiffness: 300, damping: 30 }}
+                    />
+                  )}
                 </button>
               );
             }
@@ -85,11 +96,20 @@ export default function Header({ resetServiceSelection }: HeaderProps) {
               <Link
                 key={label}
                 href={href}
-                className="relative text-xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-purple-300 via-white to-blue-400 transition-all duration-300 group hover:scale-105"
+                className={`relative px-3 py-2 font-medium text-sm uppercase tracking-wider transition-all duration-300 ${
+                  isActive 
+                    ? 'text-aqua-spark' 
+                    : 'text-off-white/90 hover:text-aqua-spark'
+                }`}
               >
                 {label}
                 {isActive && (
-                  <span className="absolute left-0 -bottom-1 h-[2px] w-full bg-gradient-to-r from-purple-400 to-blue-400"></span>
+                  <motion.div
+                    layoutId="activeTab"
+                    className="absolute bottom-0 left-0 right-0 h-0.5 bg-gradient-to-r from-aqua-spark to-xtremery-purple"
+                    initial={false}
+                    transition={{ type: 'spring', stiffness: 300, damping: 30 }}
+                  />
                 )}
               </Link>
             );
@@ -98,12 +118,25 @@ export default function Header({ resetServiceSelection }: HeaderProps) {
 
         {/* Mobile Menu Toggle */}
         <button
-          className="sm:hidden flex flex-col items-center justify-center w-8 h-8 focus:outline-none ml-auto"
+          className="lg:hidden flex flex-col items-center justify-center w-6 h-6 space-y-1 focus:outline-none focus:ring-2 focus:ring-xtremery-purple/50 rounded-sm"
           onClick={() => setMenuOpen((prev) => !prev)}
+          aria-label="Toggle menu"
         >
-          <span className={`block w-5 h-0.5 bg-white transition-all duration-300 ${menuOpen ? 'rotate-45 translate-y-1' : ''}`} />
-          <span className={`block w-5 h-0.5 bg-white my-0.5 transition-opacity duration-300 ${menuOpen ? 'opacity-0' : 'opacity-100'}`} />
-          <span className={`block w-5 h-0.5 bg-white transition-all duration-300 ${menuOpen ? '-rotate-45 -translate-y-1' : ''}`} />
+          <motion.span 
+            className="block w-5 h-0.5 bg-off-white origin-center"
+            animate={menuOpen ? { rotate: 45, y: 6 } : { rotate: 0, y: 0 }}
+            transition={{ duration: 0.2 }}
+          />
+          <motion.span 
+            className="block w-5 h-0.5 bg-off-white"
+            animate={menuOpen ? { opacity: 0 } : { opacity: 1 }}
+            transition={{ duration: 0.2 }}
+          />
+          <motion.span 
+            className="block w-5 h-0.5 bg-off-white origin-center"
+            animate={menuOpen ? { rotate: -45, y: -6 } : { rotate: 0, y: 0 }}
+            transition={{ duration: 0.2 }}
+          />
         </button>
       </div>
 
@@ -111,40 +144,50 @@ export default function Header({ resetServiceSelection }: HeaderProps) {
       <AnimatePresence>
         {menuOpen && (
           <motion.div
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: 'auto' }}
-            exit={{ opacity: 0, height: 0 }}
-            transition={{ duration: 0.4 }}
-            className="sm:hidden flex flex-col gap-4 mt-2 px-6 pb-4"
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -20 }}
+            transition={{ duration: 0.3 }}
+            className="lg:hidden absolute top-full left-0 right-0 bg-deep-navy/98 backdrop-blur-md border-t border-xtremery-purple/30 shadow-xl"
           >
-            {navLinks.map(({ label, href }) => {
-              const isActive = pathname === href;
-              // Special handling for Services link in mobile menu
-              if (label === 'Services' && isActive && resetServiceSelection) {
+            <div className="px-6 py-4 space-y-2">
+              {navLinks.map(({ label, href }) => {
+                const isActive = pathname === href;
+                // Special handling for Services link in mobile menu
+                if (label === 'Services' && isActive && resetServiceSelection) {
+                  return (
+                    <button
+                      key={label}
+                      onClick={() => {
+                        resetServiceSelection();
+                        setMenuOpen(false);
+                      }}
+                      className={`block w-full text-left px-4 py-3 rounded-lg font-medium text-sm uppercase tracking-wider transition-all duration-200 ${
+                        isActive
+                          ? 'bg-xtremery-purple/20 text-aqua-spark border border-xtremery-purple/50'
+                          : 'text-off-white/90 hover:bg-xtremery-purple/10 hover:text-aqua-spark'
+                      }`}
+                    >
+                      {label}
+                    </button>
+                  );
+                }
                 return (
-                  <button
+                  <Link
                     key={label}
-                    onClick={() => {
-                      resetServiceSelection();
-                      setMenuOpen(false);
-                    }}
-                    className="text-xl text-white font-semibold py-2 px-4 bg-gradient-to-r from-purple-700 to-blue-600 rounded-lg shadow-md hover:scale-105 transition-transform duration-300 text-center"
+                    href={href}
+                    onClick={() => setMenuOpen(false)}
+                    className={`block px-4 py-3 rounded-lg font-medium text-sm uppercase tracking-wider transition-all duration-200 ${
+                      isActive
+                        ? 'bg-xtremery-purple/20 text-aqua-spark border border-xtremery-purple/50'
+                        : 'text-off-white/90 hover:bg-xtremery-purple/10 hover:text-aqua-spark'
+                    }`}
                   >
                     {label}
-                  </button>
+                  </Link>
                 );
-              }
-              return (
-                <Link
-                  key={label}
-                  href={href}
-                  className="text-xl text-white font-semibold py-2 px-4 bg-gradient-to-r from-purple-700 to-blue-600 rounded-lg shadow-md hover:scale-105 transition-transform duration-300 text-center"
-                  onClick={() => setMenuOpen(false)}
-                >
-                  {label}
-                </Link>
-              );
-            })}
+              })}
+            </div>
           </motion.div>
         )}
       </AnimatePresence>

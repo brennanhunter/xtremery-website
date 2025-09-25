@@ -2,51 +2,165 @@
 
 import Link from 'next/link';
 import Image from 'next/image';
+import { motion } from 'framer-motion';
 
 export default function Footer() {
+  const currentYear = new Date().getFullYear();
+  
+  const footerLinks = {
+    services: [
+      { label: 'PC Repair', href: '/pc-repair-deland' },
+      { label: 'Web Design', href: '/web-design-deland' },
+      { label: 'Custom PC Builds', href: '/services#custom-builds' },
+      { label: 'Data Recovery', href: '/services#data-recovery' },
+    ],
+    company: [
+      { label: 'About Us', href: '/about' },
+      { label: 'Our Services', href: '/services' },
+      { label: 'Tech Guides', href: '/guides' },
+      { label: 'Blog', href: '/blog' },
+    ],
+    resources: [
+      { label: 'Contact', href: '/contact' },
+      { label: 'Get Quote', href: '/contact#quote' },
+      { label: 'Support', href: '/contact#support' },
+      { label: 'FAQ', href: '/guides' },
+    ]
+  };
+
   return (
-    <footer className="bg-gradient-to-r from-purple-900 via-black to-blue-900 text-white py-12 px-6">
-      <div className="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-3 gap-10 items-start">
+    <footer className="bg-gradient-to-br from-deep-navy via-deep-navy/95 to-deep-navy/90 text-off-white relative overflow-hidden">
+      {/* Background accent */}
+      <div className="absolute inset-0 bg-gradient-to-r from-xtremery-purple/10 via-transparent to-xtremery-blue/10"></div>
+      
+      <div className="relative">
+        {/* Main footer content */}
+        <div className="max-w-7xl mx-auto px-6 py-16">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
+            
+            {/* Company Info */}
+            <div className="lg:col-span-1 space-y-6">
+              <Link href="/" className="block">
+                <Image
+                  src="/LogoNew.png"
+                  alt="Xtremery Logo"
+                  width={160}
+                  height={50}
+                  className="object-contain"
+                />
+              </Link>
+              <p className="text-sm text-off-white/80 leading-relaxed max-w-sm">
+                Professional PC repair and modern web design in DeLand, FL. We fix what others won't touch and build websites that actually convert.
+              </p>
+              <div className="flex items-center gap-4">
+                <motion.div
+                  whileHover={{ scale: 1.1 }}
+                  className="w-2 h-2 rounded-full bg-aqua-spark"
+                />
+                <span className="text-xs text-off-white/70 uppercase tracking-wider">DeLand, Florida</span>
+              </div>
+            </div>
 
-        {/* Logo + Blurb */}
-        <div className="space-y-4">
-          <Image
-            src="/LogoNew.png"
-            alt="Xtremery Logo"
-            width={180}
-            height={60}
-            className="object-contain"
-          />
-          <p className="text-sm text-gray-300 max-w-xs">
-            Local tech wizardry, minus the ego. PC repairs, web design, and digital help—done with honesty and a bit of flair.
-          </p>
+            {/* Services */}
+            <div className="space-y-6">
+              <h3 className="text-lg font-semibold text-aqua-spark uppercase tracking-wider">Services</h3>
+              <ul className="space-y-3">
+                {footerLinks.services.map(({ label, href }) => (
+                  <li key={label}>
+                    <Link 
+                      href={href}
+                      className="text-sm text-off-white/80 hover:text-aqua-spark transition-colors duration-200 flex items-center gap-2"
+                    >
+                      <span className="w-1 h-1 rounded-full bg-xtremery-purple"></span>
+                      {label}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            {/* Company */}
+            <div className="space-y-6">
+              <h3 className="text-lg font-semibold text-aqua-spark uppercase tracking-wider">Company</h3>
+              <ul className="space-y-3">
+                {footerLinks.company.map(({ label, href }) => (
+                  <li key={label}>
+                    <Link 
+                      href={href}
+                      className="text-sm text-off-white/80 hover:text-aqua-spark transition-colors duration-200 flex items-center gap-2"
+                    >
+                      <span className="w-1 h-1 rounded-full bg-xtremery-purple"></span>
+                      {label}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            {/* Contact & Resources */}
+            <div className="space-y-6">
+              <h3 className="text-lg font-semibold text-aqua-spark uppercase tracking-wider">Get In Touch</h3>
+              
+              {/* Contact Info */}
+              <div className="space-y-4">
+                <div className="space-y-2">
+                  <a 
+                    href="mailto:hunter@xtremery.com"
+                    className="text-sm text-off-white/80 hover:text-aqua-spark transition-colors duration-200 block"
+                  >
+                    hunter@xtremery.com
+                  </a>
+                  <a 
+                    href="tel:+14068685850"
+                    className="text-sm text-off-white/80 hover:text-aqua-spark transition-colors duration-200 block"
+                  >
+                    (406) 868-5850
+                  </a>
+                </div>
+              </div>
+
+              {/* Resources */}
+              <ul className="space-y-3">
+                {footerLinks.resources.map(({ label, href }) => (
+                  <li key={label}>
+                    <Link 
+                      href={href}
+                      className="text-sm text-off-white/80 hover:text-aqua-spark transition-colors duration-200 flex items-center gap-2"
+                    >
+                      <span className="w-1 h-1 rounded-full bg-xtremery-purple"></span>
+                      {label}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
         </div>
 
-        {/* Navigation */}
-        <div className="space-y-4">
-          <h3 className="text-lg font-bold text-purple-300">Explore</h3>
-          <ul className="space-y-2 text-sm">
-            <li><Link href="/" className="hover:text-purple-400 transition">Home</Link></li>
-            <li><Link href="/about" className="hover:text-purple-400 transition">About</Link></li>
-            <li><Link href="/services" className="hover:text-purple-400 transition">Services</Link></li>
-            <li><Link href="/web-design-deland" className="hover:text-purple-400 transition">Web Design in DeLand</Link></li>
-            <li><Link href="#contact" className="hover:text-purple-400 transition">Contact</Link></li>
-          </ul>
+        {/* Footer Bottom */}
+        <div className="border-t border-xtremery-purple/20">
+          <div className="max-w-7xl mx-auto px-6 py-6">
+            <div className="flex flex-col md:flex-row justify-between items-center gap-4">
+              <p className="text-xs text-off-white/60">
+                © {currentYear} Xtremery. All rights reserved.
+              </p>
+              <div className="flex items-center gap-6">
+                <Link 
+                  href="/privacy"
+                  className="text-xs text-off-white/60 hover:text-aqua-spark transition-colors duration-200"
+                >
+                  Privacy Policy
+                </Link>
+                <Link 
+                  href="/terms"
+                  className="text-xs text-off-white/60 hover:text-aqua-spark transition-colors duration-200"
+                >
+                  Terms of Service
+                </Link>
+              </div>
+            </div>
+          </div>
         </div>
-
-        {/* Contact */}
-        <div className="space-y-4">
-          <h3 className="text-lg font-bold text-purple-300">Get In Touch</h3>
-          <p className="text-sm text-gray-300">Email: <a href="mailto:hunter@xtremery.com" className="underline hover:text-blue-400">hunter@xtremery.com</a></p>
-          <p className="text-sm text-gray-300">Phone: <a href="tel:+4068685850" className="underline hover:text-blue-400">(406)868-5850</a></p>
-          <p className="text-sm text-gray-300">Based in DeLand, FL</p>
-        </div>
-
-      </div>
-
-      {/* Footer Bottom */}
-      <div className="mt-12 text-center text-xs text-gray-500 border-t border-white/10 pt-6">
-        © {new Date().getFullYear()} Xtremery. All rights reserved.
       </div>
     </footer>
   );

@@ -44,6 +44,7 @@ export default defineType({
       options: {
         list: [
           { title: 'PC Repair', value: 'pc-repair' },
+          { title: 'Web Design', value: 'web-design' },
           { title: 'Tech Reviews', value: 'tech-reviews' },
           { title: 'Data Recovery', value: 'data-recovery' },
           { title: 'Networking', value: 'networking' },
