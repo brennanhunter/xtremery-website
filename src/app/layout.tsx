@@ -9,6 +9,7 @@ import Footer from "./components/Footer";
 import { Suspense } from 'react';
 import SEOJsonLd from "@/app/components/SEOJsonLd";
 import { handelsonTwo, handelsonSix, handelsonFive, avenir } from "./fonts";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 
 // Using your brand fonts as the primary fonts
 
@@ -100,7 +101,8 @@ export default function RootLayout({
         <Toaster position="top-center" toastOptions={{ duration: 4000 }} />
         <Chatbot />
         <VercelAnalytics />
-        <Suspense fallback={null}>  {/* 👈 Add this */}
+        <SpeedInsights />
+        <Suspense fallback={null}>
           <GoogleAnalytics />
         </Suspense>
       </body>
