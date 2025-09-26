@@ -1677,20 +1677,6 @@ const WebGL: React.FC = () => {
 
     animate();
 
-    // Auto-trigger splats for continuous animation
-    const autoSplat = () => {
-      // Generate 8-15 random splats every 3-5 seconds for more dramatic effect
-      const splatCount = Math.floor(Math.random() * 8) + 8;
-      multipleSplats(gl, splatCount, splatProgram, framebuffers.velocity, framebuffers.dye, blit, canvas);
-      
-      // Schedule next auto-splat with random interval (3-6 seconds)
-      const nextInterval = (Math.random() * 3 + 3) * 1000; // 3000-6000ms
-      setTimeout(autoSplat, nextInterval);
-    };
-
-    // Start auto-splat after initial 2 seconds
-    setTimeout(autoSplat, 2000);
-
     // Event handlers
     const handleMouseDown = (e: MouseEvent) => {
       const posX = scaleByPixelRatio(e.offsetX);
