@@ -23,17 +23,10 @@ export default function OffTheClock() {
   }, []);
 
   return (
-    <section className="relative w-full overflow-hidden py-28 bg-gray-900 text-white min-h-[1000px]">
-      {/* Background Blur */}
-      <div className="absolute inset-0 z-0">
-        <Image
-          src="/images/wedding-pic.jpg"
-          alt="Background blur"
-          layout="fill"
-          objectFit="cover"
-          className="blur-[10px] opacity-20"
-        />
-        <div className="absolute inset-0 bg-black/60" />
+    <section className="relative w-full overflow-hidden py-28 bg-gray-50 text-gray-800 min-h-[1000px]">
+      {/* Background Pattern */}
+      <div className="absolute inset-0 z-0 opacity-5">
+        <div className="absolute inset-0 bg-gradient-to-br from-purple-600 to-blue-600" />
       </div>
 
       <div className="relative z-10 w-full px-6 flex flex-col md:flex-row items-start justify-center gap-12">
@@ -51,7 +44,7 @@ export default function OffTheClock() {
                 whileInView={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 0.6, delay: index * 0.2 }}
                 onClick={() => setFrontIndex(index)}
-                className={`w-[280px] h-[360px] p-4 bg-white rounded-md shadow-2xl hover:scale-105 transition-transform duration-300 cursor-pointer ${zIndex} ${isMounted ? 'md:absolute' : 'relative'}`}
+                className={`w-[280px] h-[360px] p-4 bg-white rounded-lg shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300 cursor-pointer border border-gray-200 ${zIndex} ${isMounted ? 'md:absolute' : 'relative'}`}
                 style={style}
               >
                 <div className="relative w-full h-[80%] rounded-sm overflow-hidden mb-2">
@@ -77,13 +70,13 @@ export default function OffTheClock() {
           transition={{ duration: 1, delay: 0.3 }}
           className="text-center md:text-left space-y-6 max-w-xl md:mt-10"
         >
-          <h2 className="text-4xl sm:text-5xl font-extrabold bg-gradient-to-r from-purple-300 via-white to-cyan-300 text-transparent bg-clip-text">
+          <h2 className="text-4xl sm:text-5xl font-extrabold bg-gradient-to-r from-purple-600 to-blue-600 text-transparent bg-clip-text">
             Off the Clock
           </h2>
-          <p className="text-xl sm:text-2xl text-gray-200 leading-relaxed">
+          <p className="text-xl sm:text-2xl text-gray-700 leading-relaxed">
             When I&apos;m not wrangling tech, I&apos;m wrangling kids—in the best way. These moments remind me what it&apos;s all for.
           </p>
-          <p className="italic text-gray-400 text-lg sm:text-xl">
+          <p className="italic text-gray-600 text-lg sm:text-xl">
           &quot;Strong tech comes from strong values—honesty, effort, and a little bit of magic.&quot;
           </p>
         </motion.div>

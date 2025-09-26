@@ -52,7 +52,6 @@ const honors = [
 
 export default function HonorGrid() {
   const [open, setOpen] = useState<number | null>(null);
-  const [useTwoColumns, setUseTwoColumns] = useState(true); // Toggle for debugging
 
   // Log state changes for debugging
   useEffect(() => {
@@ -67,7 +66,7 @@ export default function HonorGrid() {
       <div key={`container-${item.id}`} className="isolate">
         <motion.div
           key={`motion-${item.id}`}
-          className="rounded-xl overflow-hidden bg-gradient-to-r from-purple-700 via-white/10 to-cyan-600 backdrop-blur-md hover:shadow-2xl hover:scale-[1.02] transition-all duration-300 border border-white/10 isolate"
+          className="rounded-xl overflow-hidden bg-white shadow-lg hover:shadow-xl hover:scale-[1.02] transition-all duration-300 border border-gray-200 isolate"
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
@@ -78,15 +77,15 @@ export default function HonorGrid() {
               console.log(`Clicked item ${item.id}, current open: ${open}, setting to ${isOpen ? null : item.id}`);
               setOpen(isOpen ? null : item.id);
             }}
-            className="flex justify-between items-center w-full px-6 py-4 text-left focus:outline-none"
+            className="flex justify-between items-center w-full px-6 py-4 text-left focus:outline-none hover:bg-gray-50"
             aria-expanded={isOpen}
             aria-controls={`honor-${item.id}`}
           >
-            <span className="text-purple-300 font-mono text-3xl">{String(item.id).padStart(2, "0")}</span>
-            <span className={`flex-1 ml-4 text-3xl text-white ${handelsonTwo.className}`}>
+            <span className="text-purple-600 font-mono text-3xl font-bold">{String(item.id).padStart(2, "0")}</span>
+            <span className={`flex-1 ml-4 text-3xl text-gray-800 ${handelsonTwo.className}`}>
               {item.title}
             </span>
-            <span className="text-2xl text-purple-400">{isOpen ? "✕" : "+"}</span>
+            <span className="text-2xl text-purple-600">{isOpen ? "✕" : "+"}</span>
           </button>
 
           <AnimatePresence>
@@ -107,7 +106,7 @@ export default function HonorGrid() {
                   height={200}
                   className="mx-auto mb-4 object-contain"
                 />
-                <p className="text-gray-100 text-2xl sm:text-3xl leading-relaxed text-center font-semibold">
+                <p className="text-gray-700 text-2xl sm:text-3xl leading-relaxed text-center font-medium">
                   {item.body}
                 </p>
               </motion.div>
@@ -119,26 +118,19 @@ export default function HonorGrid() {
   };
 
   return (
-    <section className="max-w-8xl mx-auto px-4 sm:px-12 py-20">
+    <section className="max-w-8xl mx-auto px-4 sm:px-12 py-20 bg-white">
       <div className="text-center mb-12">
-        <h2 className="text-7xl sm:text-8xl font-extrabold bg-gradient-to-r from-purple-400 via-white to-cyan-400 text-transparent bg-clip-text">
+        <h2 className="text-7xl sm:text-8xl font-extrabold bg-gradient-to-r from-purple-600 to-blue-600 text-transparent bg-clip-text">
           Code of Honor
         </h2>
-        <p className="text-3xl text-purple-400 uppercase tracking-widest">Yes, we have a Code of Honor</p>
-        <p className="text-2xl mt-4 text-gray-300 max-w-xl mx-auto">
+        <p className="text-3xl text-purple-600 uppercase tracking-widest font-semibold">Yes, we have a Code of Honor</p>
+        <p className="text-2xl mt-4 text-gray-600 max-w-xl mx-auto">
           These are the guiding values that shape every repair, every pixel, and every interaction.
         </p>
-        {/* Debug Toggle */}
-        <button
-          onClick={() => setUseTwoColumns(!useTwoColumns)}
-          className="mt-4 bg-purple-600 text-white px-4 py-2 rounded-lg"
-        >
-          {useTwoColumns ? "Switch to Single Column" : "Switch to Two Columns"}
-        </button>
       </div>
 
       <motion.div
-        className={`grid ${useTwoColumns ? "grid-cols-1 md:grid-cols-2" : "grid-cols-1"} gap-6 isolate`}
+        className="grid grid-cols-1 md:grid-cols-2 gap-6 isolate"
         initial="hidden"
         animate="visible"
         variants={{

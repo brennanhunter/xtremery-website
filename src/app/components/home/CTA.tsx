@@ -5,19 +5,19 @@ export default function CTA() {
   return (
     <section className="py-24 px-6 bg-gradient-to-r from-purple-600 to-blue-600 text-white text-center rounded-t-3xl shadow-inner">
       <h2 className="text-4xl sm:text-5xl font-extrabold mb-6">
-        Ready to Power Up Your Tech?
+        Ready to Grow Your Business?
       </h2>
       <p className="text-lg sm:text-xl max-w-2xl mx-auto mb-8 text-white/90">
-        Whether it&apos;s computer repair, web design, or digital magic — I&apos;m here to help you make it happen.
+        Get a professional website that converts visitors into customers, plus trusted tech support when you need it.
       </p>
       <div className="flex flex-col sm:flex-row justify-center gap-4">
+        <ContactModal />
         <a
           href="https://calendar.app.google/TieHN52sEYn7CFKV8"
-          className="bg-white text-purple-700 font-semibold py-3 px-6 rounded-lg shadow-md hover:bg-purple-100 transition"
+          className="bg-transparent border-2 border-white text-white font-semibold py-3 px-6 rounded-lg hover:bg-white hover:text-purple-700 transition"
         >
-          Book a Repair
+          Schedule Tech Support
         </a>
-        <ContactModal />
       </div>
     </section>
   );

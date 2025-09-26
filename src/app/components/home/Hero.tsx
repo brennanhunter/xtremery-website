@@ -10,6 +10,10 @@ export default function Hero() {
   const [webForm, setWebForm] = useState({ name: '', email: '', message: '' });
   const [webSubmitted, setWebSubmitted] = useState(false);
 
+  const [techModalOpen, setTechModalOpen] = useState(false);
+  const [techForm, setTechForm] = useState({ name: '', email: '', phone: '', message: '' });
+  const [techSubmitted, setTechSubmitted] = useState(false);
+
   const handleWebChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setWebForm({ ...webForm, [e.target.name]: e.target.value });
   };
@@ -30,6 +34,36 @@ export default function Hero() {
           setWebSubmitted(false);
           setWebModalOpen(false);
           setWebForm({ name: '', email: '', message: '' });
+        }, 2500);
+      } else {
+        toast.error('Oops! Something went wrong.');
+      }
+    } catch (err) {
+      console.error(err);
+      toast.error('Error sending form.');
+    }
+  };
+
+  const handleTechChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    setTechForm({ ...techForm, [e.target.name]: e.target.value });
+  };
+
+  const handleTechSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    try {
+      const response = await fetch('https://formspree.io/f/xwpolbjr', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ ...techForm, service: 'PC Repair & Tech Support' }),
+      });
+
+      if (response.ok) {
+        toast.success('Tech support request sent! 🔧💙');
+        setTechSubmitted(true);
+        setTimeout(() => {
+          setTechSubmitted(false);
+          setTechModalOpen(false);
+          setTechForm({ name: '', email: '', phone: '', message: '' });
         }, 2500);
       } else {
         toast.error('Oops! Something went wrong.');
@@ -76,13 +110,21 @@ export default function Hero() {
               Custom Next.js websites built for businesses that want results
             </p>
 
-            {/* CTA Button */}
-            <button
-              onClick={() => setWebModalOpen(true)}
-              className="bg-aqua-spark text-deep-navy px-8 py-4 rounded-full font-bold text-lg hover:bg-white transition-colors"
-            >
-              Get My High-Converting Website
-            </button>
+            {/* CTA Buttons */}
+            <div className="flex flex-col sm:flex-row gap-4">
+              <button
+                onClick={() => setWebModalOpen(true)}
+                className="bg-aqua-spark text-deep-navy px-8 py-4 rounded-full font-bold text-lg hover:bg-white transition-colors"
+              >
+                Get My High-Converting Website
+              </button>
+              <button
+                onClick={() => setTechModalOpen(true)}
+                className="bg-transparent border-2 border-aqua-spark text-aqua-spark px-8 py-4 rounded-full font-bold text-lg hover:bg-aqua-spark hover:text-deep-navy transition-colors"
+              >
+                Get Tech Support
+              </button>
+            </div>
           </div>
         </div>
         
@@ -197,6 +239,113 @@ export default function Hero() {
                       className="w-full bg-xtremery-blue text-white font-semibold py-3 rounded-lg hover:bg-blue-700 transition-colors shadow-md"
                     >
                       Send Project Request
+                    </button>
+                  </form>
+                )}
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      {/* TECH SUPPORT MODAL */}
+      <AnimatePresence>
+        {techModalOpen && (
+          <motion.div
+            className="fixed inset-0 z-50 flex justify-center items-center bg-black/70 px-4"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+          >
+            <motion.div
+              initial={{ scale: 0.9, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.9, opacity: 0 }}
+              transition={{ duration: 0.2 }}
+              className={`w-full max-w-lg relative shadow-2xl ${
+                techSubmitted 
+                  ? 'bg-white border border-green-200' 
+                  : 'bg-white border border-gray-200'
+              } rounded-xl overflow-hidden`}
+            >
+              <div className="relative p-8">
+                <button
+                  onClick={() => setTechModalOpen(false)}
+                  className="absolute top-4 right-4 text-gray-400 hover:text-gray-600 text-2xl font-bold transition-colors"
+                >
+                  ×
+                </button>
+
+                <div className="text-center mb-8">
+                  <div className="w-16 h-16 mx-auto mb-4 bg-gradient-to-r from-cyan-400 to-blue-500 rounded-full flex items-center justify-center shadow-lg">
+                    {techSubmitted ? (
+                      <span className="text-2xl text-white">✓</span>
+                    ) : (
+                      <span className="text-2xl text-white">🔧</span>
+                    )}
+                  </div>
+                  <h2 className="text-2xl font-bold mb-2 text-gray-900">
+                    {techSubmitted ? 'Request Sent Successfully!' : 'Get Expert Tech Support'}
+                  </h2>
+                  <p className="text-gray-600">
+                    {techSubmitted ? 'I\'ll get back to you within 24 hours to help fix your tech problems.' : 'Describe your tech issues and I\'ll provide honest, expert solutions.'}
+                  </p>
+                </div>
+
+                {!techSubmitted && (
+                  <form onSubmit={handleTechSubmit} className="space-y-6">
+                    <div>
+                      <label className="block text-sm font-semibold mb-2 text-gray-700">Full Name</label>
+                      <input
+                        type="text"
+                        name="name"
+                        required
+                        value={techForm.name}
+                        onChange={handleTechChange}
+                        className="w-full p-3 rounded-lg border-2 border-gray-200 bg-white text-gray-900 focus:border-cyan-400 focus:ring-1 focus:ring-cyan-400 outline-none transition-colors"
+                        placeholder="Your full name"
+                      />
+                    </div>
+                    <div>
+                      <label className="block text-sm font-semibold mb-2 text-gray-700">Email Address</label>
+                      <input
+                        type="email"
+                        name="email"
+                        required
+                        value={techForm.email}
+                        onChange={handleTechChange}
+                        className="w-full p-3 rounded-lg border-2 border-gray-200 bg-white text-gray-900 focus:border-cyan-400 focus:ring-1 focus:ring-cyan-400 outline-none transition-colors"
+                        placeholder="your@email.com"
+                      />
+                    </div>
+                    <div>
+                      <label className="block text-sm font-semibold mb-2 text-gray-700">Phone Number (Optional)</label>
+                      <input
+                        type="tel"
+                        name="phone"
+                        value={techForm.phone}
+                        onChange={handleTechChange}
+                        className="w-full p-3 rounded-lg border-2 border-gray-200 bg-white text-gray-900 focus:border-cyan-400 focus:ring-1 focus:ring-cyan-400 outline-none transition-colors"
+                        placeholder="(555) 123-4567"
+                      />
+                    </div>
+                    <div>
+                      <label className="block text-sm font-semibold mb-2 text-gray-700">What&apos;s Wrong?</label>
+                      <textarea
+                        name="message"
+                        rows={4}
+                        required
+                        value={techForm.message}
+                        onChange={handleTechChange}
+                        placeholder="Describe your tech problem: slow computer, virus issues, broken screen, won't turn on, strange noises..."
+                        className="w-full p-3 rounded-lg border-2 border-gray-200 bg-white text-gray-900 focus:border-cyan-400 focus:ring-1 focus:ring-cyan-400 outline-none resize-none transition-colors"
+                      />
+                    </div>
+                    <button
+                      type="submit"
+                      className="w-full bg-gradient-to-r from-cyan-400 to-blue-500 text-white font-semibold py-3 rounded-lg hover:from-cyan-500 hover:to-blue-600 transition-colors shadow-md"
+                    >
+                      Send Tech Support Request
                     </button>
                   </form>
                 )}

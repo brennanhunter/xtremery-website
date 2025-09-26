@@ -9,7 +9,7 @@ import CTA from '../components/home/CTA';
 export default function AboutPage() {
   return (
     <>
-      <main className="bg-gradient-to-br from-purple-800 via-black to-cyan-500 text-gray-100">
+      <main className="bg-white text-gray-800">
       <AboutXtremery /> 
       <WhoAmI />
       <HonorGrid />

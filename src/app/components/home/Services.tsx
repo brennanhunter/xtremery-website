@@ -128,7 +128,7 @@ const services: Service[] = [
 ];
 
 export default function Services() {
-  const [activeCategory, setActiveCategory] = useState<'pc' | 'web'>('pc');
+  const [activeCategory, setActiveCategory] = useState<'pc' | 'web'>('web');
 
   const pcServices = services.filter(service => service.category === 'pc');
   const webServices = services.filter(service => service.category === 'web');
@@ -196,13 +196,13 @@ export default function Services() {
           viewport={{ once: true }}
         >
           <h2 className="text-4xl sm:text-5xl font-extrabold text-gray-900 mb-6">
-            <span className="text-transparent bg-gradient-to-r from-[#7C3AED] to-[#1D4ED8] bg-clip-text">Honest Pricing</span>
+            <span className="text-transparent bg-gradient-to-r from-[#7C3AED] to-[#1D4ED8] bg-clip-text">Web Design & Tech Support</span>
             <br />
-            No Hidden Fees
+            Honest Pricing, No Hidden Fees
           </h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            Working from my garage keeps overhead low, so you get expert service at fair prices. 
-            Here&apos;s exactly what everything costs - no surprises.
+            Whether you need a professional website to grow your business or expert PC repair to get back up and running, 
+            here&apos;s exactly what everything costs - no surprises.
           </p>
         </motion.div>
 
@@ -226,6 +226,23 @@ export default function Services() {
             }}
           >
             <button
+              onClick={() => setActiveCategory('web')}
+              className={`px-8 py-3 rounded-full font-semibold transition-all duration-500 relative overflow-hidden ${
+                activeCategory === 'web'
+                  ? 'text-white shadow-lg'
+                  : 'text-gray-600 hover:text-gray-900'
+              }`}
+            >
+              {activeCategory === 'web' && (
+                <motion.div
+                  className="absolute inset-0 bg-gradient-to-r from-purple-500 via-purple-600 to-indigo-600"
+                  layoutId="activeTab"
+                  transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
+                />
+              )}
+              <span className="relative z-10">🌐 Web Design</span>
+            </button>
+            <button
               onClick={() => setActiveCategory('pc')}
               className={`px-8 py-3 rounded-full font-semibold transition-all duration-500 relative overflow-hidden ${
                 activeCategory === 'pc'
@@ -241,23 +258,6 @@ export default function Services() {
                 />
               )}
               <span className="relative z-10">💻 PC Repair</span>
-            </button>
-            <button
-              onClick={() => setActiveCategory('web')}
-              className={`px-8 py-3 rounded-full font-semibold transition-all duration-500 relative overflow-hidden ${
-                activeCategory === 'web'
-                  ? 'text-white shadow-lg'
-                  : 'text-gray-600 hover:text-gray-900'
-              }`}
-            >
-              {activeCategory === 'web' && (
-                <motion.div
-                  className="absolute inset-0 bg-gradient-to-r from-purple-500 via-purple-600 to-indigo-600"
-                  layoutId="activeTab"
-                  transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
-                />
-              )}
-              <span className="relative z-10">🌐 Web Services</span>
             </button>
           </motion.div>
         </motion.div>
