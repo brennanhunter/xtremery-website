@@ -7,7 +7,7 @@ import BlogNewsletter from '../components/blog/BlogNewsletter';
 
 export default function BlogPage() {
   return (
-    <main className="bg-gradient-to-br from-purple-950 via-gray-900 to-blue-950 text-white">
+    <main className="bg-white text-gray-900">
       
       <BlogHero />
       
@@ -21,9 +21,11 @@ export default function BlogPage() {
             <BlogGrid />
           </div>
           
-          {/* Sidebar */}
+          {/* Sticky Sidebar */}
           <div className="lg:col-span-1">
-            <BlogNewsletter />
+            <div className="sticky top-32">
+              <BlogNewsletter />
+            </div>
           </div>
           
         </div>

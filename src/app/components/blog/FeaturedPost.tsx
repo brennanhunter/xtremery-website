@@ -36,9 +36,9 @@ export default function FeaturedPost() {
 
   if (loading) {
     return (
-      <section id="featured-post" className="py-16 px-6">
+      <section id="featured-post" className="py-16 px-6 bg-white">
         <div className="max-w-7xl mx-auto text-center">
-          <div className="animate-pulse bg-gray-800/50 rounded-2xl h-96"></div>
+          <div className="animate-pulse bg-gray-200 rounded-2xl h-96"></div>
         </div>
       </section>
     );
@@ -46,11 +46,11 @@ export default function FeaturedPost() {
 
   if (!featuredPost) {
     return (
-      <section id="featured-post" className="py-16 px-6">
+      <section id="featured-post" className="py-16 px-6 bg-white">
         <div className="max-w-7xl mx-auto text-center">
-          <div className="bg-gray-800/50 rounded-2xl p-12">
-            <h2 className="text-3xl font-bold text-white mb-4">No Posts Yet</h2>
-            <p className="text-gray-400">Create your first blog post in Sanity Studio!</p>
+          <div className="bg-gray-100 rounded-2xl p-12 border border-gray-200">
+            <h2 className="text-3xl font-bold text-gray-900 mb-4" style={{ fontFamily: 'Handelson Two' }}>No Posts Yet</h2>
+            <p className="text-gray-600" style={{ fontFamily: 'Avenir' }}>Create your first blog post in Sanity Studio!</p>
           </div>
         </div>
       </section>
@@ -58,19 +58,19 @@ export default function FeaturedPost() {
   }
 
   return (
-    <section id="featured-post" className="py-16 px-6">
+    <section id="featured-post" className="py-16 px-6 bg-white">
       <div className="max-w-7xl mx-auto">
         
         {/* Section Header */}
         <div className="text-center mb-12">
-          <h2 className="text-3xl sm:text-4xl font-extrabold text-white mb-4">
+          <h2 className="text-3xl sm:text-4xl font-black text-gray-900 mb-4" style={{ fontFamily: 'Handelson Two' }}>
             {featuredPost.featured ? 'Featured Post' : 'Latest Post'}
           </h2>
-          <div className="w-24 h-1 bg-gradient-to-r from-purple-500 to-cyan-400 mx-auto"></div>
+          <div className="w-24 h-1 bg-gradient-to-r from-blue-500 to-purple-500 mx-auto"></div>
         </div>
 
         {/* Featured Post Card */}
-        <div className="bg-gradient-to-br from-gray-800/50 to-gray-900/50 backdrop-blur-sm rounded-2xl overflow-hidden border border-gray-700/30 hover:border-purple-500/50 transition-all duration-300 group">
+        <div className="bg-white rounded-2xl overflow-hidden border border-gray-200 hover:border-blue-300 shadow-lg hover:shadow-xl transition-all duration-300 group">
           
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-0">
             
@@ -94,7 +94,7 @@ export default function FeaturedPost() {
               
               {/* Category Badge */}
               <div className="absolute top-4 left-4">
-                <span className="bg-purple-600 text-white text-sm font-semibold px-3 py-1 rounded-full">
+                <span className="bg-blue-600 text-white text-sm font-semibold px-3 py-1 rounded-full">
                   {featuredPost.category}
                 </span>
               </div>
@@ -102,7 +102,7 @@ export default function FeaturedPost() {
               {/* Featured Badge */}
               {featuredPost.featured && (
                 <div className="absolute top-4 right-4">
-                  <span className="bg-yellow-500 text-black text-sm font-semibold px-3 py-1 rounded-full">
+                  <span className="bg-purple-600 text-white text-sm font-semibold px-3 py-1 rounded-full">
                     ⭐ Featured
                   </span>
                 </div>
@@ -113,7 +113,7 @@ export default function FeaturedPost() {
             <div className="p-8 lg:p-12 flex flex-col justify-center">
               
               {/* Meta Info */}
-              <div className="flex items-center gap-4 text-gray-400 text-sm mb-4">
+              <div className="flex items-center gap-4 text-gray-600 text-sm mb-4" style={{ fontFamily: 'Avenir' }}>
                 <span>{new Date(featuredPost.publishedAt).toLocaleDateString('en-US', { 
                   year: 'numeric', 
                   month: 'long', 
@@ -126,19 +126,20 @@ export default function FeaturedPost() {
               </div>
 
               {/* Title */}
-              <h3 className="text-2xl lg:text-3xl font-bold text-white mb-4 leading-tight group-hover:text-cyan-300 transition-colors">
+              <h3 className="text-2xl lg:text-3xl font-bold text-gray-900 mb-4 leading-tight group-hover:text-blue-600 transition-colors" style={{ fontFamily: 'Handelson Two' }}>
                 {featuredPost.title}
               </h3>
 
               {/* Excerpt */}
-              <p className="text-gray-300 text-lg leading-relaxed mb-6">
+              <p className="text-gray-700 text-lg leading-relaxed mb-6" style={{ fontFamily: 'Avenir' }}>
                 {featuredPost.excerpt}
               </p>
 
               {/* Read More Button */}
               <Link 
                 href={`/blog/${featuredPost.slug.current}`}
-                className="inline-flex items-center gap-2 bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 text-white font-semibold px-6 py-3 rounded-lg transition-all duration-300 transform hover:scale-105 w-fit"
+                className="inline-flex items-center gap-2 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white font-semibold px-6 py-3 rounded-lg transition-all duration-300 transform hover:scale-105 w-fit shadow-lg"
+                style={{ fontFamily: 'Avenir' }}
               >
                 Read Full Post
                 <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">

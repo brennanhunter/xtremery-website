@@ -2,6 +2,7 @@
 
 import { useRef, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import BlogNewsletter from '../components/blog/BlogNewsletter';
 
 // Circuit Lines Background Component
 const CircuitBackground = () => {
@@ -48,6 +49,7 @@ export default function XtremeryContactPage() {
   const formSectionRef = useRef(null);
   const infoSectionRef = useRef(null);
   
+  const [activeService, setActiveService] = useState<'pc' | 'web' | null>(null);
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -55,7 +57,7 @@ export default function XtremeryContactPage() {
     serviceType: '',
     message: '',
     urgency: '',
-    deviceInfo: ''
+    projectType: ''
   });
   
   const [isSubmitted, setIsSubmitted] = useState(false);
@@ -97,7 +99,7 @@ export default function XtremeryContactPage() {
             serviceType: '',
             message: '',
             urgency: '',
-            deviceInfo: ''
+            projectType: ''
           });
         }, 5000);
       } else {
@@ -108,7 +110,7 @@ export default function XtremeryContactPage() {
     }
   };
 
-  const serviceTypes = [
+  const pcServices = [
     'PC Won\'t Boot / Blue Screen',
     'Slow Performance / Virus Removal',
     'Hardware Upgrade (RAM, SSD, GPU)',
@@ -122,80 +124,118 @@ export default function XtremeryContactPage() {
     'Other PC Problem'
   ];
 
+  const webServices = [
+    'New Business Website',
+    'E-commerce Store',
+    'Website Redesign',
+    'Landing Page',
+    'SEO Optimization',
+    'Website Maintenance',
+    'Custom Web Application',
+    'Portfolio Website',
+    'Blog Setup',
+    'Website Speed Optimization',
+    'Other Web Project'
+  ];
+
   return (
-    <main className="text-white font-sans overflow-x-hidden" style={{ fontFamily: 'Inter, system-ui, sans-serif' }}>
-      {/* HERO SECTION */}
-      <section ref={heroRef} className="relative min-h-screen flex items-center justify-center overflow-hidden" style={{ background: 'linear-gradient(135deg, #7C3AED 0%, #111827 50%, #1D4ED8 100%)' }}>
-        <CircuitBackground />
-        <FloatingElements />
-        
-        {/* Animated gradient overlay */}
-        <div className="absolute inset-0 bg-gradient-to-br from-purple-900/30 via-transparent to-blue-900/30 animate-pulse" />
-
-        <motion.div 
-          ref={headerRef}
-          initial={{ y: 100, opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
-          transition={{ duration: 1.2, ease: "easeOut" }}
-          className="relative z-10 text-center px-4 pt-20"
-        >
-          <motion.h1 
-            className="text-4xl sm:text-6xl md:text-8xl font-black mb-8 drop-shadow-2xl"
-            style={{ 
-              fontFamily: 'Montserrat, system-ui, sans-serif', 
-              fontWeight: 800,
-              background: 'linear-gradient(45deg, #F9FAFB 0%, #00FFD1 50%, #F9FAFB 100%)',
-              WebkitBackgroundClip: 'text',
-              WebkitTextFillColor: 'transparent'
-            }}
-            initial={{ scale: 0.8 }}
-            animate={{ scale: 1 }}
-            transition={{ duration: 1, delay: 0.3 }}
-          >
-            PC Broken?
-          </motion.h1>
+    <main className="min-h-screen bg-white text-gray-900">
+      {/* HERO SECTION - Split Design */}
+      <section ref={heroRef} className="relative h-screen overflow-hidden">
+        <div className="flex h-full">
           
-          <motion.h2 
-            className="text-xl sm:text-3xl md:text-4xl font-bold mb-8"
-            style={{ color: '#00FFD1', fontFamily: 'Montserrat, system-ui, sans-serif' }}
-            initial={{ y: 50, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            transition={{ duration: 1, delay: 0.6 }}
+          {/* Left Side - PC Repair */}
+          <motion.div 
+            className="w-1/2 bg-xtremery-blue flex items-center justify-center p-12 cursor-pointer"
+            initial={{ x: -100, opacity: 0 }}
+            animate={{ x: 0, opacity: 1 }}
+            transition={{ duration: 0.8 }}
+            onClick={() => setActiveService('pc')}
+            whileHover={{ scale: 1.02 }}
           >
-            DeLand&apos;s Go-To PC Repair Expert
-          </motion.h2>
-          
-          <motion.p 
-            className="text-lg sm:text-xl leading-relaxed px-6 py-6 bg-white/5 backdrop-blur-md rounded-3xl border max-w-3xl mx-auto"
-            style={{ color: '#F9FAFB', borderColor: '#7C3AED50' }}
-            initial={{ y: 50, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            transition={{ duration: 1, delay: 0.9 }}
-          >
-            From ancient Windows XP machines to the latest gaming rigs, we fix what other shops won&apos;t touch. 
-            Located right here in DeLand, FL - fast, honest PC repair you can trust.
-          </motion.p>
-
-          <motion.div
-            className="mt-8"
-            initial={{ y: 50, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            transition={{ duration: 1, delay: 1.2 }}
-          >
-            <motion.button
-              onClick={() => document.getElementById('contact-form')?.scrollIntoView({ behavior: 'smooth' })}
-              className="px-8 py-4 rounded-full font-bold text-lg shadow-xl hover:shadow-2xl transition-all duration-300"
-              style={{ 
-                background: 'linear-gradient(45deg, #7C3AED, #1D4ED8)',
-                color: '#F9FAFB',
-                fontFamily: 'Montserrat, system-ui, sans-serif'
-              }}
-              whileHover={{ scale: 1.05, boxShadow: "0 20px 40px rgba(124, 58, 237, 0.4)" }}
-              whileTap={{ scale: 0.95 }}
-            >
-              Get Your PC Fixed Today →
-            </motion.button>
+            <div className="max-w-lg text-white text-center">
+              <motion.div
+                initial={{ scale: 0.8, opacity: 0 }}
+                animate={{ scale: 1, opacity: 1 }}
+                transition={{ duration: 0.6, delay: 0.3 }}
+              >
+                <div className="text-8xl mb-8">💻</div>
+                <h1 className="text-5xl lg:text-6xl font-black mb-6 leading-tight" style={{fontFamily: 'Handelson Two'}}>
+                  PC Broken?
+                </h1>
+                <h2 className="text-3xl lg:text-4xl font-bold mb-8 text-aqua-spark">
+                  We Fix Everything
+                </h2>
+                <p className="text-xl mb-8 text-gray-200" style={{fontFamily: 'Avenir'}}>
+                  From blue screens to gaming rigs - DeLand's trusted PC repair experts
+                </p>
+                <button 
+                  onClick={() => {
+                    setActiveService('pc');
+                    document.getElementById('contact-form')?.scrollIntoView({ behavior: 'smooth' });
+                  }}
+                  className="bg-aqua-spark text-deep-navy px-8 py-4 rounded-full font-bold text-lg hover:bg-white transition-colors"
+                  style={{fontFamily: 'Avenir'}}
+                >
+                  Get My PC Fixed
+                </button>
+              </motion.div>
+            </div>
           </motion.div>
+          
+          {/* Right Side - Web Design */}
+          <motion.div 
+            className="w-1/2 bg-xtremery-purple flex items-center justify-center p-12 cursor-pointer"
+            initial={{ x: 100, opacity: 0 }}
+            animate={{ x: 0, opacity: 1 }}
+            transition={{ duration: 0.8 }}
+            onClick={() => setActiveService('web')}
+            whileHover={{ scale: 1.02 }}
+          >
+            <div className="max-w-lg text-white text-center">
+              <motion.div
+                initial={{ scale: 0.8, opacity: 0 }}
+                animate={{ scale: 1, opacity: 1 }}
+                transition={{ duration: 0.6, delay: 0.5 }}
+              >
+                <div className="text-8xl mb-8">🌐</div>
+                <h1 className="text-5xl lg:text-6xl font-black mb-6 leading-tight" style={{fontFamily: 'Handelson Two'}}>
+                  Need a Website?
+                </h1>
+                <h2 className="text-3xl lg:text-4xl font-bold mb-8 text-aqua-spark">
+                  We Build Fast Sites
+                </h2>
+                <p className="text-xl mb-8 text-gray-200" style={{fontFamily: 'Avenir'}}>
+                  Lightning-fast websites that actually convert customers
+                </p>
+                <button 
+                  onClick={() => {
+                    setActiveService('web');
+                    document.getElementById('contact-form')?.scrollIntoView({ behavior: 'smooth' });
+                  }}
+                  className="bg-aqua-spark text-deep-navy px-8 py-4 rounded-full font-bold text-lg hover:bg-white transition-colors"
+                  style={{fontFamily: 'Avenir'}}
+                >
+                  Get My Website Built
+                </button>
+              </motion.div>
+            </div>
+          </motion.div>
+        </div>
+
+        {/* Divider Line */}
+        <div className="absolute left-1/2 top-0 w-1 h-full bg-gradient-to-b from-aqua-spark via-white to-aqua-spark transform -translate-x-1/2"></div>
+        
+        {/* Scroll Indicator */}
+        <motion.div 
+          className="absolute bottom-8 left-1/2 transform -translate-x-1/2 text-white"
+          animate={{ y: [0, 10, 0] }}
+          transition={{ duration: 2, repeat: Infinity }}
+        >
+          <div className="text-center">
+            <p className="text-sm mb-2">Choose Your Service</p>
+            <div className="text-2xl">↓</div>
+          </div>
         </motion.div>
       </section>
 
@@ -203,11 +243,65 @@ export default function XtremeryContactPage() {
       <section 
         id="contact-form"
         ref={formSectionRef} 
-        className="relative py-20 px-4"
-        style={{ background: 'linear-gradient(180deg, #111827 0%, #7C3AED 50%, #111827 100%)' }}
+        className="relative py-20 px-4 bg-gray-50"
       >
         <div className="max-w-6xl mx-auto">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
+          
+          {/* Service Selection */}
+          {!activeService && (
+            <motion.div 
+              className="text-center mb-16"
+              initial={{ y: 50, opacity: 0 }}
+              whileInView={{ y: 0, opacity: 1 }}
+              transition={{ duration: 0.6 }}
+              viewport={{ once: true }}
+            >
+              <h2 className="text-4xl font-black mb-6 text-gray-900" style={{fontFamily: 'Handelson Two'}}>
+                What Can We Help You With?
+              </h2>
+              <p className="text-xl text-gray-600 mb-12" style={{fontFamily: 'Avenir'}}>
+                Choose the service you need and we'll get you connected with the right expert
+              </p>
+              
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+                <motion.button
+                  onClick={() => setActiveService('pc')}
+                  className="p-8 bg-white rounded-2xl shadow-lg border-2 border-transparent hover:border-xtremery-blue hover:shadow-xl transition-all group"
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.98 }}
+                >
+                  <div className="text-6xl mb-4 group-hover:scale-110 transition-transform">💻</div>
+                  <h3 className="text-2xl font-bold mb-4 text-xtremery-blue" style={{fontFamily: 'Handelson Two'}}>PC Repair Services</h3>
+                  <p className="text-gray-600 mb-6" style={{fontFamily: 'Avenir'}}>
+                    Hardware issues, software problems, upgrades, custom builds, and more
+                  </p>
+                  <div className="bg-xtremery-blue text-white px-6 py-3 rounded-full font-semibold" style={{fontFamily: 'Avenir'}}>
+                    Get PC Help →
+                  </div>
+                </motion.button>
+
+                <motion.button
+                  onClick={() => setActiveService('web')}
+                  className="p-8 bg-white rounded-2xl shadow-lg border-2 border-transparent hover:border-xtremery-purple hover:shadow-xl transition-all group"
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.98 }}
+                >
+                  <div className="text-6xl mb-4 group-hover:scale-110 transition-transform">🌐</div>
+                  <h3 className="text-2xl font-bold mb-4 text-xtremery-purple" style={{fontFamily: 'Handelson Two'}}>Web Design Services</h3>
+                  <p className="text-gray-600 mb-6" style={{fontFamily: 'Avenir'}}>
+                    Custom websites, e-commerce stores, landing pages, and web applications
+                  </p>
+                  <div className="bg-xtremery-purple text-white px-6 py-3 rounded-full font-semibold" style={{fontFamily: 'Avenir'}}>
+                    Get Website Built →
+                  </div>
+                </motion.button>
+              </div>
+            </motion.div>
+          )}
+
+          {/* Selected Service Form */}
+          {activeService && (
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
             
             {/* Contact Info */}
             <motion.div 
@@ -218,33 +312,35 @@ export default function XtremeryContactPage() {
               viewport={{ once: true }}
             >
               <div>
-                <h3 className="text-3xl md:text-4xl font-black mb-6" style={{ color: '#F9FAFB', fontFamily: 'Montserrat, system-ui, sans-serif' }}>
-                  Let&apos;s Fix Your PC
+                <h3 className="text-3xl md:text-4xl font-black mb-6 text-gray-900" style={{ fontFamily: 'Handelson Two' }}>
+                  {activeService === 'pc' ? 'Let\'s Fix Your PC' : 'Let\'s Build Your Website'}
                 </h3>
-                <p className="text-lg leading-relaxed mb-8" style={{ color: '#F9FAFB99' }}>
-                  Whether it&apos;s a mysterious blue screen, sluggish performance, or a gaming rig that&apos;s lost its edge, 
-                  we&apos;ve seen it all. Located in DeLand, we provide fast, reliable PC repair with honest pricing.
+                <p className="text-lg leading-relaxed mb-8 text-gray-600" style={{ fontFamily: 'Avenir' }}>
+                  {activeService === 'pc' 
+                    ? 'Whether it\'s a mysterious blue screen, sluggish performance, or a gaming rig that\'s lost its edge, we\'ve seen it all. Located in DeLand, we provide fast, reliable PC repair with honest pricing.'
+                    : 'From simple business websites to complex e-commerce stores, we build lightning-fast websites that actually convert visitors into customers. Every site is custom-built for your specific needs.'
+                  }
                 </p>
               </div>
 
               {/* Contact Details */}
               <div className="space-y-6">
                 <motion.div 
-                  className="flex items-center gap-4 p-4 backdrop-blur-sm rounded-2xl border shadow-lg hover:bg-white/15 transition-all duration-300"
-                  style={{ backgroundColor: '#F9FAFB10', borderColor: '#7C3AED50' }}
-                  whileHover={{ x: 10 }}
+                  className="flex items-center gap-4 p-4 bg-white rounded-2xl border shadow-lg hover:shadow-xl transition-all duration-300"
+                  whileHover={{ x: 5 }}
                 >
-                  <div className="w-12 h-12 rounded-full flex items-center justify-center" style={{ background: 'linear-gradient(45deg, #7C3AED, #1D4ED8)' }}>
-                    <span style={{ color: '#F9FAFB' }} className="text-xl">📧</span>
+                  <div className={`w-12 h-12 rounded-full flex items-center justify-center ${
+                    activeService === 'pc' ? 'bg-xtremery-blue' : 'bg-xtremery-purple'
+                  }`}>
+                    <span className="text-white text-xl">📧</span>
                   </div>
                   <div>
-                    <h4 className="font-semibold" style={{ color: '#F9FAFB' }}>Email</h4>
+                    <h4 className="font-semibold text-gray-900">Email</h4>
                     <a
                       href="mailto:hunter@xtremery.com"
-                      className="transition-colors"
-                      style={{ color: '#00FFD1' }}
-                      onMouseEnter={(e) => { (e.target as HTMLAnchorElement).style.color = '#00FFD1CC'; }}
-                      onMouseLeave={(e) => { (e.target as HTMLAnchorElement).style.color = '#00FFD1'; }}
+                      className={`transition-colors ${
+                        activeService === 'pc' ? 'text-xtremery-blue hover:text-xtremery-blue/80' : 'text-xtremery-purple hover:text-xtremery-purple/80'
+                      }`}
                     >
                       hunter@xtremery.com
                     </a>
@@ -252,21 +348,21 @@ export default function XtremeryContactPage() {
                 </motion.div>
 
                 <motion.div 
-                  className="flex items-center gap-4 p-4 backdrop-blur-sm rounded-2xl border shadow-lg hover:bg-white/15 transition-all duration-300"
-                  style={{ backgroundColor: '#F9FAFB10', borderColor: '#7C3AED50' }}
-                  whileHover={{ x: 10 }}
+                  className="flex items-center gap-4 p-4 bg-white rounded-2xl border shadow-lg hover:shadow-xl transition-all duration-300"
+                  whileHover={{ x: 5 }}
                 >
-                  <div className="w-12 h-12 rounded-full flex items-center justify-center" style={{ background: 'linear-gradient(45deg, #7C3AED, #1D4ED8)' }}>
-                    <span style={{ color: '#F9FAFB' }} className="text-xl">📱</span>
+                  <div className={`w-12 h-12 rounded-full flex items-center justify-center ${
+                    activeService === 'pc' ? 'bg-xtremery-blue' : 'bg-xtremery-purple'
+                  }`}>
+                    <span className="text-white text-xl">📱</span>
                   </div>
                   <div>
-                    <h4 className="font-semibold" style={{ color: '#F9FAFB' }}>Phone</h4>
+                    <h4 className="font-semibold text-gray-900">Phone</h4>
                     <a
                       href="tel:+14068685850"
-                      className="transition-colors"
-                      style={{ color: '#00FFD1' }}
-                      onMouseEnter={(e) => { (e.target as HTMLAnchorElement).style.color = '#00FFD1CC'; }}
-                      onMouseLeave={(e) => { (e.target as HTMLAnchorElement).style.color = '#00FFD1'; }}
+                      className={`transition-colors ${
+                        activeService === 'pc' ? 'text-xtremery-blue hover:text-xtremery-blue/80' : 'text-xtremery-purple hover:text-xtremery-purple/80'
+                      }`}
                     >
                       (406) 868-5850
                     </a>
@@ -293,6 +389,48 @@ export default function XtremeryContactPage() {
                       onMouseLeave={(e) => { (e.target as HTMLAnchorElement).style.color = '#00FFD1'; }}
                     >
                       9037 Cape Cod Rd<br />DeLand, FL
+                    </a>
+                  </div>
+                </motion.div>
+
+                {/* Google Map */}
+                <motion.div 
+                  className="backdrop-blur-sm rounded-2xl border shadow-lg overflow-hidden"
+                  style={{ backgroundColor: '#F9FAFB10', borderColor: '#7C3AED50' }}
+                  initial={{ scale: 0.9, opacity: 0 }}
+                  whileInView={{ scale: 1, opacity: 1 }}
+                  transition={{ duration: 0.6, delay: 0.2 }}
+                  viewport={{ once: true }}
+                >
+                  <div className="p-4 border-b" style={{ borderColor: '#7C3AED30' }}>
+                    <h4 className="font-semibold flex items-center gap-2" style={{ color: '#F9FAFB' }}>
+                      <span className="text-lg">🗺️</span>
+                      Find Us in DeLand
+                    </h4>
+                  </div>
+                  <div className="relative">
+                    <iframe
+                      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3493.7234567890!2d-81.3031!3d29.0284!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x88e71a123456789a%3A0x1234567890abcdef!2s9037%20Cape%20Cod%20Rd%2C%20DeLand%2C%20FL%2032720!5e0!3m2!1sen!2sus!4v1234567890123!5m2!1sen!2sus"
+                      width="100%"
+                      height="250"
+                      style={{ border: 0 }}
+                      allowFullScreen
+                      loading="lazy"
+                      referrerPolicy="no-referrer-when-downgrade"
+                      title="Xtremery PC Repair Location in DeLand, FL"
+                      className="w-full"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-transparent to-transparent pointer-events-none"></div>
+                  </div>
+                  <div className="p-3 text-center">
+                    <a 
+                      href="https://maps.google.com/?q=9037+Cape+Cod+Rd+DeLand+FL" 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      className="text-sm font-medium transition-colors hover:underline"
+                      style={{ color: '#00FFD1' }}
+                    >
+                      🧭 Get Directions to Xtremery
                     </a>
                   </div>
                 </motion.div>
@@ -339,8 +477,7 @@ export default function XtremeryContactPage() {
 
             {/* Contact Form */}
             <motion.div 
-              className="backdrop-blur-sm rounded-3xl p-8 shadow-2xl border"
-              style={{ backgroundColor: '#F9FAFB10', borderColor: '#7C3AED50' }}
+              className="bg-white rounded-3xl p-8 shadow-2xl border"
               initial={{ x: 100, opacity: 0 }}
               whileInView={{ x: 0, opacity: 1 }}
               transition={{ duration: 0.8 }}
@@ -355,90 +492,75 @@ export default function XtremeryContactPage() {
                     onSubmit={handleSubmit}
                     className="space-y-6"
                   >
-                    <h4 className="text-2xl font-bold mb-6" style={{ color: '#F9FAFB', fontFamily: 'Montserrat, system-ui, sans-serif' }}>
-                      Tell Us About Your PC Problem
+                    <h4 className="text-2xl font-black mb-6 text-gray-900" style={{ fontFamily: 'Handelson Two' }}>
+                      {activeService === 'pc' ? 'Tell Us About Your PC Problem' : 'Tell Us About Your Web Project'}
                     </h4>
                     
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                       <div>
-                        <label className="block text-sm font-semibold mb-2" style={{ color: '#F9FAFB' }}>Name *</label>
+                        <label className="block text-sm font-semibold mb-2 text-gray-700" style={{ fontFamily: 'Avenir' }}>Name *</label>
                         <input
                           type="text"
                           name="name"
                           value={formData.name}
                           onChange={handleInputChange}
                           required
-                          className="w-full px-4 py-3 border rounded-xl transition-colors"
-                          style={{ 
-                            backgroundColor: '#F9FAFB20', 
-                            borderColor: '#F9FAFB30', 
-                            color: '#F9FAFB'
-                          }}
+                          className={`w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:border-transparent ${
+                            activeService === 'pc' ? 'focus:ring-xtremery-blue' : 'focus:ring-xtremery-purple'
+                          }`}
+                          style={{ fontFamily: 'Avenir' }}
                           placeholder="Your name"
-                          onFocus={(e) => { e.target.style.borderColor = '#00FFD1'; e.target.style.boxShadow = '0 0 0 2px #00FFD140'; }}
-                          onBlur={(e) => { e.target.style.borderColor = '#F9FAFB30'; e.target.style.boxShadow = 'none'; }}
                         />
                       </div>
                       
                       <div>
-                        <label className="block text-sm font-semibold mb-2" style={{ color: '#F9FAFB' }}>Email *</label>
+                        <label className="block text-sm font-semibold mb-2 text-gray-700">Email *</label>
                         <input
                           type="email"
                           name="email"
                           value={formData.email}
                           onChange={handleInputChange}
                           required
-                          className="w-full px-4 py-3 border rounded-xl transition-colors"
-                          style={{ 
-                            backgroundColor: '#F9FAFB20', 
-                            borderColor: '#F9FAFB30', 
-                            color: '#F9FAFB'
-                          }}
+                          className={`w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:border-transparent ${
+                            activeService === 'pc' ? 'focus:ring-xtremery-blue' : 'focus:ring-xtremery-purple'
+                          }`}
                           placeholder="your@email.com"
-                          onFocus={(e) => { e.target.style.borderColor = '#00FFD1'; e.target.style.boxShadow = '0 0 0 2px #00FFD140'; }}
-                          onBlur={(e) => { e.target.style.borderColor = '#F9FAFB30'; e.target.style.boxShadow = 'none'; }}
                         />
                       </div>
                     </div>
 
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                       <div>
-                        <label className="block text-sm font-semibold mb-2" style={{ color: '#F9FAFB' }}>Phone</label>
+                        <label className="block text-sm font-semibold mb-2 text-gray-700">Phone</label>
                         <input
                           type="tel"
                           name="phone"
                           value={formData.phone}
                           onChange={handleInputChange}
-                          className="w-full px-4 py-3 border rounded-xl transition-colors"
-                          style={{ 
-                            backgroundColor: '#F9FAFB20', 
-                            borderColor: '#F9FAFB30', 
-                            color: '#F9FAFB'
-                          }}
+                          className={`w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:border-transparent ${
+                            activeService === 'pc' ? 'focus:ring-xtremery-blue' : 'focus:ring-xtremery-purple'
+                          }`}
                           placeholder="(386) 555-0123"
-                          onFocus={(e) => { e.target.style.borderColor = '#00FFD1'; e.target.style.boxShadow = '0 0 0 2px #00FFD140'; }}
-                          onBlur={(e) => { e.target.style.borderColor = '#F9FAFB30'; e.target.style.boxShadow = 'none'; }}
                         />
                       </div>
                       
                       <div>
-                        <label className="block text-sm font-semibold mb-2" style={{ color: '#F9FAFB' }}>Problem Type</label>
+                        <label className="block text-sm font-semibold mb-2 text-gray-700">
+                          {activeService === 'pc' ? 'Problem Type' : 'Project Type'}
+                        </label>
                         <select
                           name="serviceType"
                           value={formData.serviceType}
                           onChange={handleInputChange}
-                          className="w-full px-4 py-3 border rounded-xl transition-colors"
-                          style={{ 
-                            backgroundColor: '#F9FAFB20', 
-                            borderColor: '#F9FAFB30', 
-                            color: '#F9FAFB'
-                          }}
-                          onFocus={(e) => { e.target.style.borderColor = '#00FFD1'; e.target.style.boxShadow = '0 0 0 2px #00FFD140'; }}
-                          onBlur={(e) => { e.target.style.borderColor = '#F9FAFB30'; e.target.style.boxShadow = 'none'; }}
+                          className={`w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:border-transparent ${
+                            activeService === 'pc' ? 'focus:ring-xtremery-blue' : 'focus:ring-xtremery-purple'
+                          }`}
                         >
-                          <option value="" style={{ backgroundColor: '#111827', color: '#F9FAFB' }}>What&apos;s wrong with your PC?</option>
-                          {serviceTypes.map(type => (
-                            <option key={type} value={type} style={{ backgroundColor: '#111827', color: '#F9FAFB' }}>{type}</option>
+                          <option value="">
+                            {activeService === 'pc' ? 'What\'s wrong with your PC?' : 'What type of website do you need?'}
+                          </option>
+                          {(activeService === 'pc' ? pcServices : webServices).map(type => (
+                            <option key={type} value={type}>{type}</option>
                           ))}
                         </select>
                       </div>
@@ -446,70 +568,82 @@ export default function XtremeryContactPage() {
 
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                       <div>
-                        <label className="block text-sm font-semibold mb-2" style={{ color: '#F9FAFB' }}>Device Info</label>
+                        <label className="block text-sm font-semibold mb-2 text-gray-700">
+                          {activeService === 'pc' ? 'Device Info' : 'Project Budget (Optional)'}
+                        </label>
                         <input
                           type="text"
-                          name="deviceInfo"
-                          value={formData.deviceInfo}
+                          name="projectType"
+                          value={formData.projectType}
                           onChange={handleInputChange}
-                          className="w-full px-4 py-3 border rounded-xl transition-colors"
-                          style={{ 
-                            backgroundColor: '#F9FAFB20', 
-                            borderColor: '#F9FAFB30', 
-                            color: '#F9FAFB'
-                          }}
-                          placeholder="e.g., Dell Inspiron, Custom Build, etc."
-                          onFocus={(e) => { e.target.style.borderColor = '#00FFD1'; e.target.style.boxShadow = '0 0 0 2px #00FFD140'; }}
-                          onBlur={(e) => { e.target.style.borderColor = '#F9FAFB30'; e.target.style.boxShadow = 'none'; }}
+                          className={`w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:border-transparent ${
+                            activeService === 'pc' ? 'focus:ring-xtremery-blue' : 'focus:ring-xtremery-purple'
+                          }`}
+                          placeholder={
+                            activeService === 'pc' 
+                              ? "e.g., Dell Inspiron, Custom Build, etc."
+                              : "e.g., $2,000-$5,000, Under $1,000, etc."
+                          }
                         />
                       </div>
 
                       <div>
-                        <label className="block text-sm font-semibold mb-2" style={{ color: '#F9FAFB' }}>How Urgent?</label>
+                        <label className="block text-sm font-semibold mb-2 text-gray-700">
+                          {activeService === 'pc' ? 'How Urgent?' : 'Timeline?'}
+                        </label>
                         <select
                           name="urgency"
                           value={formData.urgency}
                           onChange={handleInputChange}
-                          className="w-full px-4 py-3 border rounded-xl transition-colors"
-                          style={{ 
-                            backgroundColor: '#F9FAFB20', 
-                            borderColor: '#F9FAFB30', 
-                            color: '#F9FAFB'
-                          }}
-                          onFocus={(e) => { e.target.style.borderColor = '#00FFD1'; e.target.style.boxShadow = '0 0 0 2px #00FFD140'; }}
-                          onBlur={(e) => { e.target.style.borderColor = '#F9FAFB30'; e.target.style.boxShadow = 'none'; }}
+                          className={`w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:border-transparent ${
+                            activeService === 'pc' ? 'focus:ring-xtremery-blue' : 'focus:ring-xtremery-purple'
+                          }`}
                         >
-                          <option value="" style={{ backgroundColor: '#111827', color: '#F9FAFB' }}>Select urgency</option>
-                          <option value="low" style={{ backgroundColor: '#111827', color: '#F9FAFB' }}>No rush - when convenient</option>
-                          <option value="normal" style={{ backgroundColor: '#111827', color: '#F9FAFB' }}>Normal - within a few days</option>
-                          <option value="high" style={{ backgroundColor: '#111827', color: '#F9FAFB' }}>High - need it this week</option>
-                          <option value="emergency" style={{ backgroundColor: '#111827', color: '#F9FAFB' }}>EMERGENCY - ASAP!</option>
+                          <option value="">
+                            {activeService === 'pc' ? 'Select urgency' : 'Select timeline'}
+                          </option>
+                          {activeService === 'pc' ? (
+                            <>
+                              <option value="low">No rush - when convenient</option>
+                              <option value="normal">Normal - within a few days</option>
+                              <option value="high">High - need it this week</option>
+                              <option value="emergency">EMERGENCY - ASAP!</option>
+                            </>
+                          ) : (
+                            <>
+                              <option value="asap">ASAP - Need it launched quickly</option>
+                              <option value="month">Within a month</option>
+                              <option value="quarter">Within 3 months</option>
+                              <option value="planning">Just planning ahead</option>
+                            </>
+                          )}
                         </select>
                       </div>
                     </div>
 
                     <div>
-                      <label className="block text-sm font-semibold mb-2" style={{ color: '#F9FAFB' }}>Describe the Problem *</label>
+                      <label className="block text-sm font-semibold mb-2 text-gray-700">
+                        {activeService === 'pc' ? 'Describe the Problem *' : 'Describe Your Project *'}
+                      </label>
                       <textarea
                         name="message"
                         value={formData.message}
                         onChange={handleInputChange}
                         required
                         rows={5}
-                        className="w-full px-4 py-3 border rounded-xl transition-colors resize-none"
-                        style={{ 
-                          backgroundColor: '#F9FAFB20', 
-                          borderColor: '#F9FAFB30', 
-                          color: '#F9FAFB'
-                        }}
-                        placeholder="What happened? Blue screen error codes? Won't start? Running slow? Be as detailed as possible - it helps us diagnose faster!"
-                        onFocus={(e) => { e.target.style.borderColor = '#00FFD1'; e.target.style.boxShadow = '0 0 0 2px #00FFD140'; }}
-                        onBlur={(e) => { e.target.style.borderColor = '#F9FAFB30'; e.target.style.boxShadow = 'none'; }}
+                        className={`w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:border-transparent resize-none ${
+                          activeService === 'pc' ? 'focus:ring-xtremery-blue' : 'focus:ring-xtremery-purple'
+                        }`}
+                        placeholder={
+                          activeService === 'pc'
+                            ? "What happened? Blue screen error codes? Won't start? Running slow? Be as detailed as possible - it helps us diagnose faster!"
+                            : "What's your vision? Who's your target audience? Any specific features you need? The more details, the better we can help!"
+                        }
                       />
                     </div>
 
                     {submitError && (
-                      <div className="p-4 rounded-xl border" style={{ backgroundColor: '#DC262620', borderColor: '#DC262650', color: '#FCA5A5' }}>
+                      <div className="p-4 rounded-xl border bg-red-50 border-red-200 text-red-700">
                         {submitError}
                       </div>
                     )}
@@ -519,20 +653,20 @@ export default function XtremeryContactPage() {
                       disabled={isSubmitting}
                       whileHover={{ scale: 1.02 }}
                       whileTap={{ scale: 0.98 }}
-                      className="w-full py-4 rounded-xl font-bold text-lg shadow-lg hover:shadow-xl transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
-                      style={{ 
-                        background: 'linear-gradient(45deg, #7C3AED, #1D4ED8)',
-                        color: '#F9FAFB',
-                        fontFamily: 'Montserrat, system-ui, sans-serif'
-                      }}
+                      className={`w-full py-4 rounded-xl font-bold text-lg shadow-lg hover:shadow-xl transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed text-white ${
+                        activeService === 'pc' 
+                          ? 'bg-xtremery-blue hover:bg-xtremery-blue/90' 
+                          : 'bg-xtremery-purple hover:bg-xtremery-purple/90'
+                      }`}
+                      style={{ fontFamily: 'Handelson Two' }}
                     >
                       {isSubmitting ? (
                         <span className="flex items-center justify-center gap-2">
-                          <div className="w-5 h-5 border-2 border-t-transparent rounded-full animate-spin" style={{ borderColor: '#F9FAFB' }} />
+                          <div className="w-5 h-5 border-2 border-t-transparent border-white rounded-full animate-spin" />
                           Sending Your Request...
                         </span>
                       ) : (
-                        'Get My PC Fixed! 🔧'
+                        activeService === 'pc' ? 'Get My PC Fixed! 💻' : 'Build My Website! �'
                       )}
                     </motion.button>
                   </motion.form>
@@ -543,22 +677,54 @@ export default function XtremeryContactPage() {
                     animate={{ opacity: 1, y: 0 }}
                     className="text-center py-8"
                   >
-                    <div className="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4" style={{ background: 'linear-gradient(45deg, #10B981, #00FFD1)' }}>
-                      <span style={{ color: '#F9FAFB' }} className="text-2xl">⚡</span>
+                    <div className={`w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4 ${
+                      activeService === 'pc' ? 'bg-xtremery-blue' : 'bg-xtremery-purple'
+                    }`}>
+                      <span className="text-white text-2xl">
+                        {activeService === 'pc' ? '💻' : '🚀'}
+                      </span>
                     </div>
-                    <h4 className="text-2xl font-bold mb-4" style={{ color: '#F9FAFB', fontFamily: 'Montserrat, system-ui, sans-serif' }}>Request Received!</h4>
-                    <p className="mb-4" style={{ color: '#F9FAFB99' }}>
-                      Thanks for choosing Xtremery! We&apos;ll contact you within 2 hours to discuss your PC repair. 
-                      For urgent issues, please call us directly.
+                    <h4 className="text-2xl font-bold mb-4 text-gray-900" style={{ fontFamily: 'Handelson Two' }}>
+                      Request Received!
+                    </h4>
+                    <p className="mb-4 text-gray-600">
+                      {activeService === 'pc'
+                        ? 'Thanks for choosing Xtremery! We\'ll contact you within 2 hours to discuss your PC repair. For urgent issues, please call us directly.'
+                        : 'Thanks for choosing Xtremery! We\'ll contact you within 24 hours to discuss your web project. Excited to build something amazing together!'
+                      }
                     </p>
-                    <p className="text-sm" style={{ color: '#00FFD1' }}>
-                      Hunter is already preparing his toolkit...
+                    <p className={`text-sm font-semibold ${
+                      activeService === 'pc' ? 'text-xtremery-blue' : 'text-xtremery-purple'
+                    }`}>
+                      {activeService === 'pc' 
+                        ? 'Hunter is already preparing his toolkit...' 
+                        : 'Hunter is already sketching your website...'
+                      }
                     </p>
                   </motion.div>
                 )}
               </AnimatePresence>
             </motion.div>
           </div>
+        )}
+        
+        {/* Back Button */}
+        {activeService && (
+          <motion.div 
+            className="text-center mt-8"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.5 }}
+          >
+            <button
+              onClick={() => setActiveService(null)}
+              className="text-gray-600 hover:text-gray-900 font-semibold transition-colors"
+            >
+              ← Choose Different Service
+            </button>
+          </motion.div>
+        )}
+        
         </div>
       </section>
 
@@ -689,6 +855,27 @@ export default function XtremeryContactPage() {
             </div>
           </motion.div>
 
+          {/* Newsletter Signup Section */}
+          <motion.div 
+            className="mt-20 mb-16"
+            initial={{ y: 50, opacity: 0 }}
+            whileInView={{ y: 0, opacity: 1 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
+          >
+            <div className="text-center mb-12">
+              <h4 className="text-3xl font-black mb-4" style={{ color: '#F9FAFB', fontFamily: 'Handelson Two' }}>
+                Stay Updated with Tech Tips
+              </h4>
+              <p className="text-lg max-w-2xl mx-auto" style={{ color: '#F9FAFB99', fontFamily: 'Avenir' }}>
+                Get expert insights on gaming, web design, tech reviews, and DeLand business solutions delivered to your inbox.
+              </p>
+            </div>
+            <div className="max-w-md mx-auto">
+              <BlogNewsletter />
+            </div>
+          </motion.div>
+
           {/* Final CTA */}
           <motion.div 
             className="text-center mt-16"
@@ -697,7 +884,7 @@ export default function XtremeryContactPage() {
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
           >
-            <h4 className="text-2xl font-bold mb-4" style={{ color: '#F9FAFB', fontFamily: 'Montserrat, system-ui, sans-serif' }}>
+            <h4 className="text-2xl font-bold mb-4" style={{ color: '#F9FAFB', fontFamily: 'Handelson Two' }}>
               Ready to Get Your PC Fixed?
             </h4>
             <p className="mb-8 max-w-2xl mx-auto" style={{ color: '#F9FAFB99' }}>

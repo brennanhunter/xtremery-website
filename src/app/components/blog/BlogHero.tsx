@@ -1,25 +1,25 @@
 export default function BlogHero() {
   return (
-    <section className="relative py-20 px-6 overflow-hidden">
+    <section className="relative py-20 px-6 overflow-hidden bg-white">
       {/* Background gradient overlay */}
-      <div className="absolute inset-0 bg-gradient-to-br from-purple-800/20 via-transparent to-blue-800/20"></div>
+      <div className="absolute inset-0 bg-gradient-to-br from-blue-50/30 via-transparent to-purple-50/30"></div>
       
       {/* Content */}
       <div className="relative max-w-4xl mx-auto text-center">
         
         {/* Main headline */}
-        <h1 className="text-5xl sm:text-6xl lg:text-7xl font-extrabold mb-6 bg-gradient-to-r from-purple-300 via-white to-cyan-300 text-transparent bg-clip-text drop-shadow-lg">
-          Tech Tips & Fixes
+        <h1 className="text-5xl sm:text-6xl lg:text-7xl font-black mb-6 bg-gradient-to-r from-blue-600 via-gray-900 to-purple-600 text-transparent bg-clip-text" style={{ fontFamily: 'Handelson Two' }}>
+          Tech Tips & Insights
         </h1>
         
         {/* Subheadline */}
-        <p className="text-xl sm:text-2xl text-gray-300 max-w-3xl mx-auto mb-8 leading-relaxed">
-          Real solutions from your local DeLand tech experts. No corporate BS, just stuff that actually works.
+        <p className="text-xl sm:text-2xl text-gray-700 max-w-3xl mx-auto mb-8 leading-relaxed" style={{ fontFamily: 'Avenir' }}>
+          Expert insights on gaming, web design, tech reviews, and DeLand business solutions
         </p>
         
         {/* Description */}
-        <p className="text-lg text-gray-400 max-w-2xl mx-auto mb-10">
-          From quick fixes you can try at home to knowing when it&apos;s time to call the pros—we&apos;ve got you covered.
+        <p className="text-lg text-gray-600 max-w-2xl mx-auto mb-10" style={{ fontFamily: 'Avenir' }}>
+          Discover the latest trends, tutorials, and professional insights from your trusted DeLand technology experts
         </p>
         
         {/* CTA Buttons */}
@@ -37,7 +37,8 @@ export default function BlogHero() {
                 }
               }, 100);
             }}
-            className="bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 text-white font-semibold px-8 py-3 rounded-lg transition-all duration-300 transform hover:scale-105"
+            className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white font-semibold px-8 py-3 rounded-lg transition-all duration-300 transform hover:scale-105 shadow-lg"
+            style={{ fontFamily: 'Avenir' }}
           >
             Browse All Posts
           </button>
@@ -53,24 +54,25 @@ export default function BlogHero() {
                 }
               }, 100);
             }}
-            className="border-2 border-cyan-400 text-cyan-400 hover:bg-cyan-400 hover:text-gray-900 font-semibold px-8 py-3 rounded-lg transition-all duration-300"
+            className="border-2 border-blue-600 text-blue-600 hover:bg-blue-600 hover:text-white font-semibold px-8 py-3 rounded-lg transition-all duration-300 shadow-md"
+            style={{ fontFamily: 'Avenir' }}
           >
-            Get Tech Tips by Email
+            Get Updates
           </button>
         </div>
         
         {/* Tagline */}
-        <div className="mt-12 pt-8 border-t border-gray-700/50">
-          <p className="text-cyan-300 text-sm font-medium">
-            &quot;We fix the stuff other shops won&apos;t touch.&quot;
+        <div className="mt-12 pt-8 border-t border-gray-200">
+          <p className="text-blue-600 text-sm font-medium" style={{ fontFamily: 'Avenir' }}>
+            &quot;Professional insights for the digital age&quot;
           </p>
         </div>
         
       </div>
       
       {/* Decorative elements */}
-      <div className="absolute top-20 left-10 w-20 h-20 bg-purple-500/10 rounded-full blur-xl"></div>
-      <div className="absolute bottom-20 right-10 w-32 h-32 bg-blue-500/10 rounded-full blur-xl"></div>
+      <div className="absolute top-20 left-10 w-20 h-20 bg-blue-200/40 rounded-full blur-xl"></div>
+      <div className="absolute bottom-20 right-10 w-32 h-32 bg-purple-200/40 rounded-full blur-xl"></div>
       
     </section>
   );
