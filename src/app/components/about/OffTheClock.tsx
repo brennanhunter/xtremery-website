@@ -3,9 +3,7 @@
 import Image from 'next/image';
 import { motion } from 'framer-motion';
 import { useState, useEffect } from 'react';
-import { Cinzel } from 'next/font/google';
-
-const cinzel = Cinzel({ subsets: ['latin'], weight: '700' });
+import { handelsonTwo, avenir } from '@/app/fonts';
 
 const basePolaroids = [
   { src: '/Images/polaroid-three.jpg', rotation: '10deg', top: '18%', left: '12%', caption: 'Space Explorers on the Loose 🌌' },
@@ -55,7 +53,7 @@ export default function OffTheClock() {
                     className="object-cover"
                   />
                 </div>
-                <p className={`text-center text-gray-700 text-base font-semibold ${cinzel.className}`}>
+                <p className={`${avenir.className} text-center text-gray-700 text-base font-semibold`}>
                   {item.caption}
                 </p>
               </motion.div>
@@ -70,13 +68,13 @@ export default function OffTheClock() {
           transition={{ duration: 1, delay: 0.3 }}
           className="text-center md:text-left space-y-6 max-w-xl md:mt-10"
         >
-          <h2 className="text-4xl sm:text-5xl font-extrabold bg-gradient-to-r from-purple-600 to-blue-600 text-transparent bg-clip-text">
+          <h2 className={`${handelsonTwo.className} text-4xl sm:text-5xl lg:text-6xl font-bold bg-gradient-to-r from-purple-600 to-blue-600 text-transparent bg-clip-text`}>
             Off the Clock
           </h2>
-          <p className="text-xl sm:text-2xl text-gray-700 leading-relaxed">
+          <p className={`${avenir.className} text-xl sm:text-2xl text-gray-700 leading-relaxed font-light`}>
             When I&apos;m not wrangling tech, I&apos;m wrangling kids—in the best way. These moments remind me what it&apos;s all for.
           </p>
-          <p className="italic text-gray-600 text-lg sm:text-xl">
+          <p className={`${avenir.className} italic text-gray-600 text-lg sm:text-xl font-medium`}>
           &quot;Strong tech comes from strong values—honesty, effort, and a little bit of magic.&quot;
           </p>
         </motion.div>

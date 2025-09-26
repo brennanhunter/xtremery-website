@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 import Image from "next/image";
 import { AnimatePresence, motion } from "framer-motion";
-import { handelsonTwo } from "@/app/fonts";
+import { handelsonTwo, avenir } from "@/app/fonts";
 
 const honors = [
   {
@@ -81,11 +81,11 @@ export default function HonorGrid() {
             aria-expanded={isOpen}
             aria-controls={`honor-${item.id}`}
           >
-            <span className="text-purple-600 font-mono text-3xl font-bold">{String(item.id).padStart(2, "0")}</span>
-            <span className={`flex-1 ml-4 text-3xl text-gray-800 ${handelsonTwo.className}`}>
+            <span className={`${avenir.className} text-purple-600 font-bold text-2xl lg:text-3xl`}>{String(item.id).padStart(2, "0")}</span>
+            <span className={`${handelsonTwo.className} flex-1 ml-4 text-2xl lg:text-3xl text-gray-800 font-semibold`}>
               {item.title}
             </span>
-            <span className="text-2xl text-purple-600">{isOpen ? "✕" : "+"}</span>
+            <span className={`${avenir.className} text-2xl text-purple-600 font-bold`}>{isOpen ? "✕" : "+"}</span>
           </button>
 
           <AnimatePresence>
@@ -106,7 +106,7 @@ export default function HonorGrid() {
                   height={200}
                   className="mx-auto mb-4 object-contain"
                 />
-                <p className="text-gray-700 text-2xl sm:text-3xl leading-relaxed text-center font-medium">
+                <p className={`${avenir.className} text-gray-700 text-xl lg:text-2xl leading-relaxed text-center font-light`}>
                   {item.body}
                 </p>
               </motion.div>
@@ -120,11 +120,11 @@ export default function HonorGrid() {
   return (
     <section className="max-w-8xl mx-auto px-4 sm:px-12 py-20 bg-white">
       <div className="text-center mb-12">
-        <h2 className="text-7xl sm:text-8xl font-extrabold bg-gradient-to-r from-purple-600 to-blue-600 text-transparent bg-clip-text">
+        <h2 className={`${handelsonTwo.className} text-6xl sm:text-7xl lg:text-8xl font-bold bg-gradient-to-r from-purple-600 to-blue-600 text-transparent bg-clip-text`}>
           Code of Honor
         </h2>
-        <p className="text-3xl text-purple-600 uppercase tracking-widest font-semibold">Yes, we have a Code of Honor</p>
-        <p className="text-2xl mt-4 text-gray-600 max-w-xl mx-auto">
+        <p className={`${avenir.className} text-2xl lg:text-3xl text-purple-600 uppercase tracking-widest font-bold`}>Yes, we have a Code of Honor</p>
+        <p className={`${avenir.className} text-xl lg:text-2xl mt-4 text-gray-600 max-w-2xl mx-auto font-light leading-relaxed`}>
           These are the guiding values that shape every repair, every pixel, and every interaction.
         </p>
       </div>
