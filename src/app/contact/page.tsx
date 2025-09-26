@@ -2,50 +2,9 @@
 
 import { useRef, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import BlogNewsletter from '../components/blog/BlogNewsletter';
-
-// Circuit Lines Background Component
-const CircuitBackground = () => {
-  return (
-    <div className="absolute inset-0 z-0 pointer-events-none opacity-20">
-      <svg width="100%" height="100%" className="absolute inset-0">
-        <defs>
-          <pattern id="circuit" x="0" y="0" width="100" height="100" patternUnits="userSpaceOnUse">
-            <path d="M20,20 L80,20 L80,80 L20,80 Z" fill="none" stroke="#7C3AED" strokeWidth="1"/>
-            <circle cx="20" cy="20" r="2" fill="#00FFD1"/>
-            <circle cx="80" cy="80" r="2" fill="#00FFD1"/>
-          </pattern>
-        </defs>
-        <rect width="100%" height="100%" fill="url(#circuit)"/>
-      </svg>
-    </div>
-  );
-};
-
-// Floating Tech Elements
-const FloatingElements = () => {
-  return (
-    <div className="absolute inset-0 z-0 pointer-events-none">
-      {[...Array(12)].map((_, i) => (
-        <div
-          key={i}
-          className="absolute w-1 h-1 rounded-full opacity-60 animate-pulse"
-          style={{
-            backgroundColor: '#00FFD1',
-            top: `${Math.random() * 100}%`,
-            left: `${Math.random() * 100}%`,
-            animationDelay: `${Math.random() * 3}s`,
-            animationDuration: `${1.5 + Math.random() * 2}s`,
-          }}
-        />
-      ))}
-    </div>
-  );
-};
 
 export default function XtremeryContactPage() {
   const heroRef = useRef(null);
-  const headerRef = useRef(null);
   const formSectionRef = useRef(null);
   const infoSectionRef = useRef(null);
   
@@ -167,7 +126,7 @@ export default function XtremeryContactPage() {
                   We Fix Everything
                 </h2>
                 <p className="text-xl mb-8 text-gray-200" style={{fontFamily: 'Avenir'}}>
-                  From blue screens to gaming rigs - DeLand's trusted PC repair experts
+                  From blue screens to gaming rigs - DeLand&apos;s trusted PC repair experts
                 </p>
                 <button 
                   onClick={() => {
@@ -260,7 +219,7 @@ export default function XtremeryContactPage() {
                 What Can We Help You With?
               </h2>
               <p className="text-xl text-gray-600 mb-12" style={{fontFamily: 'Avenir'}}>
-                Choose the service you need and we'll get you connected with the right expert
+                Choose the service you need and we&apos;ll get you connected with the right expert
               </p>
               
               <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
@@ -756,7 +715,7 @@ export default function XtremeryContactPage() {
               {
                 icon: "🔧",
                 title: "Expert PC Diagnostics",
-                description: "We don't just treat symptoms - we find the root cause of your PC problems and fix them permanently."
+                description: "We don&apos;t just treat symptoms - we find the root cause of your PC problems and fix them permanently."
               },
               {
                 icon: "⚡",
@@ -796,7 +755,7 @@ export default function XtremeryContactPage() {
               {
                 icon: "📱",
                 title: "Remote Support Available",
-                description: "Many PC issues can be fixed remotely. We'll connect securely and solve problems from our DeLand shop."
+                description: "Many PC issues can be fixed remotely. We&apos;ll connect securely and solve problems from our DeLand shop."
               }
             ].map((feature, index) => (
               <motion.div
@@ -855,27 +814,6 @@ export default function XtremeryContactPage() {
             </div>
           </motion.div>
 
-          {/* Newsletter Signup Section */}
-          <motion.div 
-            className="mt-20 mb-16"
-            initial={{ y: 50, opacity: 0 }}
-            whileInView={{ y: 0, opacity: 1 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-          >
-            <div className="text-center mb-12">
-              <h4 className="text-3xl font-black mb-4" style={{ color: '#F9FAFB', fontFamily: 'Handelson Two' }}>
-                Stay Updated with Tech Tips
-              </h4>
-              <p className="text-lg max-w-2xl mx-auto" style={{ color: '#F9FAFB99', fontFamily: 'Avenir' }}>
-                Get expert insights on gaming, web design, tech reviews, and DeLand business solutions delivered to your inbox.
-              </p>
-            </div>
-            <div className="max-w-md mx-auto">
-              <BlogNewsletter />
-            </div>
-          </motion.div>
-
           {/* Final CTA */}
           <motion.div 
             className="text-center mt-16"
@@ -884,7 +822,7 @@ export default function XtremeryContactPage() {
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
           >
-            <h4 className="text-2xl font-bold mb-4" style={{ color: '#F9FAFB', fontFamily: 'Handelson Two' }}>
+            <h4 className="text-2xl font-bold mb-4" style={{ color: '#F9FAFB', fontFamily: 'Montserrat, system-ui, sans-serif' }}>
               Ready to Get Your PC Fixed?
             </h4>
             <p className="mb-8 max-w-2xl mx-auto" style={{ color: '#F9FAFB99' }}>

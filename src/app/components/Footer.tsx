@@ -42,7 +42,7 @@ export default function Footer() {
             <div className="lg:col-span-1 space-y-6">
               <Link href="/" className="block">
                 <Image
-                  src="/LogoNew.png"
+                  src="/logos/logo-purple.png"
                   alt="Xtremery Logo"
                   width={160}
                   height={50}
@@ -50,7 +50,7 @@ export default function Footer() {
                 />
               </Link>
               <p className="text-sm text-off-white/80 leading-relaxed max-w-sm">
-                Professional PC repair and modern web design in DeLand, FL. We fix what others won't touch and build websites that actually convert.
+                Professional PC repair and modern web design in DeLand, FL. We fix what others won&apos;t touch and build websites that actually convert.
               </p>
               <div className="flex items-center gap-4">
                 <motion.div

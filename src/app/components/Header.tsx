@@ -51,7 +51,7 @@ export default function Header({ resetServiceSelection }: HeaderProps) {
               className="flex items-center"
             >
               <Image
-                src="/LogoNew.png"
+                src="/logos/logo-purple.png"
                 alt="Xtremery Logo"
                 width={160}
                 height={50}
