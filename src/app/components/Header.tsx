@@ -27,6 +27,7 @@ export default function Header({ resetServiceSelection }: HeaderProps) {
     { label: 'Home', href: '/' },
     { label: 'About', href: '/about' },
     { label: 'Services', href: '/services' },
+    { label: 'Store', href: '/store' },
   { label: 'Web Design (DeLand)', href: '/web-design-deland' },
     { label: 'Guides', href: '/guides' },
     { label: 'Contact', href: '/contact' },

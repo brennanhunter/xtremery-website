@@ -10,9 +10,7 @@ declare global {
   }
 }
 
-export const GA_MEASUREMENT_ID: string | undefined = typeof window !== 'undefined'
-  ? (window as Window & { NEXT_PUBLIC_GA_MEASUREMENT_ID?: string }).NEXT_PUBLIC_GA_MEASUREMENT_ID || process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID
-  : process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID;
+export const GA_MEASUREMENT_ID: string | undefined = 'G-BS5EHPGMJN';
 
 interface EventParams {
   action: string;
