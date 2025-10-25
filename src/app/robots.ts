@@ -9,7 +9,10 @@ export default function robots(): MetadataRoute.Robots {
   disallow: ['/studio/', '/api/'],
       },
     ],
-    sitemap: 'https://www.xtremery.com/sitemap.xml',
+    sitemap: [
+      'https://www.xtremery.com/sitemap.xml',
+      'https://www.xtremery.com/image-sitemap.xml',
+    ],
     host: 'https://www.xtremery.com',
   }
 }

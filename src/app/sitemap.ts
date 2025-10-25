@@ -1,9 +1,34 @@
 import { MetadataRoute } from 'next'
+import { client } from '@/lib/sanity'
 
-export default function sitemap(): MetadataRoute.Sitemap {
+interface BlogPostSitemap {
+  slug: { current: string }
+  publishedAt: string
+  _updatedAt?: string
+}
+
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const baseUrl = 'https://www.xtremery.com'
   
-  return [
+  // Fetch all blog posts from Sanity
+  const blogPosts = await client.fetch<BlogPostSitemap[]>(`
+    *[_type == "blogPost"] | order(publishedAt desc) {
+      slug,
+      publishedAt,
+      _updatedAt
+    }
+  `)
+  
+  // Generate blog post sitemap entries
+  const blogPostEntries: MetadataRoute.Sitemap = blogPosts.map((post) => ({
+    url: `${baseUrl}/blog/${post.slug.current}`,
+    lastModified: new Date(post._updatedAt || post.publishedAt),
+    changeFrequency: 'monthly' as const,
+    priority: 0.7,
+  }))
+  
+  // Static pages
+  const staticPages: MetadataRoute.Sitemap = [
     {
       url: baseUrl,
       lastModified: new Date(),
@@ -41,11 +66,14 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.7,
     },
     {
-  url: `${baseUrl}/blog`,
-  lastModified: new Date(),
-  changeFrequency: 'weekly',
-  priority: 0.8,
-},
+      url: `${baseUrl}/blog`,
+      lastModified: new Date(),
+      changeFrequency: 'weekly',
+      priority: 0.8,
+    },
   ]
+  
+  // Combine static pages with blog posts
+  return [...staticPages, ...blogPostEntries]
 }
 

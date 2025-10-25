@@ -60,6 +60,41 @@ const SEOJsonLd = () => {
     '@type': 'WebSite',
     name: 'Xtremery',
   url: 'https://www.xtremery.com',
+    potentialAction: {
+      '@type': 'SearchAction',
+      target: {
+        '@type': 'EntryPoint',
+        urlTemplate: 'https://www.xtremery.com/blog?search={search_term_string}',
+      },
+      'query-input': 'required name=search_term_string',
+    },
+  } as const;
+
+  const organization = {
+    '@context': 'https://schema.org',
+    '@type': 'Organization',
+    name: 'Xtremery',
+    url: 'https://www.xtremery.com',
+    logo: 'https://www.xtremery.com/logos/LogoNew.png',
+    contactPoint: {
+      '@type': 'ContactPoint',
+      telephone: '+1-406-868-5850',
+      contactType: 'Customer Service',
+      email: 'hunter@xtremery.com',
+      areaServed: 'US',
+      availableLanguage: 'English',
+    },
+    sameAs: [
+      'https://www.facebook.com/xtremery',
+      'https://www.instagram.com/xtremery',
+      'https://www.linkedin.com/company/xtremery',
+    ],
+    address: {
+      '@type': 'PostalAddress',
+      addressLocality: 'DeLand',
+      addressRegion: 'FL',
+      addressCountry: 'US',
+    },
   } as const;
 
   return (
@@ -67,6 +102,10 @@ const SEOJsonLd = () => {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(business) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(organization) }}
       />
       <script
         type="application/ld+json"

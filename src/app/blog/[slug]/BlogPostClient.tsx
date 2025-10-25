@@ -7,6 +7,8 @@ import BlogPostContent from '../../components/blog/BlogPostContent';
 import RelatedPosts from '../../components/blog/RelatedPosts';
 import BlogPostCTA from '../../components/blog/BlogPostCTA';
 import BlogNewsletter from '../../components/blog/BlogNewsletter';
+import BlogArticleSchema from '../../components/blog/BlogArticleSchema';
+import InternalLinkSuggestions from '../../components/blog/InternalLinkSuggestions';
 import { BlogPost } from '@/types/blog';
 
 interface BlogPostClientProps {
@@ -16,6 +18,9 @@ interface BlogPostClientProps {
 export default function BlogPostClient({ post }: BlogPostClientProps) {
   return (
     <main className="bg-white text-gray-900">
+      
+      {/* Structured Data for SEO */}
+      <BlogArticleSchema post={post} />
       
       {/* Hero Section */}
       <section className="py-16 px-6 bg-white">
@@ -95,6 +100,13 @@ export default function BlogPostClient({ post }: BlogPostClientProps) {
               <div className="prose prose-lg max-w-none prose-headings:font-black prose-headings:text-gray-900 prose-p:text-gray-700 prose-p:leading-relaxed prose-a:text-blue-600 prose-a:no-underline hover:prose-a:underline prose-strong:text-gray-900 prose-code:text-blue-600 prose-code:bg-gray-100 prose-code:px-2 prose-code:py-1 prose-code:rounded prose-blockquote:border-l-4 prose-blockquote:border-blue-500 prose-blockquote:bg-blue-50 prose-blockquote:italic">
                 <BlogPostContent content={post.content} />
               </div>
+              
+              {/* Internal Link Suggestions */}
+              <InternalLinkSuggestions 
+                currentSlug={post.slug.current}
+                currentCategory={post.category}
+                keywords={post.tags}
+              />
             </div>
 
             {/* Sidebar */}

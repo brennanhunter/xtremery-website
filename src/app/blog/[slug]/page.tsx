@@ -11,6 +11,19 @@ interface BlogPostPageProps {
   }>;
 }
 
+// Generate static paths for all blog posts at build time
+export async function generateStaticParams() {
+  const posts = await client.fetch<{ slug: { current: string } }[]>(`
+    *[_type == "blogPost"] {
+      slug
+    }
+  `);
+  
+  return posts.map((post) => ({
+    slug: post.slug.current,
+  }));
+}
+
 // Generate metadata for SEO
 export async function generateMetadata({ params }: BlogPostPageProps): Promise<Metadata> {
   const { slug } = await params;
