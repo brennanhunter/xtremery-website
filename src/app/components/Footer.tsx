@@ -101,26 +101,57 @@ export default function Footer() {
             <div className="space-y-6">
               <h3 className="text-lg font-semibold text-aqua-spark uppercase tracking-wider">Get In Touch</h3>
               
-              {/* Contact Info */}
-              <div className="space-y-4">
+              {/* Contact Info with Address */}
+              <address className="not-italic space-y-3">
                 <div className="space-y-2">
-                  <a 
-                    href="mailto:hunter@xtremery.com"
-                    className="text-sm text-off-white/80 hover:text-aqua-spark transition-colors duration-200 block"
-                  >
-                    hunter@xtremery.com
-                  </a>
+                  <p className="text-sm font-semibold text-off-white">Xtremery</p>
+                  <p className="text-sm text-off-white/80">DeLand, FL 32720</p>
                   <a 
                     href="tel:+14068685850"
                     className="text-sm text-off-white/80 hover:text-aqua-spark transition-colors duration-200 block"
                   >
                     (406) 868-5850
                   </a>
+                  <a 
+                    href="mailto:hunter@xtremery.com"
+                    className="text-sm text-off-white/80 hover:text-aqua-spark transition-colors duration-200 block"
+                  >
+                    hunter@xtremery.com
+                  </a>
                 </div>
-              </div>
+                
+                {/* Google Reviews Badge */}
+                <motion.div
+                  whileHover={{ scale: 1.05 }}
+                  className="pt-3"
+                >
+                  <a
+                    href="https://share.google/wOjP5Gfpb4eCl1hFg"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-xtremery-purple to-xtremery-blue rounded-lg hover:shadow-lg transition-all duration-300"
+                  >
+                    <span className="text-lg">⭐</span>
+                    <div className="text-left">
+                      <p className="text-xs font-semibold text-aqua-spark uppercase tracking-wider">Google Reviews</p>
+                      <p className="text-xs text-off-white/90">See what DeLand says about us</p>
+                    </div>
+                  </a>
+                </motion.div>
+                
+                {/* Service Areas */}
+                <div className="pt-4 border-t border-xtremery-purple/20">
+                  <p className="text-xs font-semibold text-aqua-spark/80 uppercase tracking-wider mb-2">
+                    Areas We Serve
+                  </p>
+                  <p className="text-xs text-off-white/70 leading-relaxed">
+                    DeLand, Orange City, Deltona, Lake Helen, DeBary, and Volusia County
+                  </p>
+                </div>
+              </address>
 
               {/* Resources */}
-              <ul className="space-y-3">
+              <ul className="space-y-3 pt-2">
                 {footerLinks.resources.map(({ label, href }) => (
                   <li key={label}>
                     <Link 

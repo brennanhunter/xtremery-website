@@ -407,6 +407,29 @@ export default function XtremeryContactPage() {
                     <p style={{ color: '#00FFD1' }}>DeLand & surrounding areas</p>
                   </div>
                 </motion.div>
+
+                {/* Google Reviews */}
+                <motion.a
+                  href="https://share.google/wOjP5Gfpb4eCl1hFg"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-4 p-4 backdrop-blur-sm rounded-2xl border shadow-lg hover:bg-white/15 transition-all duration-300 group"
+                  style={{ backgroundColor: '#F9FAFB10', borderColor: '#FBBF2450' }}
+                  whileHover={{ scale: 1.02 }}
+                  initial={{ scale: 0.9, opacity: 0 }}
+                  whileInView={{ scale: 1, opacity: 1 }}
+                  transition={{ duration: 0.5, delay: 0.4 }}
+                  viewport={{ once: true }}
+                >
+                  <div className="w-12 h-12 rounded-full flex items-center justify-center" style={{ background: 'linear-gradient(45deg, #FBBF24, #F59E0B)' }}>
+                    <span style={{ color: '#1F2937' }} className="text-xl">⭐</span>
+                  </div>
+                  <div className="flex-1">
+                    <h4 className="font-semibold mb-1" style={{ color: '#FBBF24' }}>See Our Google Reviews</h4>
+                    <p className="text-sm" style={{ color: '#F9FAFB99' }}>Rated 5-stars by DeLand customers</p>
+                  </div>
+                  <div className="text-2xl group-hover:translate-x-1 transition-transform" style={{ color: '#FBBF24' }}>→</div>
+                </motion.a>
               </div>
 
               {/* Emergency Call Out */}
@@ -625,7 +648,7 @@ export default function XtremeryContactPage() {
                           Sending Your Request...
                         </span>
                       ) : (
-                        activeService === 'pc' ? 'Get My PC Fixed! 💻' : 'Build My Website! �'
+                        activeService === 'pc' ? 'Get My PC Fixed! 💻' : 'Build My Website! 🌐'
                       )}
                     </motion.button>
                   </motion.form>
