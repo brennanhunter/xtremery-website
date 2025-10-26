@@ -203,17 +203,41 @@ export default function BlogGrid() {
         </div>
       )}
 
-      {/* Load More Button - Future enhancement */}
-      {posts.length > 0 && posts.length % 10 === 0 && (
-        <div className="text-center pt-8">
-          <button 
-            onClick={() => {
-              console.log('Load more functionality - implement pagination here');
-            }}
-            className="bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 text-white font-semibold px-8 py-3 rounded-lg transition-all duration-300 transform hover:scale-105"
-          >
-            Load More Posts
-          </button>
+      {/* Browse by Category Section */}
+      {actualCategories.length > 0 && (
+        <div className="mt-16 pt-12 border-t border-gray-700/50">
+          <h2 className="text-3xl font-extrabold text-white mb-6 text-center">
+            More Blogs by Category
+          </h2>
+          <p className="text-gray-400 text-center mb-8 max-w-2xl mx-auto">
+            Explore our complete collection of articles organized by topic
+          </p>
+          
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+            {actualCategories.map((category) => {
+              const count = allPosts.filter(p => p.category === category).length;
+              return (
+                <Link
+                  key={category}
+                  href={`/blog/category/${category}`}
+                  className="group bg-gradient-to-br from-gray-800/40 to-gray-900/40 backdrop-blur-sm rounded-xl p-6 border border-gray-700/30 hover:border-purple-500/50 transition-all duration-300 text-center"
+                >
+                  <h3 className="text-xl font-bold text-white mb-2 group-hover:text-cyan-300 transition-colors">
+                    {formatCategoryDisplay(category)}
+                  </h3>
+                  <p className="text-gray-400 text-sm mb-3">
+                    {count} {count === 1 ? 'post' : 'posts'}
+                  </p>
+                  <div className="inline-flex items-center gap-2 text-cyan-400 text-sm font-medium">
+                    View All
+                    <svg className="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                    </svg>
+                  </div>
+                </Link>
+              );
+            })}
+          </div>
         </div>
       )}
 
