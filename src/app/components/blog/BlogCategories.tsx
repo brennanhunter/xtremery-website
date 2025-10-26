@@ -111,7 +111,7 @@ export default function BlogCategories() {
         
         <div className="space-y-3">
           <a
-            href="/services/pc-repair"
+            href="/pc-repair-deland"
             className="block p-3 rounded-lg bg-purple-600/20 hover:bg-purple-600/30 border border-purple-500/30 hover:border-purple-400/50 transition-all duration-300"
           >
             <span className="text-white font-medium text-sm">Need PC Repair?</span>
