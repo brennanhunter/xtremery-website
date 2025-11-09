@@ -69,7 +69,7 @@ export default function Testimonials() {
       id: 5,
       name: "Kait Smo",
       problem: "Water Damage Recovery",
-      quote: "I spilled a good amount of water on my laptop keyboard and had called the typical repair franchises in town, who all told me that it was probably a lost cause and they didn&rsquo;t even think they could recover the data from my hard drive. Well, Hunter both recovered my data and got my laptop to boot up again! Super glad I brought it to him.",
+      quote: "I spilled a good amount of water on my laptop keyboard and had called the typical repair franchises in town, who all told me that it was probably a lost cause and they didn&apos;t even think they could recover the data from my hard drive. Well, Hunter both recovered my data and got my laptop to boot up again! Super glad I brought it to him.",
       highlight: "Recovered data others said was lost",
       service: "Data Recovery",
       icon: Shield,
@@ -79,8 +79,8 @@ export default function Testimonials() {
       id: 6,
       name: "Ivan Rochel",
       problem: "Reliable Tech Support",
-      quote: "I went on Google to find a guy that will do a simple job on my PC. I contemplated doing it myself but really wanted professional hands on it. I called Hunter and he did the job fast and correctly. He was cool, straight to the point, and easy to work with. It&rsquo;s nice to have a guy, whether it&rsquo;s a plumber, an electrician, a landscaper, etc. As an adult, you rely on your guys. Now, Hunter is my PC guy for as long as he&rsquo;s doing this.",
-      highlight: "Hunter is my PC guy for as long as he&rsquo;s doing this",
+      quote: "I went on Google to find a guy that will do a simple job on my PC. I contemplated doing it myself but really wanted professional hands on it. I called Hunter and he did the job fast and correctly. He was cool, straight to the point, and easy to work with. It&apos;s nice to have a guy, whether it&apos;s a plumber, an electrician, a landscaper, etc. As an adult, you rely on your guys. Now, Hunter is my PC guy for as long as he&apos;s doing this.",
+      highlight: "Hunter is my PC guy for as long as he&apos;s doing this",
       service: "Long-term Support",
       icon: Heart,
       gradient: "from-xtremery-blue to-aqua-spark"
@@ -109,7 +109,7 @@ export default function Testimonials() {
       id: 9,
       name: "Desirae Toivonen",
       problem: "Professional Follow-up",
-      quote: "I had a great experience getting help with my computer issues. He was incredibly knowledgeable, patient, and took the time to explain things clearly. What really stood out was that he followed up afterward to make sure everything was still working properly. It&rsquo;s rare to find that level of care and professionalism these days. Highly recommend!",
+      quote: "I had a great experience getting help with my computer issues. He was incredibly knowledgeable, patient, and took the time to explain things clearly. What really stood out was that he followed up afterward to make sure everything was still working properly. It&apos;s rare to find that level of care and professionalism these days. Highly recommend!",
       highlight: "Rare level of care and professionalism",
       service: "Premium Support",
       icon: Heart,
@@ -218,7 +218,7 @@ export default function Testimonials() {
                       <div className="mt-6">
                         <Image 
                           src={currentTestimonial.image} 
-                          alt={`${currentTestimonial.name}&rsquo;s setup`}
+                          alt={`${currentTestimonial.name}&apos;s setup`}
                           width={192}
                           height={192}
                           className="w-full max-w-48 mx-auto rounded-xl shadow-lg border border-gray-200"
@@ -287,7 +287,7 @@ export default function Testimonials() {
           </div>
           <div className="text-center">
             <div className="text-2xl font-bold text-xtremery-blue mb-2 font-handelson-two">House Calls</div>
-            <div className="text-gray-600 font-avenir">Until It&rsquo;s Fixed</div>
+            <div className="text-gray-600 font-avenir">Until It&apos;s Fixed</div>
           </div>
           <div className="text-center">
             <div className="text-2xl font-bold text-aqua-spark mb-2 font-handelson-two">Fair Price</div>
@@ -305,8 +305,8 @@ export default function Testimonials() {
                   Your Tech Emergency = Our Specialty
                 </h3>
                 <p className="text-xl text-gray-600 mb-8 max-w-3xl mx-auto leading-relaxed font-avenir">
-                  Don&rsquo;t waste time with repair shops that give up. Join the customers who get their problems 
-                  <span className="font-bold text-xtremery-purple"> actually solved</span> by DeLand&rsquo;s most trusted tech expert.
+                  Don&apos;t waste time with repair shops that give up. Join the customers who get their problems 
+                  <span className="font-bold text-xtremery-purple"> actually solved</span> by DeLand&apos;s most trusted tech expert.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4 justify-center">
                   <motion.a 
