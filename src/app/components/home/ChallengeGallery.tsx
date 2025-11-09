@@ -59,7 +59,7 @@ export default function ChallengeGallery() {
           </h2>
           <div className="w-24 h-1 bg-gradient-to-r from-xtremery-purple to-aqua-spark mx-auto rounded-full mb-6"></div>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed font-avenir">
-            When others say "impossible," we say "challenge accepted." Here are some of our most challenging projects and how we solved them.
+            When others say &ldquo;impossible,&rdquo; we say &ldquo;challenge accepted.&rdquo; Here are some of our most challenging projects and how we solved them.
           </p>
         </motion.div>
 
