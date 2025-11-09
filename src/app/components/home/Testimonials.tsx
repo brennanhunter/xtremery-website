@@ -236,11 +236,11 @@ export default function Testimonials() {
                     </div>
                     
                     <blockquote className="text-xl md:text-2xl text-gray-700 font-medium mb-6 leading-relaxed font-avenir">
-                      "{currentTestimonial.quote}"
+                      &ldquo;{currentTestimonial.quote}&rdquo;
                     </blockquote>
                     
                     <div className="bg-gradient-to-r from-xtremery-purple to-aqua-spark bg-clip-text text-transparent text-lg font-bold mb-4 font-avenir">
-                      "{currentTestimonial.highlight}"
+                      &ldquo;{currentTestimonial.highlight}&rdquo;
                     </div>
                     
                     <div className="text-gray-600 font-semibold text-lg font-avenir">
@@ -287,7 +287,7 @@ export default function Testimonials() {
           </div>
           <div className="text-center">
             <div className="text-2xl font-bold text-xtremery-blue mb-2 font-handelson-two">House Calls</div>
-            <div className="text-gray-600 font-avenir">Until It's Fixed</div>
+            <div className="text-gray-600 font-avenir">Until It&apos;s Fixed</div>
           </div>
           <div className="text-center">
             <div className="text-2xl font-bold text-aqua-spark mb-2 font-handelson-two">Fair Price</div>
@@ -305,8 +305,8 @@ export default function Testimonials() {
                   Your Tech Emergency = Our Specialty
                 </h3>
                 <p className="text-xl text-gray-600 mb-8 max-w-3xl mx-auto leading-relaxed font-avenir">
-                  Don't waste time with repair shops that give up. Join the customers who get their problems 
-                  <span className="font-bold text-xtremery-purple"> actually solved</span> by DeLand's most trusted tech expert.
+                  Don&apos;t waste time with repair shops that give up. Join the customers who get their problems 
+                  <span className="font-bold text-xtremery-purple"> actually solved</span> by DeLand&apos;s most trusted tech expert.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4 justify-center">
                   <motion.a 
