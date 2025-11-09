@@ -14,45 +14,26 @@ type Review = {
   icon: React.ComponentType<{ className?: string }>;
   gradient: string;
   originalText?: string;
+  image?: string;
 };
 
 const ROTATE_INTERVAL = 6000; // 6 seconds
 
 export default function Testimonials() {
-  // Enhanced testimonials with accurate quotes and compelling problem/solution framing
+  // Top 10 testimonials from real Google reviews - maximum impact rotation
   const heroTestimonials: Review[] = [
     {
       id: 1,
-      name: "Joseph Russo",
-      problem: "Security Recovery",
-      quote: "Hunter was able to resolve my computer issues after a hacker was able to infiltrate all of my personal information. He was very helpful and friendly, willing to make multiple house calls to ensure that the issue was resolved. If you need any help with computer issues, he will do an excellent job at a great price.",
-      highlight: "Multiple house calls until resolved",
-      service: "Security & Recovery",
-      icon: Shield,
+      name: "Jay Ludvigh",
+      problem: "Windows 10 Extension",
+      quote: "After several phone calls talking with business that did not want to discuss my issues, I called Xtremery where my call was answered by Hunter. What a breath of fresh air! He was highly knowledgable, patient, down to earth and interested in actually helping me out with my situation. He also was flexible in getting me into his schedule quickly and very fair in his pricing.",
+      highlight: "What a breath of fresh air!",
+      service: "Specialized Support",
+      icon: Users,
       gradient: "from-xtremery-purple to-xtremery-blue"
     },
     {
       id: 2,
-      name: "Ryan Upchurch",
-      problem: "Business Support",
-      quote: "Incredible service! Showed real patience with me. Taught me alot! Its like having a private IT department! If you need anything computer repair related, this is place! Also price was very fair! Thank you Hunter!",
-      highlight: "Like having a private IT department",
-      service: "Business Support",
-      icon: Users,
-      gradient: "from-xtremery-blue to-aqua-spark"
-    },
-    {
-      id: 3,
-      name: "Rob Williams",
-      problem: "Windows 10 Issues",
-      quote: "I took my HP laptop to hunter to fix a problem with the loading of windows 10. He saw me the same day and let me wait till he fixed it for me in less than 2 hrs. He is very good at what he does and explained the fix to me. The cost was very reasonable. He also is a very nice person. He will do a good job for you.",
-      highlight: "Same day service, fixed in under 2 hours",
-      service: "PC Repair",
-      icon: Zap,
-      gradient: "from-aqua-spark to-xtremery-purple"
-    },
-    {
-      id: 4,
       name: "Susette Schabarker",
       problem: "Website Design",
       quote: "Simply Excellent ! I am utilizing Hunter at Xtremery for Web Design.... I love his attention to detail.. His patience , And certainly his thoroughness. In every step of the way I am beyond happy with Hunter, and the process of designing my website which I am totally new to.... His ideas, his input his creativeness. I am just very grateful and very thankful . I would highly recommend Xtremely for any website from start to end.",
@@ -62,14 +43,86 @@ export default function Testimonials() {
       gradient: "from-xtremery-purple to-aqua-spark"
     },
     {
+      id: 3,
+      name: "Sammy Castro",
+      problem: "Halloween Gaming Emergency",
+      quote: "I was looking for someone to come look at my PC because it would not play my games correctly i called about 10 PC repairs shops because it was friday nobody wanted to come and look at it until I called Hunter he was willing to come to my house on Halloween and check out my rig. Hunter is amazing, funny and is willing to teach others the most important thing was he fixed my PC with 1 hour and the price was cheap.",
+      highlight: "Fixed my PC in 1 hour on Halloween",
+      service: "Emergency Gaming Support",
+      icon: Zap,
+      gradient: "from-xtremery-blue to-aqua-spark",
+      originalText: "",
+      image: "/Images/SamBuild.jpg"
+    },
+    {
+      id: 4,
+      name: "Joseph Russo",
+      problem: "Security Recovery",
+      quote: "Hunter was able to resolve my computer issues after a hacker was able to infiltrate all of my personal information. He was very helpful and friendly, willing to make multiple house calls to ensure that the issue was resolved. If you need any help with computer issues, he will do an excellent job at a great price.",
+      highlight: "Multiple house calls until resolved",
+      service: "Security & Recovery",
+      icon: Shield,
+      gradient: "from-aqua-spark to-xtremery-purple"
+    },
+    {
       id: 5,
-      name: "Dawn Woody",
-      problem: "Technical Support",
-      quote: "Excellent service. Very knowledgeable. Highly recommend.",
-      highlight: "Excellent service, highly recommend",
-      service: "Technical Support",
+      name: "Kait Smo",
+      problem: "Water Damage Recovery",
+      quote: "I spilled a good amount of water on my laptop keyboard and had called the typical repair franchises in town, who all told me that it was probably a lost cause and they didn't even think they could recover the data from my hard drive. Well, Hunter both recovered my data and got my laptop to boot up again! Super glad I brought it to him.",
+      highlight: "Recovered data others said was lost",
+      service: "Data Recovery",
+      icon: Shield,
+      gradient: "from-xtremery-purple to-xtremery-blue"
+    },
+    {
+      id: 6,
+      name: "Ivan Rochel",
+      problem: "Reliable Tech Support",
+      quote: "I went on Google to find a guy that will do a simple job on my PC. I contemplated doing it myself but really wanted professional hands on it. I called Hunter and he did the job fast and correctly. He was cool, straight to the point, and easy to work with. It's nice to have a guy, whether it's a plumber, an electrician, a landscaper, etc. As an adult, you rely on your guys. Now, Hunter is my PC guy for as long as he's doing this.",
+      highlight: "Hunter is my PC guy for as long as he's doing this",
+      service: "Long-term Support",
+      icon: Heart,
+      gradient: "from-xtremery-blue to-aqua-spark"
+    },
+    {
+      id: 7,
+      name: "Ryan Upchurch",
+      problem: "Business Support",
+      quote: "Incredible service! Showed real patience with me. Taught me alot! Its like having a private IT department! If you need anything computer repair related, this is place! Also price was very fair! Thank you Hunter!",
+      highlight: "Like having a private IT department",
+      service: "Business Support",
+      icon: Users,
+      gradient: "from-aqua-spark to-xtremery-purple"
+    },
+    {
+      id: 8,
+      name: "Jerome Alexander",
+      problem: "Complex Website Project",
+      quote: "Hunter and his company at Xtremery are absolute amazing. We had some website page work that needed built with videos and many moving parts. He did it accurately with a very high eye appeal. Will definitely use again for future projects. Thank you Hunter!!!",
+      highlight: "High eye appeal with many moving parts",
+      service: "Advanced Web Development",
+      icon: Zap,
+      gradient: "from-xtremery-purple to-aqua-spark"
+    },
+    {
+      id: 9,
+      name: "Desirae Toivonen",
+      problem: "Professional Follow-up",
+      quote: "I had a great experience getting help with my computer issues. He was incredibly knowledgeable, patient, and took the time to explain things clearly. What really stood out was that he followed up afterward to make sure everything was still working properly. It's rare to find that level of care and professionalism these days. Highly recommend!",
+      highlight: "Rare level of care and professionalism",
+      service: "Premium Support",
       icon: Heart,
       gradient: "from-xtremery-blue to-xtremery-purple"
+    },
+    {
+      id: 10,
+      name: "Rob Williams",
+      problem: "Same Day Windows Repair",
+      quote: "I took my HP laptop to hunter to fix a problem with the loading of windows 10. He saw me the same day and let me wait till he fixed it for me in less than 2 hrs. He is very good at what he does and explained the fix to me. The cost was very reasonable. He also is a very nice person. He will do a good job for you.",
+      highlight: "Same day service, fixed in under 2 hours",
+      service: "Same Day Repair",
+      icon: Zap,
+      gradient: "from-aqua-spark to-xtremery-purple"
     }
   ];
 
@@ -158,6 +211,17 @@ export default function Testimonials() {
                     </div>
                     <div className="text-lg font-bold text-gray-900 mb-2 font-handelson-two">{currentTestimonial.problem}</div>
                     <div className="text-xtremery-purple font-semibold font-avenir">{currentTestimonial.service}</div>
+                    
+                    {/* Optional Image Display */}
+                    {currentTestimonial.image && (
+                      <div className="mt-6">
+                        <img 
+                          src={currentTestimonial.image} 
+                          alt={`${currentTestimonial.name}'s setup`}
+                          className="w-full max-w-48 mx-auto rounded-xl shadow-lg border border-gray-200"
+                        />
+                      </div>
+                    )}
                   </div>
 
                   {/* Quote */}
