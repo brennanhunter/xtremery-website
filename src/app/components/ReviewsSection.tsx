@@ -84,7 +84,7 @@ export default function ReviewsSection() {
             <blockquote className="bg-white p-6 rounded-xl shadow-md">
               <div className="text-yellow-500 mb-2">⭐⭐⭐⭐⭐</div>
               <p className="text-gray-700 italic mb-4">
-                &quot;Incredible service! Showed real patience with me. It&apos;s like having a private IT department! Price was very fair!&quot;
+                &quot;Incredible service! Showed real patience with me. It's like having a private IT department! Price was very fair!&quot;
               </p>
               <footer className="font-semibold text-purple-600">— Ryan U., Orange City</footer>
             </blockquote>

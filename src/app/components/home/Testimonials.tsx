@@ -236,11 +236,11 @@ export default function Testimonials() {
                     </div>
                     
                     <blockquote className="text-xl md:text-2xl text-gray-700 font-medium mb-6 leading-relaxed font-avenir">
-                      &quot;{currentTestimonial.quote}&quot;
+                      "{currentTestimonial.quote}"
                     </blockquote>
                     
                     <div className="bg-gradient-to-r from-xtremery-purple to-aqua-spark bg-clip-text text-transparent text-lg font-bold mb-4 font-avenir">
-                      &quot;{currentTestimonial.highlight}&quot;
+                      "{currentTestimonial.highlight}"
                     </div>
                     
                     <div className="text-gray-600 font-semibold text-lg font-avenir">
