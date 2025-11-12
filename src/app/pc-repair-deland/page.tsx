@@ -153,7 +153,7 @@ export default function PcRepairDelandPage() {
             <div className="flex flex-wrap justify-center items-center gap-6 mb-10 text-sm text-gray-600">
               <div className="flex items-center gap-2">
                 <span className="text-yellow-500">⭐⭐⭐⭐⭐</span>
-                <span className="font-semibold">5.0/5 (8 reviews)</span>
+                <span className="font-semibold">5.0/5 (30+ reviews)</span>
               </div>
               <div className="flex items-center gap-2">
                 <span className="text-2xl">⚡</span>
@@ -329,6 +329,46 @@ export default function PcRepairDelandPage() {
                   </p>
                 </div>
               </div>
+            </div>
+          </div>
+        </section>
+
+        {/* YouTube Video Section */}
+        <section className="px-6 py-20 bg-gradient-to-br from-purple-50 via-white to-cyan-50">
+          <div className="max-w-5xl mx-auto">
+            <div className="text-center mb-12">
+              <h2 className="text-4xl sm:text-5xl font-bold mb-4">
+                <span className="text-transparent bg-gradient-to-r from-xtremery-purple to-xtremery-blue bg-clip-text">
+                  Check Us Out on YouTube
+                </span>
+              </h2>
+              <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+                See our work in action and learn helpful tech tips from real repair projects.
+              </p>
+            </div>
+            
+            <div className="relative rounded-2xl overflow-hidden shadow-2xl border-4 border-white bg-white p-4">
+              <div className="relative" style={{ paddingBottom: '56.25%' }}>
+                <iframe
+                  className="absolute top-0 left-0 w-full h-full rounded-xl"
+                  src="https://www.youtube.com/embed/7tjhK5X3exk"
+                  title="Xtremery PC Repair Featured Video"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowFullScreen
+                ></iframe>
+              </div>
+            </div>
+            
+            <div className="text-center mt-8">
+              <a 
+                href="https://www.youtube.com/@Xtremery58" 
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 bg-gradient-to-r from-xtremery-purple to-xtremery-blue text-white font-bold py-3 px-6 rounded-full hover:shadow-xl transition-all hover:scale-105"
+              >
+                <span className="text-2xl">▶️</span>
+                Subscribe to Our Channel
+              </a>
             </div>
           </div>
         </section>
