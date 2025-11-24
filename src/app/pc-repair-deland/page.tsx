@@ -1,6 +1,6 @@
 export const metadata = {
   title: 'PC Repair DeLand FL | Expert Computer Help | Xtremery',
-  description: 'DeLand PC repair & tech support. $50 diagnostic fee, honest pricing, same-day service. Virus removal, screen replacement, data recovery & more. Call (406) 868-5850!',
+  description: 'DeLand PC repair & tech support. $50 diagnostic fee, honest pricing, same-day service. Virus removal, screen replacement, data recovery & more. Call (406) 696-8256!',
   keywords: [
     'PC repair DeLand FL', 'computer repair DeLand Florida', 'laptop repair DeLand', 
     'computer technician DeLand', 'tech support DeLand', 'computer help DeLand',
@@ -63,7 +63,7 @@ const structuredData = {
     "longitude": -81.3031
   },
   "url": "https://www.xtremery.com/pc-repair-deland",
-  "telephone": "+1-406-868-5850",
+  "telephone": "+1-406-696-8256",
   "priceRange": "$50-$200",
   "openingHours": "Mo-Fr 09:00-18:00, Sa 10:00-16:00",
   "serviceArea": {
@@ -168,13 +168,13 @@ export default function PcRepairDelandPage() {
             {/* Primary CTA */}
             <div className="flex flex-col sm:flex-row gap-4 justify-center mb-6">
               <a 
-                href="tel:+14068685850"
+                href="tel:+14066968256"
                 className="inline-flex items-center justify-center bg-gradient-to-r from-xtremery-purple to-xtremery-blue text-white font-bold py-4 px-8 rounded-full text-lg transition-all hover:shadow-xl hover:scale-105"
               >
-                📞 Call Now: (406) 868-5850
+                📞 Call Now: (406) 696-8256
               </a>
               <a 
-                href="sms:+14068685850?body=Hi! I need help with my computer."
+                href="sms:+14066968256?body=Hi! I need help with my computer."
                 className="inline-flex items-center justify-center bg-white text-xtremery-purple border-2 border-xtremery-purple font-bold py-4 px-8 rounded-full text-lg transition-all hover:bg-purple-50 hover:scale-105"
               >
                 💬 Text for Quick Quote
@@ -413,7 +413,7 @@ export default function PcRepairDelandPage() {
                 },
                 {
                   question: "Do you offer same-day service?",
-                  answer: "Yes! Most repairs are completed within 24-48 hours. For urgent issues, I can often provide same-day service. Emergency calls are answered within 2 hours. Just call (406) 868-5850 and I'll get you taken care of quickly."
+                  answer: "Yes! Most repairs are completed within 24-48 hours. For urgent issues, I can often provide same-day service. Emergency calls are answered within 2 hours. Just call (406) 696-8256 and I'll get you taken care of quickly."
                 },
                 {
                   question: "What if my computer was hacked or has viruses?",
@@ -462,13 +462,13 @@ export default function PcRepairDelandPage() {
             
             <div className="flex flex-col sm:flex-row gap-4 justify-center mb-8">
               <a 
-                href="tel:+14068685850"
+                href="tel:+14066968256"
                 className="inline-flex items-center justify-center bg-aqua-spark text-deep-navy font-bold py-4 px-8 rounded-full text-lg hover:bg-white transition-all hover:scale-105 shadow-lg"
               >
-                📞 Call: (406) 868-5850
+                📞 Call: (406) 696-8256
               </a>
               <a 
-                href="sms:+14068685850?body=Hi! I need help with my computer."
+                href="sms:+14066968256?body=Hi! I need help with my computer."
                 className="inline-flex items-center justify-center bg-transparent border-2 border-white text-white font-bold py-4 px-8 rounded-full text-lg hover:bg-white/10 transition-all hover:scale-105"
               >
                 💬 Text for Instant Quote

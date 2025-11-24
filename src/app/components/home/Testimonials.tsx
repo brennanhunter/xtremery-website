@@ -310,13 +310,13 @@ export default function Testimonials() {
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4 justify-center">
                   <motion.a 
-                    href="tel:+14068685850" 
+                    href="tel:+14066968256" 
                     className="bg-gradient-to-r from-xtremery-purple to-xtremery-blue text-white px-8 py-4 rounded-xl font-bold text-lg hover:shadow-lg transition-all duration-300 flex items-center justify-center gap-2 font-avenir"
                     whileHover={{ scale: 1.02 }}
                     whileTap={{ scale: 0.98 }}
                   >
                     <Phone className="w-5 h-5" />
-                    Emergency Call: (406) 868-5850
+                    Emergency Call: (406) 696-8256
                   </motion.a>
                   <motion.a 
                     href="/contact" 
