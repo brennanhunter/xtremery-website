@@ -96,7 +96,7 @@ export default function ReviewsSection() {
             <blockquote className="bg-gradient-to-br from-purple-50 to-cyan-50 p-6 rounded-2xl shadow-md border border-gray-100 hover:shadow-xl transition-shadow">
               <div className="text-yellow-500 mb-3 text-xl">⭐⭐⭐⭐⭐</div>
               <p className="text-gray-700 italic mb-4 leading-relaxed">
-                &quot;I was looking for someone to come look at my PC because it would not play my games correctly i called about 10 PC repairs shops because it was friday nobody wanted to come and look at it until I called Hunter he was willing to come to my house on Halloween and check out my rig. Hunter is amazing, funny and is willing to teach others the most important thing was he fixed my PC with 1 hour and the price was cheap. I have him coming back to replace some RGB wires in my PC amazing guy with excellent prices he is my PC Tech from today on wouldn't call anyone else. Thanks Hunter&quot;
+                &quot;I was looking for someone to come look at my PC because it would not play my games correctly i called about 10 PC repairs shops because it was friday nobody wanted to come and look at it until I called Hunter he was willing to come to my house on Halloween and check out my rig. Hunter is amazing, funny and is willing to teach others the most important thing was he fixed my PC with 1 hour and the price was cheap. I have him coming back to replace some RGB wires in my PC amazing guy with excellent prices he is my PC Tech from today on wouldn&apos;t call anyone else. Thanks Hunter&quot;
               </p>
               <footer className="font-semibold text-transparent bg-gradient-to-r from-xtremery-purple to-xtremery-blue bg-clip-text">— Sammy C., DeLand</footer>
             </blockquote>
@@ -104,7 +104,7 @@ export default function ReviewsSection() {
             <blockquote className="bg-gradient-to-br from-purple-50 to-cyan-50 p-6 rounded-2xl shadow-md border border-gray-100 hover:shadow-xl transition-shadow">
               <div className="text-yellow-500 mb-3 text-xl">⭐⭐⭐⭐⭐</div>
               <p className="text-gray-700 italic mb-4 leading-relaxed">
-                &quot;HIGHLY RECOMMEND! I spilled a good amount of water on my laptop keyboard and had called the typical repair franchises in town, who all told me that it was probably a lost cause and they didn't even think they could recover the data from my hard drive. Well, Hunter both recovered my data and got my laptop to boot up again! Super glad I brought it to him. Very low pricing, also!&quot;
+                &quot;HIGHLY RECOMMEND! I spilled a good amount of water on my laptop keyboard and had called the typical repair franchises in town, who all told me that it was probably a lost cause and they didn&apos;t even think they could recover the data from my hard drive. Well, Hunter both recovered my data and got my laptop to boot up again! Super glad I brought it to him. Very low pricing, also!&quot;
               </p>
               <footer className="font-semibold text-transparent bg-gradient-to-r from-xtremery-purple to-xtremery-blue bg-clip-text">— Kait S., DeLand</footer>
             </blockquote>
