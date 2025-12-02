@@ -114,8 +114,8 @@ export default function ContactForm() {
                   <div className="bg-purple-50 p-4 rounded-lg mb-6">
                     <p className="text-sm text-purple-700">
                       <strong>Need faster help?</strong> Call me directly at{' '}
-                      <a href="tel:+14066968256" className="underline font-semibold">
-                        (406) 696-8256
+                      <a href="tel:+14068685850" className="underline font-semibold">
+                        (406) 868-5850
                       </a>
                     </p>
                   </div>
@@ -282,13 +282,13 @@ export default function ContactForm() {
                     </p>
                     <div className="flex flex-col sm:flex-row gap-3 justify-center">
                       <a 
-                        href="tel:+14066968256"
+                        href="tel:+14068685850"
                         className="inline-flex items-center justify-center px-4 py-2 bg-green-600 hover:bg-green-700 text-white text-sm font-semibold rounded-lg transition-colors"
                       >
-                        📞 Call (406) 696-8256
+                        📞 Call (406) 868-5850
                       </a>
                       <a 
-                        href="sms:+14066968256?body=Hi! I need help with my computer."
+                        href="sms:+14068685850?body=Hi! I need help with my computer."
                         className="inline-flex items-center justify-center px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white text-sm font-semibold rounded-lg transition-colors"
                       >
                         💬 Text Message

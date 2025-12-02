@@ -107,10 +107,10 @@ export default function Footer() {
                   <p className="text-sm font-semibold text-off-white">Xtremery</p>
                   <p className="text-sm text-off-white/80">DeLand, FL 32720</p>
                   <a 
-                    href="tel:+14066968256"
+                    href="tel:+14068685850"
                     className="text-sm text-off-white/80 hover:text-aqua-spark transition-colors duration-200 block"
                   >
-                    (406) 696-8256
+                    (406) 868-5850
                   </a>
                   <a 
                     href="mailto:hunter@xtremery.com"

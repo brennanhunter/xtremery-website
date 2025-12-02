@@ -318,12 +318,12 @@ export default function XtremeryContactPage() {
                   <div>
                     <h4 className="font-semibold text-gray-900">Phone</h4>
                     <a
-                      href="tel:+14066968256"
+                      href="tel:+14068685850"
                       className={`transition-colors ${
                         activeService === 'pc' ? 'text-xtremery-blue hover:text-xtremery-blue/80' : 'text-xtremery-purple hover:text-xtremery-purple/80'
                       }`}
                     >
-                      (406) 696-8256
+                      (406) 868-5850
                     </a>
                   </div>
                 </motion.div>
@@ -446,13 +446,13 @@ export default function XtremeryContactPage() {
                   Business computer down? Gaming tournament tonight? Work presentation due? Call for urgent PC repair.
                 </p>
                 <motion.a
-                  href="tel:+14066968256"
+                  href="tel:+14068685850"
                   className="inline-block px-6 py-2 rounded-full font-semibold"
                   style={{ background: 'linear-gradient(45deg, #DC2626, #EA580C)', color: '#F9FAFB' }}
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                 >
-                  📱 Emergency Call: (406) 696-8256
+                  📱 Emergency Call: (406) 868-5850
                 </motion.a>
               </motion.div>
             </motion.div>
@@ -854,7 +854,7 @@ export default function XtremeryContactPage() {
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <motion.a
-                href="tel:+14066968256"
+                href="tel:+14068685850"
                 className="px-8 py-4 rounded-full font-bold text-lg shadow-xl hover:shadow-2xl transition-all duration-300"
                 style={{ 
                   background: 'linear-gradient(45deg, #DC2626, #EA580C)',
@@ -864,7 +864,7 @@ export default function XtremeryContactPage() {
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >
-                📱 Call Now: (406) 696-8256
+                📱 Call Now: (406) 868-5850
               </motion.a>
               <motion.a
                 href="mailto:hunter@xtremery.com"

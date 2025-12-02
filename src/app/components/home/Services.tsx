@@ -376,12 +376,12 @@ export default function Services() {
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <motion.a
-                href="tel:+14066968256"
+                href="tel:+14068685850"
                 className="inline-flex items-center px-8 py-4 bg-[#00FFD1] text-gray-900 rounded-full font-bold text-lg hover:bg-[#00FFD1]/90 transition-colors"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >
-                📞 Call (406) 696-8256
+                📞 Call (406) 868-5850
               </motion.a>
               <motion.a
                 href="https://calendar.app.google/TieHN52sEYn7CFKV8"

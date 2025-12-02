@@ -78,7 +78,7 @@ const SEOJsonLd = () => {
     logo: 'https://www.xtremery.com/logos/LogoNew.png',
     contactPoint: {
       '@type': 'ContactPoint',
-      telephone: '+1-406-696-8256',
+      telephone: '+1-406-868-5850',
       contactType: 'Customer Service',
       email: 'hunter@xtremery.com',
       areaServed: 'US',
