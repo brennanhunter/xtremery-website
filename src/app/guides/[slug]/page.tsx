@@ -19,13 +19,6 @@ const guides: { [key: string]: { title: string; content: React.ReactNode } } = {
           <p className="text-white/80">
             Is your PC taking forever to load programs or freezing during simple tasks? A slow computer is often caused by cluttered files, too many startup programs, or outdated software. This guide walks you through easy steps to speed things up, no tech expertise required.
           </p>
-          <Image
-            src="/images/slow-pc.png"
-            alt="Slow PC illustration"
-            width={800}
-            height={400}
-            className="rounded-lg shadow-lg my-4 max-w-full h-auto"
-          />
         </section>
 
         <section>
@@ -57,13 +50,7 @@ const guides: { [key: string]: { title: string; content: React.ReactNode } } = {
             </a>{' '}
             (use the free version), but always double-check what you’re deleting.
           </p>
-          <Image
-            src="/images/disk-cleanup.png"
-            alt="Disk Cleanup tool"
-            width={800}
-            height={400}
-            className="rounded-lg shadow-lg my-4 max-w-full h-auto"
-          />
+          
         </section>
 
         <section>
@@ -86,13 +73,6 @@ const guides: { [key: string]: { title: string; content: React.ReactNode } } = {
           <p className="text-white/80 mt-2">
             <strong>Tip</strong>: Don’t disable antivirus software or Windows services. If unsure, leave it enabled.
           </p>
-          <Image
-            src="/images/task-manager.png"
-            alt="Task Manager Startup tab"
-            width={800}
-            height={400}
-            className="rounded-lg shadow-lg my-4 max-w-full h-auto"
-          />
         </section>
 
         <section>
@@ -159,13 +139,6 @@ const guides: { [key: string]: { title: string; content: React.ReactNode } } = {
           <p className="text-white/80">
             A Blue Screen of Death (BSOD) is Windows’ way of saying something went seriously wrong. It’s often caused by faulty drivers, hardware issues, or software conflicts. This guide helps you identify and fix common causes, with steps simple enough for beginners.
           </p>
-          <Image
-            src="/images/blue-screen.png"
-            alt="Blue Screen of Death example"
-            width={800}
-            height={400}
-            className="rounded-lg shadow-lg my-4 max-w-full h-auto"
-          />
         </section>
 
         <section>
@@ -264,13 +237,6 @@ const guides: { [key: string]: { title: string; content: React.ReactNode } } = {
           <p className="text-white/80">
             Adding more RAM (Random Access Memory) can make your PC faster, especially for multitasking or heavy programs like video editing software. This guide shows you how to choose and install RAM safely, even if you’ve never opened a PC before.
           </p>
-          <Image
-            src="/images/ram-upgrade.png"
-            alt="RAM module installation"
-            width={800}
-            height={400}
-            className="rounded-lg shadow-lg my-4 max-w-full h-auto"
-          />
         </section>
 
         <section>
@@ -342,13 +308,6 @@ const guides: { [key: string]: { title: string; content: React.ReactNode } } = {
               Close the PC case, plug it in, and boot up. Check if the new RAM is recognized: Right-click “This PC” {'>'} “Properties.”
             </li>
           </ul>
-          <Image
-            src="/images/ram-install.png"
-            alt="Installing RAM in motherboard"
-            width={800}
-            height={400}
-            className="rounded-lg shadow-lg my-4 max-w-full h-auto"
-          />
         </section>
 
         <section>
@@ -376,13 +335,6 @@ const guides: { [key: string]: { title: string; content: React.ReactNode } } = {
           <p className="text-white/80">
             Malware, like viruses or spyware, can slow your PC, steal data, or cause pop-ups. This guide shows you how to detect and remove malware safely using free tools, no advanced skills needed.
           </p>
-          <Image
-            src="/images/malware.png"
-            alt="Malware warning illustration"
-            width={800}
-            height={400}
-            className="rounded-lg shadow-lg my-4 max-w-full h-auto"
-          />
         </section>
 
         <section>
@@ -427,13 +379,6 @@ const guides: { [key: string]: { title: string; content: React.ReactNode } } = {
           <p className="text-white/80 mt-2">
             <strong>Tip</strong>: Avoid “free antivirus” tools from unknown sources—they might be malware in disguise.
           </p>
-          <Image
-            src="/images/malware-scan.png"
-            alt="Malwarebytes scan interface"
-            width={800}
-            height={400}
-            className="rounded-lg shadow-lg my-4 max-w-full h-auto"
-          />
         </section>
 
         <section>
@@ -480,13 +425,6 @@ const guides: { [key: string]: { title: string; content: React.ReactNode } } = {
           <p className="text-white/80">
             A secure Wi-Fi network keeps your data safe and prevents unauthorized access. This guide walks you through setting up your router with strong security settings, even if you’re not tech-savvy.
           </p>
-          <Image
-            src="/images/wifi-router.png"
-            alt="Wi-Fi router setup"
-            width={800}
-            height={400}
-            className="rounded-lg shadow-lg my-4 max-w-full h-auto"
-          />
         </section>
 
         <section>
@@ -532,13 +470,6 @@ const guides: { [key: string]: { title: string; content: React.ReactNode } } = {
           <p className="text-white/80 mt-2">
             <strong>Tip</strong>: After saving, reconnect all devices using the new Wi-Fi name and password.
           </p>
-          <Image
-            src="/images/wifi-settings.png"
-            alt="Router Wi-Fi settings"
-            width={800}
-            height={400}
-            className="rounded-lg shadow-lg my-4 max-w-full h-auto"
-          />
         </section>
 
         <section>
@@ -587,13 +518,6 @@ const guides: { [key: string]: { title: string; content: React.ReactNode } } = {
           <p className="text-white/80">
             Data loss from hardware failure, malware, or accidents can be devastating. Regular backups protect your photos, documents, and more. This guide shows you how to back up your data using free tools and simple steps.
           </p>
-          <Image
-            src="/images/backup-drive.png"
-            alt="External hard drive for backups"
-            width={800}
-            height={400}
-            className="rounded-lg shadow-lg my-4 max-w-full h-auto"
-          />
         </section>
 
         <section>
@@ -639,13 +563,6 @@ const guides: { [key: string]: { title: string; content: React.ReactNode } } = {
           <p className="text-white/80 mt-2">
             <strong>Tip</strong>: Check your backup occasionally to ensure it’s working. Open the drive to verify files.
           </p>
-          <Image
-            src="/images/file-history.png"
-            alt="Windows File History settings"
-            width={800}
-            height={400}
-            className="rounded-lg shadow-lg my-4 max-w-full h-auto"
-          />
         </section>
 
         <section>
