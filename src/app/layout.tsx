@@ -97,10 +97,8 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <head>
-        <SEOJsonLd />
-      </head>
       <body className={`${avenir.variable} ${handelsonTwo.variable} ${handelsonSix.variable} ${handelsonFive.variable} antialiased`}>
+        <SEOJsonLd />
         <Header />
         {children}
         <Footer />
