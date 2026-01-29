@@ -1,5 +1,5 @@
 export const metadata = {
-  title: 'PC Repair DeLand FL | Expert Computer Help | Xtremery',
+  title: 'PC Repair DeLand FL - Xtremery',
   description: 'DeLand PC repair & tech support. $50 diagnostic fee, honest pricing, same-day service. Virus removal, screen replacement, data recovery & more. Call (406) 696-8256!',
   keywords: [
     'PC repair DeLand FL', 'computer repair DeLand Florida', 'laptop repair DeLand', 
@@ -11,7 +11,7 @@ export const metadata = {
     canonical: 'https://www.xtremery.com/pc-repair-deland',
   },
   openGraph: {
-    title: 'PC Repair DeLand FL | Expert Computer Help | Xtremery',
+    title: 'PC Repair DeLand FL - Xtremery',
     description: 'Expert computer repair in DeLand, FL. Same-day service, honest pricing, local tech support you can trust.',
     url: 'https://www.xtremery.com/pc-repair-deland',
     type: 'website',

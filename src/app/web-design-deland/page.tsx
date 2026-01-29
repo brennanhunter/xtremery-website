@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
-  title: 'DeLand Web Design & SEO for Small Business | Xtremery',
+  title: 'DeLand Web Design & SEO - Xtremery',
   description: 'Custom websites that convert in DeLand, FL. Fast, modern, and SEO‑ready. Local expert helping small businesses get results.',
   keywords: [
     'web design DeLand',

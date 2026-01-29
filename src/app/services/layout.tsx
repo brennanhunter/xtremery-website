@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Services - PC Repair & Web Design | Xtremery DeLand',
+  title: 'PC Repair & Web Design Services - Xtremery',
   description: 'Professional computer repair and custom web design services in DeLand, FL. From PC diagnostics and upgrades to high-converting websites and SEO optimization.',
   keywords: [
     'pc repair services deland',
@@ -19,7 +19,7 @@ export const metadata: Metadata = {
     canonical: 'https://www.xtremery.com/services',
   },
   openGraph: {
-    title: 'Services - PC Repair & Web Design | Xtremery DeLand',
+    title: 'PC Repair & Web Design Services - Xtremery',
     description: 'Professional computer repair and custom web design services in DeLand, FL.',
     url: 'https://www.xtremery.com/services',
     siteName: 'Xtremery',
@@ -27,7 +27,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Services - PC Repair & Web Design | Xtremery DeLand',
+    title: 'PC Repair & Web Design Services - Xtremery',
     description: 'Professional computer repair and custom web design services in DeLand, FL.',
   },
 };
