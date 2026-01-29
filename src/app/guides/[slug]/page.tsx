@@ -621,6 +621,13 @@ const guides: { [key: string]: { title: string; content: React.ReactNode } } = {
   },
 };
 
+// Generate static paths for all guides
+export async function generateStaticParams() {
+  return Object.keys(guides).map((slug) => ({
+    slug,
+  }));
+}
+
 // Generate metadata for SEO
 export async function generateMetadata({ params }: GuidePageProps): Promise<Metadata> {
   const { slug } = await params;
