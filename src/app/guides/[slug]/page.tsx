@@ -633,9 +633,7 @@ export async function generateMetadata({ params }: GuidePageProps): Promise<Meta
   }
 
   return {
-    title: {
-      absolute: `${guide.title} Guide - Xtremery`,
-    },
+    title: `${guide.title} Guide`,
     description: `Free step-by-step guide: ${guide.title}. Expert computer repair advice from Xtremery in DeLand, FL.`,
     alternates: {
       canonical: `https://www.xtremery.com/guides/${slug}`,
