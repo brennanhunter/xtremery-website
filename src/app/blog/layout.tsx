@@ -1,7 +1,7 @@
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Tech Blog',
+  title: 'Tech Blog | PC Repair & Web Design Tips DeLand',
   description: 'Expert tech advice, PC repair tips, web design insights, and gaming guides from Xtremery in DeLand, FL.',
   alternates: {
     canonical: 'https://www.xtremery.com/blog',

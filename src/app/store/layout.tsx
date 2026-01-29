@@ -1,7 +1,7 @@
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Xtremery Store',
+  title: 'Tech Tools & Digital Products Store - Xtremery',
   description: 'Professional tech tools, guides, and digital products from Xtremery. Expert-created solutions for PC maintenance and optimization.',
   alternates: {
     canonical: 'https://www.xtremery.com/store',
