@@ -1,8 +1,7 @@
 import React from 'react';
 import Image from 'next/image';
 import { notFound } from 'next/navigation';
-import Header from '../../components/Header';
-import Footer from '../../components/Footer';
+import { Metadata } from 'next';
 import { FaTools } from 'react-icons/fa';
 
 // Define the props type for dynamic routes
@@ -706,6 +705,31 @@ const guides: { [key: string]: { title: string; content: React.ReactNode } } = {
   },
 };
 
+// Generate metadata for SEO
+export async function generateMetadata({ params }: GuidePageProps): Promise<Metadata> {
+  const { slug } = await params;
+  const guide = guides[slug];
+
+  if (!guide) {
+    return {
+      title: 'Guide Not Found',
+    };
+  }
+
+  return {
+    title: `${guide.title} | DeLand PC Repair Guide`,
+    description: `Free step-by-step guide: ${guide.title}. Expert computer repair advice from Xtremery in DeLand, FL.`,
+    alternates: {
+      canonical: `https://www.xtremery.com/guides/${slug}`,
+    },
+    openGraph: {
+      title: `${guide.title} | Xtremery PC Repair Guides`,
+      description: `Learn how to handle ${guide.title.toLowerCase()} with this free guide from DeLand's trusted PC repair experts.`,
+      url: `https://www.xtremery.com/guides/${slug}`,
+    },
+  };
+}
+
 export default async function GuidePage({ params }: GuidePageProps) {
   const { slug } = await params;
   const guide = guides[slug];
@@ -715,21 +739,17 @@ export default async function GuidePage({ params }: GuidePageProps) {
   }
 
   return (
-    <>
-      <Header />
-      <main className="min-h-screen bg-gradient-to-br from-purple-950 via-black to-blue-950 text-white py-20">
-        <div className="max-w-4xl mx-auto px-6">
-          <h1 className="text-4xl sm:text-5xl font-extrabold mb-8 bg-gradient-to-r from-purple-400 via-white to-cyan-400 text-transparent bg-clip-text">
-            {guide.title}
-          </h1>
-          <div className="flex items-center mb-6">
-            <FaTools className="text-3xl text-purple-400" />
-            <span className="ml-3 text-xl text-white/80">Step-by-Step Guide</span>
-          </div>
-          {guide.content}
+    <main className="min-h-screen bg-gradient-to-br from-purple-950 via-black to-blue-950 text-white py-20">
+      <div className="max-w-4xl mx-auto px-6">
+        <h1 className="text-4xl sm:text-5xl font-extrabold mb-8 bg-gradient-to-r from-purple-400 via-white to-cyan-400 text-transparent bg-clip-text">
+          {guide.title}
+        </h1>
+        <div className="flex items-center mb-6">
+          <FaTools className="text-3xl text-purple-400" />
+          <span className="ml-3 text-xl text-white/80">Step-by-Step Guide</span>
         </div>
-      </main>
-      <Footer />
-    </>
+        {guide.content}
+      </div>
+    </main>
   );
 }

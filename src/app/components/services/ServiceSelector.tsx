@@ -3,6 +3,7 @@
 import { motion, AnimatePresence } from 'framer-motion';
 import { easeInOut } from 'framer-motion';
 import Image from 'next/image';
+import { useEffect } from 'react';
 import PCServices from './pc/PCServices';
 import WebServices from './web/WebServices';
 
@@ -25,8 +26,25 @@ export default function ServiceSelector({ selectedService, setSelectedService }:
   };
   const spotlightFadeOut = { opacity: 0, transition: { duration: 1, ease: easeInOut } };
 
+  // Prevent scrolling when no service is selected
+  useEffect(() => {
+    if (!selectedService) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'unset';
+    }
+    
+    // Cleanup on unmount
+    return () => {
+      document.body.style.overflow = 'unset';
+    };
+  }, [selectedService]);
+
   return (
     <>
+      {/* Visually hidden H1 for SEO */}
+      <h1 className="sr-only">Xtremery Services - PC Repair and Web Design in DeLand, FL</h1>
+      
       {/* Web Services Overlay */}
       <AnimatePresence>
         {!selectedService && (
